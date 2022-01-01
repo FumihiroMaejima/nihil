@@ -40,10 +40,11 @@ services:
         ipv4_address: ${SERVICE_NETWORK_IP}
 
   db:
+    platform: 'linux/amd64'
     build: ./mysql
     container_name: ${PROJECT_NAME}_db
     volumes:
-      - vue-rpg-store:/var/lib/mysql # データの永続化
+      - app-volume-store:/var/lib/mysql # データの永続化
       - ./mysql/sql:/docker-entrypoint-initdb.d
     ports:
       - "${MYSQL_PORT}:3306"
@@ -73,9 +74,10 @@ services:
 
 volumes:
   # redis-store:
-  vue-rpg-store:
+  app-volume-store:
     name: ${VOLUME_NAME}
-    driver: local
+    # driver: local
+    external: true
 
 networks:
   default:

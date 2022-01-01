@@ -201,7 +201,7 @@ APP_PORTは現状設定不要。
 nginxのポート設定は要注意が必要。
 
 
-### Laravel version7系のプロジェクトを用意する場合
+### Laravel version8系のプロジェクトを用意する場合
 
 既存の「backend」ディレクトリをリネームして新しく作成する
 
@@ -226,7 +226,7 @@ $ docker-compose up -d
 dockerコンテナとマウントする為の「backend」ディレクトリはローカルで作成する。
 「app」ディレクトリに移動してcomposerでプロジェクトを新規作成する。
 
-バージョン:6.*
+バージョン:8.*
 
 プロジェクト名:backend
 
@@ -234,7 +234,7 @@ dockerコンテナとマウントする為の「backend」ディレクトリは�
 
 ```shell-session
 $ cd app
-$ composer create-project laravel/laravel=6.* --prefer-dist backend
+$ composer create-project laravel/laravel=8.* --prefer-dist backend
 ```
 
 ## パッケージのインストール
