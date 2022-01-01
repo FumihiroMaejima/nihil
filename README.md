@@ -239,7 +239,7 @@ $ composer create-project laravel/laravel=8.* --prefer-dist backend
 
 ## パッケージのインストール
 
-バージョン7系をインストールする場合
+バージョン7系以降をインストールする場合
 「GuzzleHttpClient」はバージョン7系だとデフォルトでインストールされる。
 
 ```shell-session
@@ -251,6 +251,9 @@ $ composer require --dev squizlabs/php_codesniffer
 $ composer require --dev phpmd/phpmd
 $ composer require --dev codedungeon/phpunit-result-printer
 $ composer require --dev barryvdh/laravel-ide-helper
+
+# one liner
+$ composer require --dev nunomaduro/phpinsights barryvdh/laravel-debugbar friendsofphp/php-cs-fixer squizlabs/php_codesniffer phpmd/phpmd codedungeon/phpunit-result-printer barryvdh/laravel-ide-helper
 ```
 
 php-cs-fixer,phpcs,phpmdの設定ファイルを格納する
