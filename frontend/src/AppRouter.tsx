@@ -1,5 +1,6 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+// import { BrowserRouter, Route, Switch } from 'react-router'
 
 // pages
 import { Home } from '@/pages/Home'
@@ -11,9 +12,9 @@ export const AppRouter = (): JSX.Element => {
 
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/" component={Home} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </BrowserRouter>
   )
 }
