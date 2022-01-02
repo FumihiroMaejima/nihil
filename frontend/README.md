@@ -444,18 +444,21 @@ production build の為に`skipLibCheck`は`true`を設定する。
 
 必要最低限の設定は下記の通り
 
+⇨`vite`の`2.7.2`から`plugin-react`が自動的に設定される様になっていた為、下記のインストールは不要。
+
 ```Shell-session
 $ yarn add --dev @vitejs/plugin-react-refresh
 ```
 
 ```TypeScript
 import { defineConfig } from 'vite'
-import reactRefresh from '@vitejs/plugin-react-refresh'
+// import reactRefresh from '@vitejs/plugin-react-refresh'
+import react from '@vitejs/plugin-react'
 import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [reactRefresh()],
+  plugins: [react()],
   root: './src',
   build: {
     target: 'esnext',
