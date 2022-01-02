@@ -1,0 +1,80 @@
+
+
+
+// util colors
+$util-color-black: #000000;
+$util-color-dark-grey: #757575;
+$util-color-blue: #1565c0;
+$util-color-green: #006f5f;
+$util-color-red: #ac291d;
+$util-color-white: #ffffff;
+
+// util light color
+$util-color-light-black: #000000;
+$util-color-light-dark-grey: #f1f3ffea;
+$util-color-light-blue: #f1f8ff;
+$util-color-light-green: #f2fff1;
+$util-color-light-red: #fff1f1;
+$util-color-light-white: #f1f8ff;
+
+// util dark color
+$util-color-dark-black: #111111;
+$util-color-dark-dark-grey: #3b3b3b;
+$util-color-dark-blue: #004a9e;
+$util-color-dark-green: #005548;
+$util-color-dark-red: #910c00;
+$util-color-dark-white: #d2d2d2;
+
+.util-color {
+  &__bg {
+    &--black {
+      background: $util-color-black;
+    }
+
+    &--dark-grey {
+      background: $util-color-dark-grey;
+    }
+
+    &--blue {
+      background: $util-color-blue;
+    }
+
+    &--green {
+      background: $util-color-green;
+    }
+
+    &--red {
+      background: $util-color-red;
+    }
+
+    &--white {
+      background: $util-color-white;
+    }
+  }
+
+  &__text {
+    &--black {
+      color: $util-color-black;
+    }
+
+    &--dark-grey {
+      color: $util-color-dark-grey;
+    }
+
+    &--blue {
+      color: $util-color-blue;
+    }
+
+    &--green {
+      color: $util-color-green;
+    }
+
+    &--red {
+      color: $util-color-red;
+    }
+
+    &--white {
+      color: $util-color-white;
+    }
+  }
+}

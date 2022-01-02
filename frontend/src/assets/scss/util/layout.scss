@@ -1,0 +1,212 @@
+@import '../mixins.scss';
+@import '../_variables.scss';
+
+.page-container {
+  width: 100%;
+
+  @include min-screen($page-container-mobile-breakpont) {
+    max-width: $page-container-mobile-breakpont;
+  }
+
+  @include min-screen($page-container-tablet-breakpont) {
+    max-width: $page-container-tablet-breakpont;
+  }
+
+  @include min-screen($page-container-pc-breakpont) {
+    max-width: $page-container-pc-breakpont;
+  }
+
+  &__mx-auto {
+    margin: 0 auto 0 auto;
+  }
+}
+
+// 1point = 4px
+
+// margin-y
+.m-y1 {
+  margin: 4px 0 4px 0;
+}
+
+.m-y2 {
+  margin: 8px 0 8px 0;
+}
+
+.m-y3 {
+  margin: 12px 0 12px 0;
+}
+
+.m-y4 {
+  margin: 16px 0 16px 0;
+}
+
+.m-y5 {
+  margin: 20px 0 20px 0;
+}
+
+.m-y6 {
+  margin: 24px 0 24px 0;
+}
+
+
+// margin-x
+.m-x1 {
+  margin: 0 4px 0 4px;
+}
+
+.m-x2 {
+  margin: 0 8px 0 8px;
+}
+
+.m-x3 {
+  margin: 0 12px 0 12px;
+}
+
+.m-x4 {
+  margin: 0 16px 0 16px;
+}
+
+.m-x5 {
+  margin: 0 20px 0 20px;
+}
+
+.m-x6 {
+  margin: 0 24px 0 24px;
+}
+
+// margin-xy
+.m-xy1 {
+  margin: 4px 4px 4px 4px;
+}
+
+.m-xy2 {
+  margin: 8px 8px 8px 8px;
+}
+
+.m-xy3 {
+  margin: 12px 12px 12px 12px;
+}
+
+.m-xy4 {
+  margin: 16px 16px 16px 16px;
+}
+
+.m-xy5 {
+  margin: 20px 20px 20px 20px;
+}
+
+.m-xy6 {
+  margin: 24px 24px 24px 24px;
+}
+
+// padding-y
+.p-y1 {
+  padding: 4px 0 4px 0;
+}
+
+.p-y2 {
+  padding: 8px 0 8px 0;
+}
+
+.p-y3 {
+  padding: 12px 0 12px 0;
+}
+
+.p-y4 {
+  padding: 16px 0 16px 0;
+}
+
+.p-y5 {
+  padding: 20px 0 20px 0;
+}
+
+.p-y6 {
+  padding: 24px 0 24px 0;
+}
+
+
+// padding-x
+.p-x1 {
+  padding: 0 4px 0 4px;
+}
+
+.p-x2 {
+  padding: 0 8px 0 8px;
+}
+
+.p-x3 {
+  padding: 0 12px 0 12px;
+}
+
+.p-x4 {
+  padding: 0 16px 0 16px;
+}
+
+.p-x5 {
+  padding: 0 20px 0 20px;
+}
+
+.p-x6 {
+  padding: 0 24px 0 24px;
+}
+
+// padding-xy
+.p-xy1 {
+  padding: 4px 4px 4px 4px;
+}
+
+.p-xy2 {
+  padding: 8px 8px 8px 8px;
+}
+
+.p-xy3 {
+  padding: 12px 12px 12px 12px;
+}
+
+.p-xy4 {
+  padding: 16px 16px 16px 16px;
+}
+
+.p-xy5 {
+  padding: 20px 20px 20px 20px;
+}
+
+.p-xy6 {
+  padding: 24px 24px 24px 24px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+
+// @each key, value in $map の順
+@each $name, $direction in $layout-directions {
+  .flex-justify-#{$name} {
+    justify-content: $direction;
+  }
+}
+
+@each $name, $direction in $layout-align-directions {
+  .flex-align-#{$name} {
+    // align-content: $direction;
+    align-items: $direction;
+  }
+}
+
+/* .flex-justify-left {
+  justify-content: map-get($direction, left);
+} */
+
+/* .flex-justify-left {
+  justify-content: left;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.flex-justify-right {
+  justify-content: right;
+} */
+

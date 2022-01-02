@@ -1,0 +1,316 @@
+
+
+
+
+@import './colors.scss';
+
+.util-border {
+  &-full {
+    &-solid {
+      // 2px
+      &-2p {
+        &__color {
+          &--black {
+            border: solid 2px $util-color-black;
+          }
+
+          &--dark-grey {
+            border: solid 2px $util-color-dark-grey;
+          }
+
+          &--blue {
+            border: solid 2px $util-color-blue;
+          }
+
+          &--green {
+            border: solid 2px $util-color-green;
+          }
+
+          &--red {
+            border: solid 2px $util-color-red;
+          }
+
+          &--dash {
+            border: dashed $util-color-dark-grey;
+          }
+
+          &--double {
+            border: double 2px $util-color-dark-grey;
+          }
+        }
+      }
+
+      // 3px
+      &-3p {
+        &__color {
+          &--black {
+            border: solid 3px $util-color-black;
+          }
+
+          &--dark-grey {
+            border: solid 3px $util-color-dark-grey;
+          }
+
+          &--blue {
+            border: solid 3px $util-color-blue;
+          }
+
+          &--green {
+            border: solid 3px $util-color-green;
+          }
+
+          &--red {
+            border: solid 3px $util-color-red;
+          }
+
+          &--dash {
+            border: dashed $util-color-dark-grey;
+          }
+
+          &--double {
+            border: double 3px $util-color-dark-grey;
+          }
+        }
+      }
+    }
+
+    &-dash {
+      &__color {
+        &--black {
+          border: dashed $util-color-black;
+        }
+
+        &--dark-grey {
+          border: dashed $util-color-dark-grey;
+        }
+
+        &--blue {
+          border: dashed $util-color-blue;
+        }
+
+        &--green {
+          border: dashed $util-color-green;
+        }
+
+        &--red {
+          border: dashed $util-color-red;
+        }
+      }
+    }
+  }
+
+  &-bottom {
+    &-solid {
+      // 2px
+      &-2p {
+        &__color {
+          &--black {
+            border-bottom: solid 2px $util-color-black;
+          }
+
+          &--dark-grey {
+            border-bottom: solid 2px $util-color-dark-grey;
+          }
+
+          &--blue {
+            border-bottom: solid 2px $util-color-blue;
+          }
+
+          &--green {
+            border-bottom: solid 2px $util-color-green;
+          }
+
+          &--red {
+            border-bottom: solid 2px $util-color-red;
+          }
+
+          &--dash {
+            color: $util-color-dark-grey;
+            border-bottom: dashed $util-color-dark-grey;
+          }
+
+          &--double {
+            border-bottom: double 2px $util-color-dark-grey;
+          }
+        }
+      }
+      // 3px
+      &-3p {
+        &__color {
+          &--black {
+            border-bottom: solid 3px $util-color-black;
+          }
+
+          &--dark-grey {
+            border-bottom: solid 3px $util-color-dark-grey;
+          }
+
+          &--blue {
+            border-bottom: solid 3px $util-color-blue;
+          }
+
+          &--green {
+            border-bottom: solid 3px $util-color-green;
+          }
+
+          &--red {
+            border-bottom: solid 3px $util-color-red;
+          }
+
+          &--dash {
+            color: $util-color-dark-grey;
+            border-bottom: dashed $util-color-dark-grey;
+          }
+
+          &--double {
+            border-bottom: double 3px $util-color-dark-grey;
+          }
+        }
+      }
+    }
+
+    &-dash {
+      &__color {
+        &--black {
+          border-bottom: dashed $util-color-black;
+        }
+
+        &--dark-grey {
+          border-bottom: dashed $util-color-dark-grey;
+        }
+
+        &--blue {
+          border-bottom: dashed $util-color-blue;
+        }
+
+        &--green {
+          border-bottom: dashed $util-color-green;
+        }
+
+        &--red {
+          border-bottom: dashed $util-color-red;
+        }
+      }
+    }
+  }
+
+  &-left {
+    &-solid {
+      // 2px
+      &-2p {
+        &__color {
+          &--black {
+            border-bottom: solid 2px $util-color-black;
+          }
+
+          &--dark-grey {
+            border-bottom: solid 2px $util-color-dark-grey;
+          }
+
+          &--blue {
+            border-bottom: solid 2px $util-color-blue;
+          }
+
+          &--green {
+            border-bottom: solid 2px $util-color-green;
+          }
+
+          &--red {
+            border-bottom: solid 2px $util-color-red;
+          }
+
+          &--dash {
+            color: $util-color-dark-grey;
+            border-bottom: dashed $util-color-dark-grey;
+          }
+
+          &--double {
+            border-bottom: double 2px $util-color-dark-grey;
+          }
+        }
+      }
+      // 3px
+      &-3p {
+        &__color {
+          &--black {
+            border-bottom: solid 3px $util-color-black;
+          }
+
+          &--dark-grey {
+            border-bottom: solid 3px $util-color-dark-grey;
+          }
+
+          &--blue {
+            border-bottom: solid 3px $util-color-blue;
+          }
+
+          &--green {
+            border-bottom: solid 3px $util-color-green;
+          }
+
+          &--red {
+            border-bottom: solid 3px $util-color-red;
+          }
+
+          &--dash {
+            color: $util-color-dark-grey;
+            border-bottom: dashed $util-color-dark-grey;
+          }
+
+          &--double {
+            border-bottom: double 3px $util-color-dark-grey;
+          }
+        }
+      }
+
+      &-5p {
+        &__color {
+          &--black {
+            border-left: solid 5px $util-color-black;
+          }
+
+          &--dark-grey {
+            border-left: solid 5px $util-color-dark-grey;
+          }
+
+          &--blue {
+            border-left: solid 5px $util-color-blue;
+          }
+
+          &--green {
+            border-left: solid 5px $util-color-green;
+          }
+
+          &--red {
+            border-left: solid 5px $util-color-red;
+          }
+
+          &--dash {
+            color: $util-color-dark-grey;
+            border-left: dashed $util-color-dark-grey;
+          }
+
+          &--double {
+            border-left: double 5px $util-color-dark-grey;
+          }
+        }
+      }
+    }
+  }
+
+  &-radius {
+    &__round {
+      &--5p {
+        border-radius: 5px;
+      }
+
+      &--8p {
+        border-radius: 8px;
+      }
+
+      &--10p {
+        border-radius: 10px;
+      }
+    }
+  }
+}
