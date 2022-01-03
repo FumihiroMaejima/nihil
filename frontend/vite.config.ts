@@ -12,7 +12,8 @@ export default defineConfig({
     outDir: '../dist',
     emptyOutDir: true,
   },
-  base: '/',
+  // base: '/',
+  base: '/admin/', // reverse proxy setting.
   resolve: {
     alias: [
       {

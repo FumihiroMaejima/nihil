@@ -9,8 +9,10 @@ export const AppRouter = (): JSX.Element => {
   // 開発時用専用のページを用意したい時に設定する
   const isDevelop = import.meta.env.DEV || false
 
+  const servicePathName = 'admin' || undefined
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={servicePathName}>
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
