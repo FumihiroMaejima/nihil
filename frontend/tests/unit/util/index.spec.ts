@@ -1,5 +1,5 @@
 import {
-  checkPerformance,
+  // checkPerformance,
   sortArrayNumbers,
   sortArrayNumbersDesc,
   getMultiSelectLabel,
@@ -26,7 +26,7 @@ describe('sortArrayNumbersDesc', () => {
   })
 })
 
-describe('sortArrayNumbers check performance', () => {
+/* describe('sortArrayNumbers check performance', () => {
   it('sortArrayNumbers performance check', () => {
     const data = [5, 3, 9, 1, 10]
 
@@ -34,7 +34,7 @@ describe('sortArrayNumbers check performance', () => {
       undefined
     )
   })
-})
+}) */
 
 const testSelectBoxData = [
   { text: 'test1', value: 1 },
