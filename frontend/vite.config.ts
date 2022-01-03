@@ -18,7 +18,7 @@ export default defineConfig({
       {
         find: '@/',
         replacement: path.join(__dirname, './src/'),
-      }
+      },
     ],
     /* alias: {
       '@/': path.join(__dirname, './src/'),
