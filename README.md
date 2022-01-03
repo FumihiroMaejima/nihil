@@ -681,6 +681,12 @@ localhost/api/auth/login
  $ php artisan make:model Models/Test
 ```
 
+`v8`では`Models`ディレクトリがある為、Model名のみを指定すれば良い。
+
+```shell-session
+ $ php artisan make:model Test
+```
+
 ### シーディングファイル作成
 
 ```shell-session
