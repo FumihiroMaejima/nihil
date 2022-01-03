@@ -515,27 +515,29 @@ export default Home
 
 ### Router.tsx
 
+`react-router-dom`の`v6`からパッケージの使い方が変更になったので下記の通りに利用する。
+
 ```TypeScript
-import React from "react"
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 // pages
 import { Home } from '@/pages/Home'
-import { Sample } from '@/pages/Sample'
 
-export const Router = () => {
+export const AppRouter = (): JSX.Element => {
+  // process.envがdevelopかの判定
+  // 開発時用専用のページを用意したい時に設定する
+  const isDevelop = import.meta.env.DEV || false
 
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/sample" component={Sample} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </BrowserRouter>
-  );
-};
+  )
+}
 
-export default Router
+export default AppRouter
 
 ```
 
