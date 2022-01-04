@@ -177,6 +177,13 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
 
+        // add
+        App\Providers\RepositoryServiceProvider::class,
+        App\Providers\DataBaseQueryServiceProvider::class,
+
+        // TODO remove comment out.
+        // Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ],
 
     /*
