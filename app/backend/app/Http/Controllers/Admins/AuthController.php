@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
-// use App\Repositories\AdminsRoles\AdminsRolesRepositoryInterface;
+use App\Repositories\AdminsRoles\AdminsRolesRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
-
-// TODO use AdminsRolesRepositoryInterface
 
 class AuthController extends Controller
 {
@@ -105,13 +103,13 @@ class AuthController extends Controller
      * @param  int $id
      * @return array
      */
-    /* protected function getRoleCode(int $adminId): array
+    protected function getRoleCode(int $adminId): array
     {
         return app()->make(AdminsRolesRepositoryInterface::class)->getByAdminId($adminId)
             ->pluck('code')
             ->values()
             ->toArray();
-    } */
+    }
 
     /**
      * 管理者情報のリソースを取得
@@ -124,8 +122,7 @@ class AuthController extends Controller
         return [
             'id'        => $user->id,
             'name'      => $user->name,
-            // 'authority' => $this->getRoleCode($user->id)
-            'authority' => []
+            'authority' => $this->getRoleCode($user->id)
         ];
     }
 }
