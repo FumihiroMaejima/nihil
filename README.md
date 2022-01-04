@@ -273,6 +273,12 @@ vendor/bin/phpcs --standard=phpcs.xml --extensions=php .
 vendor/bin/phpmd . text ruleset.xml --suffixes php --exclude node_modules,resources,storage,vendor
 ```
 
+単体のファイルにphpunitをかける
+
+```shell-session
+vendor/bin/phpunit tests/Unit/ExampleTest --testdox
+```
+
 
 ## マイグレーションについて
 
