@@ -238,6 +238,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // add
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
     ],
 
 ];
