@@ -181,8 +181,7 @@ return [
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\DataBaseQueryServiceProvider::class,
 
-        // TODO remove comment out.
-        // Maatwebsite\Excel\ExcelServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
