@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Trait\HelperTrait;
 
 class MemberServiceTest extends TestCase
 {
+    use HelperTrait;
+
     protected $initialized = false;
 
     /**
@@ -23,7 +26,8 @@ class MemberServiceTest extends TestCase
         Artisan::call('migrate:fresh');
         Artisan::call('db:seed');
 
-        $response = $this->json('POST', route('auth.admin'), [
+        // $response = $this->json('POST', "http://".Config::get('app.url').route('auth.admin', [], false), [
+        $response = $this->json('POST', $this->getRouteUrl('auth.admin'), [
             'email'    => Config::get('myapp.test.admin.login.email'),
             'password' => Config::get('myapp.test.admin.login.password')
         ])->json();

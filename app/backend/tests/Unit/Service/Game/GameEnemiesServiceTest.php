@@ -11,9 +11,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\Game\EnemiesTemplateExport;
+use App\Trait\HelperTrait;
 
 class GameEnemiesServiceTest extends TestCase
 {
+    use HelperTrait;
+
     protected $initialized = false;
 
     /**
@@ -30,7 +33,7 @@ class GameEnemiesServiceTest extends TestCase
         Artisan::call('migrate:fresh');
         Artisan::call('db:seed');
 
-        $response = $this->json('POST', route('auth.admin'), [
+        $response = $this->json('POST', $this->getRouteUrl('auth.admin'), [
             'email'    => Config::get('myapp.test.admin.login.email'),
             'password' => Config::get('myapp.test.admin.login.password')
         ])->json();
