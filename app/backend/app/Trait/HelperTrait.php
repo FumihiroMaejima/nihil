@@ -8,7 +8,7 @@ trait HelperTrait
 {
     /**
      * get url by route name
-     * @description now route helper is bagged. (return double host ex: http://localhost/localhost/)
+     * @description now route helper is bagged in unit test setup(). (return double host ex: http://localhost/localhost/)
      * so made custom url helper.
      * @param string $name
      * @param array $parameters
