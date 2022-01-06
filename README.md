@@ -279,6 +279,29 @@ vendor/bin/phpmd . text ruleset.xml --suffixes php --exclude node_modules,resour
 vendor/bin/phpunit tests/Unit/ExampleTest --testdox
 ```
 
+カバレッジ出力
+
+docker コマンド経由で実行する場合は相対パスが変わる。
+
+```shell-session
+vendor/bin/phpunit --coverage-text --colors=never > storage/logs/coverage.log
+docker-compose exec app vendor/bin/phpunit --coverage-text --colors=never > app/backend/storage/logs/coverage.log
+```
+
+`--testdox`と`--coverage-text`を同時に指定すると、textdoxの内容がcoverage.logに出力される。
+
+コンソールには出力されない。
+
+```shell-session
+vendor/bin/phpunit --testdox --coverage-text --colors=never > storage/logs/coverage.log
+```
+
+カバレッジの出力には、ENVかphp.iniに下記の設定が必要。
+
+```shell-session
+XDEBUG_MODE=coverage or xdebug.mode=coverage
+```
+
 
 ## マイグレーションについて
 
