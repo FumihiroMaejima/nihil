@@ -1,0 +1,1188 @@
+openapi: 3.0.0
+info:
+  description: "Test 12345 You can find out more about     Swagger at
+    [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
+    #swagger](http://swagger.io/irc/).      For this sample, you can use the api
+    key `special-key` to test the authorization     filters."
+  version: 1.0.0
+  title: RPG-Admin Service
+  termsOfService: https://github.com/user-name/repository-name
+  contact:
+    email: test@example.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: members
+    description: Administrators infomation
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: roles
+    description: Roles infomation
+  - name: gameEnemies
+    description: GameEnemies infomation
+  - name: auth
+    description: Operations about authentication
+    externalDocs:
+      description: Find out more about our store
+      url: http://swagger.io
+  - name: user
+    description: Operations about user
+    externalDocs:
+      description: Find out more about our store
+      url: http://swagger.io
+paths:
+  /admin/members:
+    get:
+      tags:
+        - members
+      summary: Find members
+      description: Returns administrators data
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Member"
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "404":
+          description: Members not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+  /admin/members/csv:
+    get:
+      tags:
+        - members
+      summary: Find members as CSV data
+      description: Returns administrators data by csv file
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/csv:
+              schema:
+                $ref: "#/components/schemas/FileData"
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/csv:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "404":
+          description: Members not found
+          content:
+            application/csv:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+  /admin/members/member:
+    post:
+      tags:
+        - members
+      summary: Create Administrator
+      description: ""
+      operationId: createMemberWithForm
+      parameters:
+        - name: authenticaion_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+        - name: authority_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: name of administrator
+                  type: string
+                email:
+                  description: email of administrator
+                  type: string
+                roleId:
+                  description: role of administrator
+                  type: integer
+                password:
+                  description: password of administrator
+                  type: string
+                password_confirmation:
+                  description: confirm password of administrator
+                  type: string
+              required:
+                - name
+                - email
+                - roleId
+                - password
+                - password_confirmation
+      responses:
+        "201":
+          description: successful Logout
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccessResponse"
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "422":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - members_auth:
+            - write:members
+            - read:members
+  "/admin/members/member/{id}":
+    patch:
+      tags:
+        - members
+      summary: Updates member data with form data
+      description: ""
+      operationId: updateMemberWithForm
+      parameters:
+        - name: authenticaion_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+        - name: authority_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: id
+          in: path
+          description: ID of member
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: name of administrator
+                  type: string
+                email:
+                  description: email of administrator
+                  type: string
+                roleId:
+                  description: role of administrator
+                  type: integer
+              required:
+                - name
+                - email
+                - roleId
+      responses:
+        "200":
+          description: successful Logout
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccessResponse"
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "422":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - members_auth:
+            - write:members
+            - read:members
+    delete:
+      tags:
+        - members
+      summary: Deletes a member
+      description: ""
+      operationId: deleteMember
+      parameters:
+        - name: authenticaion_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+        - name: authority_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: id
+          in: path
+          description: ID of member
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: successful Delete
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccessResponse"
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "404":
+          description: Membeer not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "422":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - members_auth:
+            - write:members
+            - read:members
+  /admin/roles:
+    get:
+      tags:
+        - roles
+      summary: Find roles
+      description: Returns roles data
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Roles"
+        "404":
+          description: Roles not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        default:
+          description: unsuccessful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+  /admin/roles/list:
+    get:
+      tags:
+        - roles
+      summary: Find roles List of name & id
+      description: Returns roles data
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RolesList"
+        "404":
+          description: Roles not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        default:
+          description: unsuccessful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+  /admin/roles/csv:
+    get:
+      tags:
+        - roles
+      summary: Find roles CSV data
+      description: Returns roles CSV data
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/csv:
+              schema:
+                $ref: "#/components/schemas/FileData"
+        "404":
+          description: Roles not found
+          content:
+            application/csv:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        default:
+          description: unsuccessful operation
+          content:
+            application/csv:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+  /admin/roles/role:
+    post:
+      tags:
+        - roles
+      summary: Create Role
+      description: ""
+      operationId: createRoleWithForm
+      parameters:
+        - name: authenticaion_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+        - name: authority_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        $ref: "#/components/requestBodies/createRoleWithForm"
+      responses:
+        "201":
+          description: successful Create
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccessResponse"
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "422":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - members_auth:
+            - write:members
+            - read:members
+    delete:
+      tags:
+        - roles
+      summary: Deletes some roles
+      description: ""
+      operationId: deleteRole
+      parameters:
+        - name: authenticaion_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+        - name: authority_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                roles:
+                  description: ID of role
+                  type: array
+                  items:
+                    type: integer
+              required:
+                - roles
+      responses:
+        "200":
+          description: successful Delete
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccessResponse"
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "404":
+          description: Membeer not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "422":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - members_auth:
+            - write:members
+            - read:members
+  "/admin/roles/role/{id}":
+    patch:
+      tags:
+        - roles
+      summary: Update Role
+      description: ""
+      operationId: UpdateRoleWithForm
+      parameters:
+        - name: id
+          in: path
+          description: ID of Role
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: "#/components/requestBodies/createRoleWithForm"
+      responses:
+        "200":
+          description: successful UPdate
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccessResponse"
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "422":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+  /admin/game/enemies:
+    get:
+      tags:
+        - gameEnemies
+      summary: Find gameEnemies
+      description: Returns gameEnemies data
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GameEnemies"
+        "404":
+          description: GameEnemies not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        default:
+          description: unsuccessful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+  /admin/game/enemies/file/csv:
+    get:
+      tags:
+        - gameEnemies
+      summary: Find gameEnemies CSV data
+      description: Returns gameEnemies CSV data
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/csv:
+              schema:
+                $ref: "#/components/schemas/FileData"
+        "404":
+          description: Roles not found
+          content:
+            application/csv:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        default:
+          description: unsuccessful operation
+          content:
+            application/csv:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+  /admin/game/enemies/file/template:
+    get:
+      tags:
+        - gameEnemies
+      summary: Get gameEnemies Template File
+      description: Returns Template File of Enemeies
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileData"
+        "404":
+          description: GameEnemies not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        default:
+          description: unsuccessful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+    post:
+      tags:
+        - gameEnemies
+      summary: Import gameEnemies Template File
+      description: ""
+      operationId: importEnemiesWithFile
+      parameters:
+        - name: authenticaion_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+        - name: authority_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  description: File Data
+                  type: string
+                  format: binary
+              required:
+                - file
+      responses:
+        "201":
+          description: successful Create
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccessResponse"
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "422":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+  "/admin/game/enemies/enemy/{id}":
+    patch:
+      tags:
+        - gameEnemies
+      summary: Update Enemy
+      description: ""
+      operationId: UpdateEnemyWithForm
+      parameters:
+        - name: authenticaion_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+        - name: authority_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: id
+          in: path
+          description: ID of Enemy
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: name of Role
+                  type: string
+                level:
+                  description: level of Enemy
+                  type: integer
+                hp:
+                  description: hp of Enemy
+                  type: integer
+                mp:
+                  description: mp of Enemy
+                  type: integer
+                offence:
+                  description: offence of Enemy
+                  type: integer
+                defense:
+                  description: defense of Enemy
+                  type: integer
+                speed:
+                  description: speed of Enemy
+                  type: integer
+                magic:
+                  description: magic of Enemy
+                  type: integer
+              required:
+                - name
+                - level
+                - hp
+                - mp
+                - offence
+                - defense
+                - speed
+                - magic
+      responses:
+        "200":
+          description: successful UPdate
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccessResponse"
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "422":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+  /admin/game/enemies/enemy:
+    delete:
+      tags:
+        - gameEnemies
+      summary: Deletes some enemies
+      description: ""
+      operationId: deleteEnemies
+      parameters:
+        - name: authenticaion_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+        - name: authority_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                enemies:
+                  description: ID of role
+                  type: array
+                  items:
+                    type: integer
+              required:
+                - enemies
+      responses:
+        "200":
+          description: successful Delete
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccessResponse"
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "404":
+          description: Membeer not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "422":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+      security:
+        - authenticaion_key: []
+        - authority_key: []
+  /auth/admin/login:
+    post:
+      tags:
+        - auth
+      summary: Logs user into the system
+      description: Login Function
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  description: email of administrator
+                  type: string
+                password:
+                  description: password of administrator
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        "200":
+          description: successful Login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthRequestResponse"
+        "400":
+          description: Invalid username/password supplied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "422":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+  /auth/admin/logout:
+    post:
+      tags:
+        - auth
+      summary: Logs out current logged in user session
+      description: Logout Function
+      parameters:
+        - name: authenticaion_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+        - name: authority_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        "200":
+          description: successful Logout
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccessResponse"
+        "401":
+          description: Unahthorithed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        default:
+          description: unsuccessful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+  /auth/admin/refresh:
+    post:
+      tags:
+        - auth
+      summary: Refresh authenticated token
+      description: Refresh Authenticated token Function
+      parameters:
+        - name: authenticaion_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+        - name: authority_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        "200":
+          description: Authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthRequestResponse"
+        "401":
+          description: Unahthorithed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        default:
+          description: unsuccessful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+  /auth/admin/self:
+    post:
+      tags:
+        - auth
+      summary: Check authenticated
+      description: Check Authenticated Function
+      parameters:
+        - name: authenticaion_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+        - name: authority_key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        "200":
+          description: Authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthenticatedUser"
+        "401":
+          description: Unahthorithed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        default:
+          description: unsuccessful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://localhost:3200/api/v1
+  - url: http://localhost:3200/api/v1
+components:
+  requestBodies:
+    createRoleWithForm:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                description: name of Role
+                type: string
+              code:
+                description: code of Role
+                type: string
+              detail:
+                description: detail of Role
+                type: string
+              permissions:
+                description: id of Permission
+                type: array
+                items:
+                  type: integer
+            required:
+              - name
+              - code
+              - detail
+              - permissions
+  securitySchemes:
+    members_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://example.com
+          scopes:
+            write:members: modify members in your account
+            read:members: read your members
+    authenticaion_key:
+      type: apiKey
+      name: Authorization
+      in: header
+    authority_key:
+      type: apiKey
+      name: X-Auth-Authority
+      in: header
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+  schemas:
+    AuthRequestResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: string
+        user:
+          $ref: "#/components/schemas/AuthenticatedUser"
+      xml:
+        name: AuthRequestResponse
+    AuthenticatedUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        authority:
+          type: integer
+          format: int32
+          description: User authority id
+      xml:
+        name: AuthenticatedUser
+    Member:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+          name:
+            type: string
+          email:
+            type: string
+          password:
+            type: string
+          phone:
+            type: string
+          roleId:
+            type: integer
+            format: int64
+            description: Admin`s role id
+      xml:
+        name: Member
+    Permissions:
+      type: array
+      items:
+        type: object
+        properties:
+          value:
+            type: integer
+            format: int64
+          text:
+            type: string
+      xml:
+        name: Permissions
+    Roles:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+          name:
+            type: string
+          code:
+            type: string
+          detail:
+            type: string
+          permissions:
+            type: integer
+            format: int64
+            description: Role`s permission ids
+      xml:
+        name: Roles
+    RolesList:
+      type: array
+      items:
+        type: object
+        properties:
+          value:
+            type: integer
+            format: int64
+          text:
+            type: string
+      xml:
+        name: RolesList
+    GameEnemies:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+          name:
+            type: string
+          level:
+            type: integer
+            format: int64
+          hp:
+            type: integer
+            format: int64
+          mp:
+            type: integer
+            format: int64
+          offece:
+            type: integer
+            format: int64
+          defense:
+            type: integer
+            format: int64
+          speed:
+            type: integer
+            format: int64
+          magic:
+            type: integer
+            format: int64
+    FileData:
+      description: binary data
+      type: object
+    ApiSuccessResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+    ApiErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        errors:
+          type: array
+          items:
+            type: string
+        message:
+          type: string
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
