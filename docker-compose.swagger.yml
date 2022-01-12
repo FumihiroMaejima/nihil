@@ -4,8 +4,7 @@ services:
     container_name: ${PROJECT_NAME}_swagger-editor
     image: 'swaggerapi/swagger-editor'
     volumes:
-      # - ./api/api.yaml:/tmp/swagger.yaml
-      - ./api/openapiV3.yaml:/tmp/swagger.yaml
+      - ./api/api.yaml:/tmp/swagger.yaml
     ports:
       - 8100:8080
     environment:
