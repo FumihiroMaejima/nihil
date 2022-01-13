@@ -1045,7 +1045,7 @@ components:
       name: api_key
       in: header
   schemas:
-    # $ref: "./data/schemas/schemas.yaml"
+    # $ref: "./data/schemas/index.yaml"
     AuthRequestResponse:
       $ref: "./data/schemas/AuthRequestResponse.yaml"
     AuthenticatedUser:
