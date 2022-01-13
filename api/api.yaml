@@ -1048,18 +1048,6 @@ components:
     # $ref: "./data/schemas/schemas.yaml"
     AuthRequestResponse:
       $ref: "./data/schemas/AuthRequestResponse.yaml"
-      # type: object
-      # properties:
-      #   access_token:
-      #     type: string
-      #   token_type:
-      #     type: string
-      #   expires_in:
-      #     type: string
-      #   user:
-      #     $ref: "#/components/schemas/AuthenticatedUser"
-      # xml:
-      #   name: AuthRequestResponse
     AuthenticatedUser:
       $ref: "./data/schemas/AuthenticatedUser.yaml"
     Member:
