@@ -1,0 +1,14 @@
+# AuthenticatedUser:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+    authority:
+      type: integer
+      format: int32
+      description: User authority id
+  xml:
+    name: AuthenticatedUser

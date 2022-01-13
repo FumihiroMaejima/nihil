@@ -1,0 +1,12 @@
+# Permissions:
+  type: array
+  items:
+    type: object
+    properties:
+      value:
+        type: integer
+        format: int64
+      text:
+        type: string
+  xml:
+    name: Permissions
