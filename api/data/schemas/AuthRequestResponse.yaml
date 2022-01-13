@@ -9,7 +9,7 @@
       type: string
     user:
       description: AuthenticatedUser shcema.
-      $ref: "#/components/schemas/AuthenticatedUser"
-      # $ref: "./AuthenticatedUser" # 404 error
+      # $ref: "#/components/schemas/AuthenticatedUser.yaml"
+      $ref: "./AuthenticatedUser.yaml"
   xml:
     name: AuthRequestResponse
