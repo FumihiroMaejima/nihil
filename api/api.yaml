@@ -1063,8 +1063,8 @@ components:
     FileData:
       $ref: "./data/schemas/FileData.yaml"
     ApiSuccessResponse:
-      $ref: "./data/schemas/ApiSuccessResponse.yaml"
+      $ref: "./data/schemas/request/ApiSuccessResponse.yaml"
     ApiErrorResponse:
-      $ref: "./data/schemas/ApiErrorResponse.yaml"
+      $ref: "./data/schemas/request/ApiErrorResponse.yaml"
     ApiResponse:
-      $ref: "./data/schemas/ApiResponse.yaml"
+      $ref: "./data/schemas/request/ApiResponse.yaml"
