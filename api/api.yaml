@@ -1047,9 +1047,9 @@ components:
   schemas:
     # $ref: "./data/schemas/index.yaml"
     AuthRequestResponse:
-      $ref: "./data/schemas/AuthRequestResponse.yaml"
+      $ref: "./data/schemas/auth/AuthRequestResponse.yaml"
     AuthenticatedUser:
-      $ref: "./data/schemas/AuthenticatedUser.yaml"
+      $ref: "./data/schemas/auth/AuthenticatedUser.yaml"
     Member:
       $ref: "./data/schemas/Member.yaml"
     Permissions:
