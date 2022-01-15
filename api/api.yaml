@@ -1025,13 +1025,14 @@ components:
               - permissions
   securitySchemes:
     members_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: http://example.com
-          scopes:
-            write:members: modify members in your account
-            read:members: read your members
+      $ref: "./data/components/securitySchemes/membersAuth.yaml"
+      # type: oauth2
+      # flows:
+      #   implicit:
+      #     authorizationUrl: http://example.com
+      #     scopes:
+      #       write:members: modify members in your account
+      #       read:members: read your members
     authenticaion_key:
       $ref: "./data/components/securitySchemes/authenticaionKey.yaml"
       # type: apiKey
