@@ -3,15 +3,15 @@ AuthRequestResponse:
 AuthenticatedUser:
   $ref: "./auth/AuthenticatedUser.yaml"
 Member:
-  $ref: "./Member.yaml"
+  $ref: "./models/Member.yaml"
 Permissions:
-  $ref: "./Permissions.yaml"
+  $ref: "./models/Permissions.yaml"
 Roles:
-  $ref: "./Roles.yaml"
+  $ref: "./models/Roles.yaml"
 RolesList:
-  $ref: "./RolesList.yaml"
+  $ref: "./models/RolesList.yaml"
 GameEnemies:
-  $ref: "./GameEnemies.yaml"
+  $ref: "./models/GameEnemies.yaml"
 FileData:
   $ref: "./files/FileData.yaml"
 ApiSuccessResponse:

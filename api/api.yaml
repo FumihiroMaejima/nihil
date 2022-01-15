@@ -1051,15 +1051,15 @@ components:
     AuthenticatedUser:
       $ref: "./data/schemas/auth/AuthenticatedUser.yaml"
     Member:
-      $ref: "./data/schemas/Member.yaml"
+      $ref: "./data/schemas/models/Member.yaml"
     Permissions:
-      $ref: "./data/schemas/Permissions.yaml"
+      $ref: "./data/schemas/models/Permissions.yaml"
     Roles:
-      $ref: "./data/schemas/Roles.yaml"
+      $ref: "./data/schemas/models/Roles.yaml"
     RolesList:
-      $ref: "./data/schemas/RolesList.yaml"
+      $ref: "./data/schemas/models/RolesList.yaml"
     GameEnemies:
-      $ref: "./data/schemas/GameEnemies.yaml"
+      $ref: "./data/schemas/models/GameEnemies.yaml"
     FileData:
       $ref: "./data/schemas/files/FileData.yaml"
     ApiSuccessResponse:
