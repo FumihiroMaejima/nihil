@@ -1061,7 +1061,7 @@ components:
     GameEnemies:
       $ref: "./data/schemas/GameEnemies.yaml"
     FileData:
-      $ref: "./data/schemas/FileData.yaml"
+      $ref: "./data/schemas/files/FileData.yaml"
     ApiSuccessResponse:
       $ref: "./data/schemas/request/ApiSuccessResponse.yaml"
     ApiErrorResponse:

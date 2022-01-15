@@ -1,7 +1,7 @@
 AuthRequestResponse:
-  $ref: "./AuthRequestResponse.yaml"
+  $ref: "./auth/AuthRequestResponse.yaml"
 AuthenticatedUser:
-  $ref: "./AuthenticatedUser.yaml"
+  $ref: "./auth/AuthenticatedUser.yaml"
 Member:
   $ref: "./Member.yaml"
 Permissions:
@@ -13,10 +13,10 @@ RolesList:
 GameEnemies:
   $ref: "./GameEnemies.yaml"
 FileData:
-  $ref: "./FileData.yaml"
+  $ref: "./files/FileData.yaml"
 ApiSuccessResponse:
-  $ref: "./ApiSuccessResponse.yaml"
+  $ref: "./request/ApiSuccessResponse.yaml"
 ApiErrorResponse:
-  $ref: "./ApiErrorResponse.yaml"
+  $ref: "./request/ApiErrorResponse.yaml"
 ApiResponse:
-  $ref: "./ApiResponse.yaml"
+  $ref: "./request/ApiResponse.yaml"
