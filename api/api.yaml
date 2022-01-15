@@ -831,85 +831,87 @@ paths:
         - authenticaion_key: []
         - authority_key: []
   /auth/admin/login:
-    post:
-      tags:
-        - auth
-      summary: Logs user into the system
-      description: Login Function
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                email:
-                  description: email of administrator
-                  type: string
-                password:
-                  description: password of administrator
-                  type: string
-              required:
-                - email
-                - password
-      responses:
-        "200":
-          description: successful Login
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AuthRequestResponse"
-        "400":
-          description: Invalid username/password supplied
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        "422":
-          description: Invalid input
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
+    $ref: "./data/paths/authAdmin/login.yaml"
+    # post:
+    #   tags:
+    #     - auth
+    #   summary: Logs user into the system
+    #   description: Login Function
+    #   requestBody:
+    #     content:
+    #       application/x-www-form-urlencoded:
+    #         schema:
+    #           type: object
+    #           properties:
+    #             email:
+    #               description: email of administrator
+    #               type: string
+    #             password:
+    #               description: password of administrator
+    #               type: string
+    #           required:
+    #             - email
+    #             - password
+    #   responses:
+    #     "200":
+    #       description: successful Login
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/AuthRequestResponse"
+    #     "400":
+    #       description: Invalid username/password supplied
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     "422":
+    #       description: Invalid input
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
   /auth/admin/logout:
-    post:
-      tags:
-        - auth
-      summary: Logs out current logged in user session
-      description: Logout Function
-      parameters:
-        - name: authenticaion_key
-          in: header
-          description: api key
-          required: true
-          schema:
-            type: string
-        - name: authority_key
-          in: header
-          description: api key
-          required: true
-          schema:
-            type: array
-            items:
-              type: string
-      responses:
-        "200":
-          description: successful Logout
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiSuccessResponse"
-        "401":
-          description: Unahthorithed
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        default:
-          description: unsuccessful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
+    $ref: "./data/paths/authAdmin/logout.yaml"
+    # post:
+    #   tags:
+    #     - auth
+    #   summary: Logs out current logged in user session
+    #   description: Logout Function
+    #   parameters:
+    #     - name: authenticaion_key
+    #       in: header
+    #       description: api key
+    #       required: true
+    #       schema:
+    #         type: string
+    #     - name: authority_key
+    #       in: header
+    #       description: api key
+    #       required: true
+    #       schema:
+    #         type: array
+    #         items:
+    #           type: string
+    #   responses:
+    #     "200":
+    #       description: successful Logout
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiSuccessResponse"
+    #     "401":
+    #       description: Unahthorithed
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     default:
+    #       description: unsuccessful operation
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
   /auth/admin/refresh:
     $ref: "./data/paths/authAdmin/refresh.yaml"
     # post:
