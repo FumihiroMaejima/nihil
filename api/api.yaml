@@ -1033,17 +1033,19 @@ components:
             write:members: modify members in your account
             read:members: read your members
     authenticaion_key:
-      type: apiKey
-      name: Authorization
-      in: header
+      $ref: "./data/components/securitySchemes/authenticaionKey.yaml"
+      # type: apiKey
+      # name: Authorization
+      # in: header
     authority_key:
-      type: apiKey
-      name: X-Auth-Authority
-      in: header
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
+      $ref: "./data/components/securitySchemes/authorityKey.yaml"
+      # type: apiKey
+      # name: X-Auth-Authority
+      # in: header
+    # api_key:
+    #   type: apiKey
+    #   name: api_key
+    #   in: header
   schemas:
     # $ref: "./data/schemas/index.yaml"
     AuthRequestResponse:
