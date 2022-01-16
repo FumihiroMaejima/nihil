@@ -556,61 +556,63 @@ paths:
     #     - authenticaion_key: []
     #     - authority_key: []
   /admin/game/enemies:
-    get:
-      tags:
-        - gameEnemies
-      summary: Find gameEnemies
-      description: Returns gameEnemies data
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GameEnemies"
-        "404":
-          description: GameEnemies not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        default:
-          description: unsuccessful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-      security:
-        - authenticaion_key: []
-        - authority_key: []
+    $ref: "./data/paths/admin/game/enemies/index.yaml"
+    # get:
+    #   tags:
+    #     - gameEnemies
+    #   summary: Find gameEnemies
+    #   description: Returns gameEnemies data
+    #   responses:
+    #     "200":
+    #       description: successful operation
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/GameEnemies"
+    #     "404":
+    #       description: GameEnemies not found
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     default:
+    #       description: unsuccessful operation
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #   security:
+    #     - authenticaion_key: []
+    #     - authority_key: []
   /admin/game/enemies/file/csv:
-    get:
-      tags:
-        - gameEnemies
-      summary: Find gameEnemies CSV data
-      description: Returns gameEnemies CSV data
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/csv:
-              schema:
-                $ref: "#/components/schemas/FileData"
-        "404":
-          description: Roles not found
-          content:
-            application/csv:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        default:
-          description: unsuccessful operation
-          content:
-            application/csv:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-      security:
-        - authenticaion_key: []
-        - authority_key: []
+    $ref: "./data/paths/admin/game/enemies/file/csv.yaml"
+    # get:
+    #   tags:
+    #     - gameEnemies
+    #   summary: Find gameEnemies CSV data
+    #   description: Returns gameEnemies CSV data
+    #   responses:
+    #     "200":
+    #       description: successful operation
+    #       content:
+    #         application/csv:
+    #           schema:
+    #             $ref: "#/components/schemas/FileData"
+    #     "404":
+    #       description: Roles not found
+    #       content:
+    #         application/csv:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     default:
+    #       description: unsuccessful operation
+    #       content:
+    #         application/csv:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #   security:
+    #     - authenticaion_key: []
+    #     - authority_key: []
   /admin/game/enemies/file/template:
     get:
       tags:
