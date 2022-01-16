@@ -34,61 +34,63 @@ tags:
       url: http://swagger.io
 paths:
   /admin/members:
-    get:
-      tags:
-        - members
-      summary: Find members
-      description: Returns administrators data
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Member"
-        "400":
-          description: Invalid ID supplied
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        "404":
-          description: Members not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-      security:
-        - authenticaion_key: []
-        - authority_key: []
+    $ref: "./data/paths/admin/members/index.yaml"
+    # get:
+    #   tags:
+    #     - members
+    #   summary: Find members
+    #   description: Returns administrators data
+    #   responses:
+    #     "200":
+    #       description: successful operation
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/Member"
+    #     "400":
+    #       description: Invalid ID supplied
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     "404":
+    #       description: Members not found
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #   security:
+    #     - authenticaion_key: []
+    #     - authority_key: []
   /admin/members/csv:
-    get:
-      tags:
-        - members
-      summary: Find members as CSV data
-      description: Returns administrators data by csv file
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/csv:
-              schema:
-                $ref: "#/components/schemas/FileData"
-        "400":
-          description: Invalid ID supplied
-          content:
-            application/csv:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        "404":
-          description: Members not found
-          content:
-            application/csv:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-      security:
-        - authenticaion_key: []
-        - authority_key: []
+    $ref: "./data/paths/admin/members/csv.yaml"
+    # get:
+    #   tags:
+    #     - members
+    #   summary: Find members as CSV data
+    #   description: Returns administrators data by csv file
+    #   responses:
+    #     "200":
+    #       description: successful operation
+    #       content:
+    #         application/csv:
+    #           schema:
+    #             $ref: "#/components/schemas/FileData"
+    #     "400":
+    #       description: Invalid ID supplied
+    #       content:
+    #         application/csv:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     "404":
+    #       description: Members not found
+    #       content:
+    #         application/csv:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #   security:
+    #     - authenticaion_key: []
+    #     - authority_key: []
   /admin/members/member:
     post:
       tags:
