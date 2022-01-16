@@ -302,89 +302,92 @@ paths:
     #         - write:members
     #         - read:members
   /admin/roles:
-    get:
-      tags:
-        - roles
-      summary: Find roles
-      description: Returns roles data
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Roles"
-        "404":
-          description: Roles not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        default:
-          description: unsuccessful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-      security:
-        - authenticaion_key: []
-        - authority_key: []
+    $ref: "./data/paths/admin/roles/index.yaml"
+    # get:
+    #   tags:
+    #     - roles
+    #   summary: Find roles
+    #   description: Returns roles data
+    #   responses:
+    #     "200":
+    #       description: successful operation
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/Roles"
+    #     "404":
+    #       description: Roles not found
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     default:
+    #       description: unsuccessful operation
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #   security:
+    #     - authenticaion_key: []
+    #     - authority_key: []
   /admin/roles/list:
-    get:
-      tags:
-        - roles
-      summary: Find roles List of name & id
-      description: Returns roles data
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/RolesList"
-        "404":
-          description: Roles not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        default:
-          description: unsuccessful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-      security:
-        - authenticaion_key: []
-        - authority_key: []
+    $ref: "./data/paths/admin/roles/list.yaml"
+    # get:
+    #   tags:
+    #     - roles
+    #   summary: Find roles List of name & id
+    #   description: Returns roles data
+    #   responses:
+    #     "200":
+    #       description: successful operation
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/RolesList"
+    #     "404":
+    #       description: Roles not found
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     default:
+    #       description: unsuccessful operation
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #   security:
+    #     - authenticaion_key: []
+    #     - authority_key: []
   /admin/roles/csv:
-    get:
-      tags:
-        - roles
-      summary: Find roles CSV data
-      description: Returns roles CSV data
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/csv:
-              schema:
-                $ref: "#/components/schemas/FileData"
-        "404":
-          description: Roles not found
-          content:
-            application/csv:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        default:
-          description: unsuccessful operation
-          content:
-            application/csv:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-      security:
-        - authenticaion_key: []
-        - authority_key: []
+    $ref: "./data/paths/admin/roles/csv.yaml"
+    # get:
+    #   tags:
+    #     - roles
+    #   summary: Find roles CSV data
+    #   description: Returns roles CSV data
+    #   responses:
+    #     "200":
+    #       description: successful operation
+    #       content:
+    #         application/csv:
+    #           schema:
+    #             $ref: "#/components/schemas/FileData"
+    #     "404":
+    #       description: Roles not found
+    #       content:
+    #         application/csv:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     default:
+    #       description: unsuccessful operation
+    #       content:
+    #         application/csv:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #   security:
+    #     - authenticaion_key: []
+    #     - authority_key: []
   /admin/roles/role:
     post:
       tags:
