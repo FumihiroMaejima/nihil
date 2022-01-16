@@ -389,123 +389,124 @@ paths:
     #     - authenticaion_key: []
     #     - authority_key: []
   /admin/roles/role:
-    post:
-      tags:
-        - roles
-      summary: Create Role
-      description: ""
-      operationId: createRoleWithForm
-      parameters:
-        - name: authenticaion_key
-          in: header
-          description: api key
-          required: true
-          schema:
-            type: string
-        - name: authority_key
-          in: header
-          description: api key
-          required: true
-          schema:
-            type: array
-            items:
-              type: string
-      requestBody:
-        $ref: "#/components/requestBodies/createRoleWithForm"
-      responses:
-        "201":
-          description: successful Create
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiSuccessResponse"
-        "405":
-          description: Invalid input
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        "422":
-          description: Invalid input
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-      security:
-        - members_auth:
-            - write:members
-            - read:members
-    delete:
-      tags:
-        - roles
-      summary: Deletes some roles
-      description: ""
-      operationId: deleteRole
-      parameters:
-        - name: authenticaion_key
-          in: header
-          description: api key
-          required: true
-          schema:
-            type: string
-        - name: authority_key
-          in: header
-          description: api key
-          required: true
-          schema:
-            type: array
-            items:
-              type: string
-        - name: roles
-          in: query
-          description: ID of role
-          required: true
-          schema:
-            type: array
-            items:
-              type: integer
-      # requestBody:
-      #   content:
-      #     application/x-www-form-urlencoded:
-      #       schema:
-      #         type: object
-      #         properties:
-      #           roles:
-      #             description: ID of role
-      #             type: array
-      #             items:
-      #               type: integer
-      #         required:
-      #           - roles
-      responses:
-        "200":
-          description: successful Delete
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiSuccessResponse"
-        "400":
-          description: Invalid ID supplied
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        "404":
-          description: Membeer not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-        "422":
-          description: Invalid ID supplied
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiErrorResponse"
-      security:
-        - members_auth:
-            - write:members
-            - read:members
+    $ref: "./data/paths/admin/roles/role/index.yaml"
+    # post:
+    #   tags:
+    #     - roles
+    #   summary: Create Role
+    #   description: ""
+    #   operationId: createRoleWithForm
+    #   parameters:
+    #     - name: authenticaion_key
+    #       in: header
+    #       description: api key
+    #       required: true
+    #       schema:
+    #         type: string
+    #     - name: authority_key
+    #       in: header
+    #       description: api key
+    #       required: true
+    #       schema:
+    #         type: array
+    #         items:
+    #           type: string
+    #   requestBody:
+    #     $ref: "#/components/requestBodies/createRoleWithForm"
+    #   responses:
+    #     "201":
+    #       description: successful Create
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiSuccessResponse"
+    #     "405":
+    #       description: Invalid input
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     "422":
+    #       description: Invalid input
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #   security:
+    #     - members_auth:
+    #         - write:members
+    #         - read:members
+    # delete:
+    #   tags:
+    #     - roles
+    #   summary: Deletes some roles
+    #   description: ""
+    #   operationId: deleteRole
+    #   parameters:
+    #     - name: authenticaion_key
+    #       in: header
+    #       description: api key
+    #       required: true
+    #       schema:
+    #         type: string
+    #     - name: authority_key
+    #       in: header
+    #       description: api key
+    #       required: true
+    #       schema:
+    #         type: array
+    #         items:
+    #           type: string
+    #     - name: roles
+    #       in: query
+    #       description: ID of role
+    #       required: true
+    #       schema:
+    #         type: array
+    #         items:
+    #           type: integer
+    #   # requestBody:
+    #   #   content:
+    #   #     application/x-www-form-urlencoded:
+    #   #       schema:
+    #   #         type: object
+    #   #         properties:
+    #   #           roles:
+    #   #             description: ID of role
+    #   #             type: array
+    #   #             items:
+    #   #               type: integer
+    #   #         required:
+    #   #           - roles
+    #   responses:
+    #     "200":
+    #       description: successful Delete
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiSuccessResponse"
+    #     "400":
+    #       description: Invalid ID supplied
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     "404":
+    #       description: Membeer not found
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #     "422":
+    #       description: Invalid ID supplied
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/ApiErrorResponse"
+    #   security:
+    #     - members_auth:
+    #         - write:members
+    #         - read:members
   "/admin/roles/role/{id}":
     patch:
       tags:
