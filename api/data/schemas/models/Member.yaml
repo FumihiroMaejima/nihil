@@ -1,0 +1,22 @@
+# Member:
+  type: array
+  items:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      roleId:
+        type: integer
+        format: int64
+        description: Admin`s role id
+  xml:
+    name: Member

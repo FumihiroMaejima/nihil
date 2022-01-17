@@ -1,0 +1,20 @@
+# Roles:
+  type: array
+  items:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      code:
+        type: string
+      detail:
+        type: string
+      permissions:
+        type: integer
+        format: int64
+        description: Role`s permission ids
+  xml:
+    name: Roles
