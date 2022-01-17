@@ -1,0 +1,15 @@
+# AuthRequestResponse:
+  type: object
+  properties:
+    access_token:
+      type: string
+    token_type:
+      type: string
+    expires_in:
+      type: string
+    user:
+      description: AuthenticatedUser shcema.
+      # $ref: "#/components/schemas/AuthenticatedUser.yaml"
+      $ref: "./AuthenticatedUser.yaml"
+  xml:
+    name: AuthRequestResponse

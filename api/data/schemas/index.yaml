@@ -1,0 +1,22 @@
+AuthRequestResponse:
+  $ref: "./auth/AuthRequestResponse.yaml"
+AuthenticatedUser:
+  $ref: "./auth/AuthenticatedUser.yaml"
+Member:
+  $ref: "./models/Member.yaml"
+Permissions:
+  $ref: "./models/Permissions.yaml"
+Roles:
+  $ref: "./models/Roles.yaml"
+RolesList:
+  $ref: "./models/RolesList.yaml"
+GameEnemies:
+  $ref: "./models/GameEnemies.yaml"
+FileData:
+  $ref: "./files/FileData.yaml"
+ApiSuccessResponse:
+  $ref: "./request/ApiSuccessResponse.yaml"
+ApiErrorResponse:
+  $ref: "./request/ApiErrorResponse.yaml"
+ApiResponse:
+  $ref: "./request/ApiResponse.yaml"
