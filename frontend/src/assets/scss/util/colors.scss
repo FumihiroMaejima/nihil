@@ -1,6 +1,6 @@
 @import '../_variables.scss';
 
-// util basic colors
+// util color class
 @each $name, $color in $basic-color-code {
   // .util-basic-color-#{$name} {
   // .util-basic-color-#{"" + $name} {
@@ -14,7 +14,7 @@
   }
 }
 
-// util colors
+/* // util colors
 $util-color-black: #000000;
 $util-color-dark-grey: #757575;
 $util-color-blue: #1565c0;
@@ -36,4 +36,4 @@ $util-color-dark-dark-grey: #3b3b3b;
 $util-color-dark-blue: #004a9e;
 $util-color-dark-green: #005548;
 $util-color-dark-red: #910c00;
-$util-color-dark-white: #d2d2d2;
+$util-color-dark-white: #d2d2d2; */

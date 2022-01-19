@@ -57,8 +57,6 @@ export const Sample: React.VFC = () => {
 
   return (
     <div className="page-container page-container__mx-auto">
-      <h1 className="page-header">Sample</h1>
-
       <PartsSimpleHeading
         text="simple heading"
         color="dark-grey"

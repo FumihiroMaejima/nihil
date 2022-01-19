@@ -65,63 +65,43 @@ $layout-align-directions: (
   white: (255, 255, 255)
 ); */
 
+// opacity
 $util-opacity-nomal: 1.0;
 $util-opacity-dark: 0.8;
 $util-opacity-light: 0.4;
 
-$util-basic-color-black: rgb(0, 0, 0, $util-opacity-nomal);
-$util-basic-color-dark-grey: rgb(117, 117, 117, $util-opacity-nomal);
-$util-basic-color-blue: rgb(0, 66, 109, $util-opacity-nomal);
-$util-basic-color-green: rgb(0, 111, 95, $util-opacity-nomal);
-$util-basic-color-red: rgb(172, 41, 30, $util-opacity-nomal);
-$util-basic-color-white: rgb(255, 255, 255, $util-opacity-nomal);
-
-$util-basic-color-dark-black: rgb(17, 17, 17, $util-opacity-nomal);
-$util-basic-color-dark-dark-grey: rgb(59, 59, 59, $util-opacity-nomal);
-$util-basic-color-dark-blue: rgb(0, 74, 58, $util-opacity-nomal);
-$util-basic-color-dark-green: rgb(0, 85, 72, $util-opacity-nomal);
-$util-basic-color-dark-red: rgb(145, 12, 0, $util-opacity-nomal);
-$util-basic-color-dark-white: rgb(210, 210, 210, $util-opacity-nomal);
-
-$util-basic-color-light-black: rgb(0, 0, 0, $util-opacity-light);
-$util-basic-color-light-dark-grey: rgb(117, 117, 117, $util-opacity-light);
-$util-basic-color-light-blue: rgb(0, 66, 109, $util-opacity-light);
-$util-basic-color-light-green: rgb(0, 111, 95, $util-opacity-light);
-$util-basic-color-light-red: rgb(172, 41, 30, $util-opacity-light);
-$util-basic-color-light-white: rgb(255, 255, 255, $util-opacity-light);
-
-$basic-color-code: (
-  black: $util-basic-color-black,
-  dark-grey: $util-basic-color-dark-grey,
-  blue: $util-basic-color-blue,
-  green: $util-basic-color-green,
-  red: $util-basic-color-red,
-  white: $util-basic-color-white
-);
-
-/* // util colors
-$util-color-black: #000000;
-$util-color-dark-grey: #757575;
-$util-color-blue: #1565c0;
-$util-color-green: #006f5f;
-$util-color-red: #ac291d;
-$util-color-white: #ffffff;
+// util colors
+$util-color-black: rgb(0, 0, 0, $util-opacity-nomal);
+$util-color-dark-grey: rgb(117, 117, 117, $util-opacity-nomal);
+$util-color-blue: rgb(0, 66, 109, $util-opacity-nomal);
+$util-color-green: rgb(0, 111, 95, $util-opacity-nomal);
+$util-color-red: rgb(172, 41, 30, $util-opacity-nomal);
+$util-color-white: rgb(255, 255, 255, $util-opacity-nomal);
 
 // util light color
-$util-color-light-black: #000000;
-$util-color-light-dark-grey: #f1f3ffea;
-$util-color-light-blue: #f1f8ff;
-$util-color-light-green: #f2fff1;
-$util-color-light-red: #fff1f1;
-$util-color-light-white: #f1f8ff;
+$util-color-dark-black: rgb(17, 17, 17, $util-opacity-nomal);
+$util-color-dark-dark-grey: rgb(59, 59, 59, $util-opacity-nomal);
+$util-color-dark-blue: rgb(0, 74, 58, $util-opacity-nomal);
+$util-color-dark-green: rgb(0, 85, 72, $util-opacity-nomal);
+$util-color-dark-red: rgb(145, 12, 0, $util-opacity-nomal);
+$util-color-dark-white: rgb(210, 210, 210, $util-opacity-nomal);
 
 // util dark color
-$util-color-dark-black: #111111;
-$util-color-dark-dark-grey: #3b3b3b;
-$util-color-dark-blue: #004a9e;
-$util-color-dark-green: #005548;
-$util-color-dark-red: #910c00;
-$util-color-dark-white: #d2d2d2; */
+$util-color-light-black: rgb(0, 0, 0, $util-opacity-light);
+$util-color-light-dark-grey: rgb(117, 117, 117, $util-opacity-light);
+$util-color-light-blue: rgb(0, 66, 109, $util-opacity-light);
+$util-color-light-green: rgb(0, 111, 95, $util-opacity-light);
+$util-color-light-red: rgb(172, 41, 30, $util-opacity-light);
+$util-color-light-white: rgb(255, 255, 255, $util-opacity-light);
+
+$basic-color-code: (
+  black: $util-color-black,
+  dark-grey: $util-color-dark-grey,
+  blue: $util-color-blue,
+  green: $util-color-green,
+  red: $util-color-red,
+  white: $util-color-white
+);
 
 /* $basic-color-code: (
   black: rgb(0, 0, 0, 1.0),
