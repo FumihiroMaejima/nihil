@@ -11,7 +11,12 @@ $util-basic-color-white: rgb(255, 255, 255, 1.0); */
 
 @each $name, $color in $basic-color-code {
   // .util-basic-color-#{$name} {
-  .util-basic-color-#{"" + $name} {
+  // .util-basic-color-#{"" + $name} {
+  .util-basic-color-text--#{"" + $name} {
+    color: $color;
+  }
+
+  .util-color-bg--#{"" + $name} {
     color: $color;
   }
 }

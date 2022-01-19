@@ -67,14 +67,22 @@ export const Sample: React.VFC = () => {
       />
 
       <div className="m-xy2">
-        <p className="util-basic-color-black">test util basic color black</p>
-        <p className="util-basic-color-dark-grey">
+        <p className="util-basic-color-text--black">
+          test util basic color black
+        </p>
+        <p className="util-basic-color-text--dark-grey">
           test util basic color dark-grey
         </p>
-        <p className="util-basic-color-red">test util basic color red</p>
-        <p className="util-basic-color-blue">test util basic color blue</p>
-        <p className="util-basic-color-green">test util basic color green</p>
-        <p className="util-basic-color-white">test util basic color white</p>
+        <p className="util-basic-color-text--red">test util basic color red</p>
+        <p className="util-basic-color-text--blue">
+          test util basic color blue
+        </p>
+        <p className="util-basic-color-text--green">
+          test util basic color green
+        </p>
+        <p className="util-basic-color-text-white">
+          test util basic color white
+        </p>
       </div>
 
       <div className="m-xy2">
