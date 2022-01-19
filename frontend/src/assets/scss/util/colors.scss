@@ -12,12 +12,13 @@ $util-basic-color-white: rgb(255, 255, 255, 1.0); */
 @each $name, $color in $basic-color-code {
   // .util-basic-color-#{$name} {
   // .util-basic-color-#{"" + $name} {
-  .util-basic-color-text--#{"" + $name} {
+
+  .util-color__text--#{"" + $name} {
     color: $color;
   }
 
-  .util-color-bg--#{"" + $name} {
-    color: $color;
+  .util-color__bg--#{"" + $name} {
+    background: $color;
   }
 }
 
@@ -47,7 +48,7 @@ $util-color-dark-red: #910c00;
 $util-color-dark-white: #d2d2d2;
 
 .util-color {
-  &__bg {
+  /* &__bg {
     &--black {
       background: $util-color-black;
     }
@@ -71,9 +72,9 @@ $util-color-dark-white: #d2d2d2;
     &--white {
       background: $util-color-white;
     }
-  }
+  } */
 
-  &__text {
+  /* &__text {
     &--black {
       color: $util-color-black;
     }
@@ -97,5 +98,5 @@ $util-color-dark-white: #d2d2d2;
     &--white {
       color: $util-color-white;
     }
-  }
+  } */
 }
