@@ -1,9 +1,4 @@
-
-
-
-
 @import '../_variables.scss';
-
 
 
 @each $name, $color in $basic-color-code {
@@ -78,6 +73,12 @@
 
   .util-border-left-dash__color--#{"" + $name} {
     border-left: dashed $color;
+  }
+}
+
+@each $name, $point in $border-radius-points {
+  .util-border-radius__round--#{$name} {
+    border-radius: $point;
   }
 }
 
@@ -375,7 +376,7 @@
     }
   } */
 
-  &-radius {
+  /* &-radius {
     &__round {
       &--5p {
         border-radius: 5px;
@@ -389,5 +390,5 @@
         border-radius: 10px;
       }
     }
-  }
+  } */
 }
