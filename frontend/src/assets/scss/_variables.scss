@@ -46,3 +46,50 @@ $layout-align-directions: (
   center: center,
   bottom: bottom
 );
+
+/* $basic-color-code: (
+  black: black,
+  dark-grey: dark-grey,
+  blue: blue,
+  green: green,
+  red: red,
+  white: white
+); */
+
+/* $basic-color-code2: (
+  black: (0, 0, 0),
+  dark-grey: (117, 117, 117),
+  blue: (0, 66, 109),
+  green: (0, 111, 95),
+  red: (172, 41, 30),
+  white: (255, 255, 255)
+); */
+
+$util-opacity-nomal: 1.0;
+$util-opacity-dark: 0.8;
+$util-opacity-light: 0.2;
+
+$util-basic-color-black: rgb(0, 0, 0, $util-opacity-nomal);
+$util-basic-color-dark-grey: rgb(117, 117, 117, $util-opacity-nomal);
+$util-basic-color-blue: rgb(0, 66, 109, $util-opacity-nomal);
+$util-basic-color-green: rgb(0, 111, 95, $util-opacity-nomal);
+$util-basic-color-red: rgb(172, 41, 30, $util-opacity-nomal);
+$util-basic-color-white: rgb(255, 255, 255, $util-opacity-nomal);
+
+$basic-color-code: (
+  black: $util-basic-color-black,
+  dark-grey: $util-basic-color-dark-grey,
+  blue: $util-basic-color-blue,
+  green: $util-basic-color-green,
+  red: $util-basic-color-red,
+  white: $util-basic-color-white
+);
+
+/* $basic-color-code: (
+  black: rgb(0, 0, 0, 1.0),
+  dark-grey: rgb(117, 117, 117, 1.0),
+  blue: rgb(0, 66, 109, 1.0),
+  green: rgb(0, 111, 95, 1.0),
+  red: rgb(172, 41, 30, 1.0),
+  white: rgb(255, 255, 255, 1.0)
+); */
