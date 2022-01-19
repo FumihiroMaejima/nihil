@@ -74,7 +74,7 @@ export const Sample: React.VFC = () => {
         <p className="util-color__text--red">test util basic color red</p>
         <p className="util-color__text--blue">test util basic color blue</p>
         <p className="util-color__text--green">test util basic color green</p>
-        <p className="util-color__text-white">test util basic color white</p>
+        <p className="util-color__text--white">test util basic color white</p>
       </div>
 
       <div className="m-xy2">
