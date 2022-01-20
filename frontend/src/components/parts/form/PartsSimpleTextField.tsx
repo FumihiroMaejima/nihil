@@ -1,8 +1,9 @@
-import React, { FormEventHandler } from 'react'
+import React, { FormEventHandler, FocusEventHandler } from 'react'
 
 type Props = {
   value: string
   onInput?: FormEventHandler<HTMLInputElement>
+  onFocus?: FocusEventHandler<HTMLInputElement>
   placeholder?: string
   maxLength?: number
   required?: boolean
@@ -13,6 +14,7 @@ type Props = {
 export const PartsSimpleTextField: React.VFC<Props> = ({
   value = '',
   onInput = undefined,
+  onFocus = undefined,
   placeholder = undefined,
   maxLength = undefined,
   required = undefined,
@@ -25,6 +27,7 @@ export const PartsSimpleTextField: React.VFC<Props> = ({
       type="text"
       value={value}
       onInput={onInput}
+      onFocus={onFocus}
       placeholder={placeholder}
       maxLength={maxLength}
       required={required}
