@@ -13,6 +13,7 @@ import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextFie
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
 import { PartsSimpleList } from '@/components/parts/list/PartsSimpleList'
+import { PartsSimpleMenu } from '@/components/parts/menu/PartsSimpleMenu'
 import { PartsStickyNoteList } from '@/components/parts/list/PartsStickyNoteList'
 import {
   PartsSimpleTable,
@@ -191,7 +192,15 @@ export const Sample: React.VFC = () => {
           <PartsSimpleTextField
             value={textValue}
             onInput={(e) => setTextValue(e.currentTarget.value)}
-            placeholder="test placeholder"
+            placeholder="test custom selectbox"
+          />
+          <PartsSimpleMenu
+            value={selectValue}
+            onChange={(e) => setSelectValue(parseInt(e.target.value))}
+            items={selectBoxItems}
+            multiple={false}
+            placeholder="test custom selectbox"
+            disabled={false}
           />
         </div>
       </div>
