@@ -173,11 +173,11 @@ export const Graph: React.VFC = () => {
         <p key={i}>{todo.name}</p>
       ))} */}
 
-      <div className="mfull-2">
+      <div className="mxy-2">
         <PartsTitleBox text="title box" isDashed={false} />
       </div>
 
-      <div className="mfull-2">
+      <div className="mxy-2">
         <PartsSimpleButton text="button text" />
         <PartsSimpleButton text="black" color="black" />
         <PartsSimpleButton text="blue" color="blue" />
@@ -187,7 +187,7 @@ export const Graph: React.VFC = () => {
       </div>
 
       <PartsLabelHeading text="Create ToDo Form" color="green" />
-      <div className="mfull-4 parts-simple-box util-border-full-solid-2p__color--dark-grey util-border-radius__round--5p">
+      <div className="mxy-4 parts-simple-box util-border-full-solid-2p__color--dark-grey util-border-radius__round--5p">
         <div className="my-4 d-flex flex-align-center">
           <label>name: </label>
           <PartsSimpleTextField
@@ -231,7 +231,7 @@ export const Graph: React.VFC = () => {
 
       <PartsLabelHeading text="ToDos" />
 
-      <div className="mfull-2">
+      <div className="mxy-2">
         <PartsSimpleEditTable
           headers={todoTableHeaderData}
           items={todos}

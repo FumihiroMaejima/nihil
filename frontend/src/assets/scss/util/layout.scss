@@ -44,7 +44,7 @@
   }
 
   // margin-xy
-  .mfull-#{$name} {
+  .mxy-#{$name} {
     margin: $point $point $point $point;
   }
 
@@ -69,7 +69,7 @@
   }
 
   // padding-xy
-  .pfull-#{$name} {
+  .pxy-#{$name} {
     padding: $point $point $point $point;
   }
 }
