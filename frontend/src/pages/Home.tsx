@@ -10,7 +10,7 @@ export const Home: React.VFC = () => {
   return (
     <div className="page-container page-container__mx-auto">
       <PartsSimpleHeading text="サンプル ページ" color="dark-grey" />
-      <div className="m-x2">
+      <div className="mx-2">
         <PartsLabelHeading text="サブヘッダー1" color="blue" />
         <div className="util-text__contents-area util-border-full-solid-2p__color--dark-grey util-border-radius__round--5p util-color__text--dark-grey">
           <p>test1</p>
@@ -33,7 +33,7 @@ export const Home: React.VFC = () => {
         </div>
 
         <PartsLabelHeading text="サンプルボタン" color="dark-grey" />
-        <div className="m-y2">
+        <div className="my-2">
           <div className="util-text__contents-area util-border-full-solid-2p__color--dark-grey util-border-radius__round--5p util-color__text--dark-grey">
             <PartsSimpleButton text="blue" color="blue" />
             <PartsSimpleButton text="red" color="red" />

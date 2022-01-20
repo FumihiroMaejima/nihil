@@ -22,6 +22,31 @@
 }
 
 // 1point = 4px
+@each $name, $point in $layout-base-points {
+  .my-#{$name} {
+    margin: $point 0 $point 0;
+  }
+
+  .mx-#{$name} {
+    margin: 0 $point 0 $point;
+  }
+
+  .mfull-#{$name} {
+    margin: $point $point $point $point;
+  }
+
+  .py-#{$name} {
+    padding: $point 0 $point 0;
+  }
+
+  .px-#{$name} {
+    padding: 0 $point 0 $point;
+  }
+
+  .pfull-#{$name} {
+    padding: $point $point $point $point;
+  }
+}
 
 // margin-y
 .m-y1 {

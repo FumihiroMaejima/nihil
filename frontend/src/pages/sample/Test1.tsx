@@ -41,7 +41,7 @@ export const Test1: React.VFC = () => {
         closeModalHandler={changeOpenModalValueHandler}
       />
       <PartsSimpleHeading text="サンプル 画像 ページ" color="dark-grey" />
-      <div className="m-x2">
+      <div className="mx-2">
         <PartsLabelHeading text="サブヘッダー1" color="blue" />
         <div className="util-text__contents-area util-border-full-solid-2p__color--dark-grey util-border-radius__round--5p util-color__text--dark-grey">
           <p>test1</p>

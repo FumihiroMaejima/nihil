@@ -64,7 +64,7 @@ export const Sample: React.VFC = () => {
         isDouble={false}
       />
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <p className="util-color__text--black">test util basic color black</p>
         <p className="util-color__text--dark-grey">
           test util basic color dark-grey
@@ -75,19 +75,19 @@ export const Sample: React.VFC = () => {
         <p className="util-color__text--white">test util basic color white</p>
       </div>
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsSimpleBox text="simple box" isDashed={false} />
       </div>
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsSimpleBox text="simple box" textColor="red" isDashed={false} />
       </div>
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsTitleBox text="title box" isDashed={false} />
       </div>
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsTitleBox
           text="title box"
           color="green"
@@ -96,14 +96,14 @@ export const Sample: React.VFC = () => {
         />
       </div>
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsSimpleFlatButton />
         <PartsSimpleFlatButton color="blue" />
         <PartsSimpleFlatButton color="green" />
         <PartsSimpleFlatButton color="red" />
       </div>
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsSimpleButton text="button text" />
         <PartsSimpleButton text="black" color="black" />
         <PartsSimpleButton text="blue" color="blue" />
@@ -112,7 +112,7 @@ export const Sample: React.VFC = () => {
         <PartsSimpleButton text="white" color="white" />
       </div>
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsCircleButton text="text" />
         <PartsCircleButton text="black" color="black" />
         <PartsCircleButton text="blue" color="blue" />
@@ -121,14 +121,14 @@ export const Sample: React.VFC = () => {
         <PartsCircleButton text="white" color="white" />
       </div>
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         {/* <PartsSimpleTextField value={textValue} onInput={(e) => console.log('input: ' + e.currentTarget.value)} /> */}
         <PartsSimpleTextField
           value={textValue}
           onInput={(e) => setTextValue(e.currentTarget.value)}
         />
 
-        <div className="m-xy2">
+        <div className="mfull-2">
           <PartsSimpleTextField
             value={textValue}
             onInput={(e) => setTextValue(e.currentTarget.value)}
@@ -136,7 +136,7 @@ export const Sample: React.VFC = () => {
           />
         </div>
 
-        <div className="m-xy2">
+        <div className="mfull-2">
           <PartsSimpleTextField
             value={textValue}
             onInput={(e) => setTextValue(e.currentTarget.value)}
@@ -145,7 +145,7 @@ export const Sample: React.VFC = () => {
           />
         </div>
 
-        <div className="m-xy2">
+        <div className="mfull-2">
           <PartsSimpleTextField
             value={textValue}
             onInput={(e) => setTextValue(e.currentTarget.value)}
@@ -154,7 +154,7 @@ export const Sample: React.VFC = () => {
           />
         </div>
 
-        <div className="m-xy2">
+        <div className="mfull-2">
           <PartsSimpleTextField
             value={textValue}
             onInput={(e) => setTextValue(e.currentTarget.value)}
@@ -163,7 +163,7 @@ export const Sample: React.VFC = () => {
           />
         </div>
 
-        <div className="m-xy2">
+        <div className="mfull-2">
           <PartsSimpleTextField
             value={textValue}
             onInput={(e) => setTextValue(e.currentTarget.value)}
@@ -173,8 +173,8 @@ export const Sample: React.VFC = () => {
         </div>
       </div>
 
-      <div className="m-xy2">
-        <div className="m-xy2">
+      <div className="mfull-2">
+        <div className="mfull-2">
           <PartsSimpleSelectBox
             value={selectValue}
             onChange={(e) => setSelectValue(parseInt(e.target.value))}
@@ -183,10 +183,10 @@ export const Sample: React.VFC = () => {
             disabled={false}
           />
         </div>
-        <div className="m-xy2"></div>
+        <div className="mfull-2"></div>
       </div>
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsLabelHeading text="text" />
       </div>
       <PartsLabelHeading text="grey" />
@@ -195,24 +195,24 @@ export const Sample: React.VFC = () => {
       <PartsLabelHeading text="green" color="green" />
       <PartsLabelHeading text="white" color="white" />
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsSimpleList items={[1, 2, 3, 4, 5]} />
         <PartsSimpleList items={[1, 2, 3, 4, 5]} color="blue" />
         <PartsSimpleList items={[1, 2, 3, 4, 5]} color="red" />
         <PartsSimpleList items={[1, 2, 3, 4, 5]} color="green" />
       </div>
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsStickyNoteList items={[1, 2, 3, 4, 5]} />
       </div>
 
       <PartsLabelHeader text="Slot label header" color="blue" />
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsLabelTable items={tableData} />
       </div>
 
-      <div className="m-xy2">
+      <div className="mfull-2">
         <PartsSimpleTable
           headers={simpleTableHeaderData}
           items={simpleTableData}
