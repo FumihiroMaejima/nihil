@@ -2,14 +2,19 @@ import React, {
   FormEventHandler,
   ChangeEventHandler,
   FocusEventHandler,
+  TouchEventHandler,
+  MouseEventHandler,
 } from 'react'
 
 type Props = {
   value: string | number | readonly string[] | undefined
+  className?: string
   onInput?: FormEventHandler<HTMLSelectElement>
   onChange?: ChangeEventHandler<HTMLSelectElement>
-  onFocus?: FocusEventHandler<HTMLInputElement>
-  onBlur?: FocusEventHandler<HTMLInputElement>
+  onFocus?: FocusEventHandler<HTMLDivElement>
+  onBlur?: FocusEventHandler<HTMLDivElement>
+  onTouchMove?: TouchEventHandler<HTMLDivElement>
+  onClickOtion?: MouseEventHandler<HTMLOptionElement>
   items?: Record<string, string | number | string[] | undefined>[]
   itemText?: string
   itemValue?: string
@@ -21,10 +26,13 @@ type Props = {
 
 export const PartsSimpleMenu: React.VFC<Props> = ({
   value = undefined,
+  className = '',
   onInput = undefined,
   onChange = undefined,
   onFocus = undefined,
   onBlur = undefined,
+  onTouchMove = undefined,
+  onClickOtion = undefined,
   items = [],
   itemText = 'text',
   itemValue = 'value',
@@ -34,9 +42,15 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
   disabled = false,
 }) => {
   return (
-    <div className="parts-simple-menu" onFocus={onFocus} onBlur={onBlur}>
+    <div
+      // className={className !== '' ? className : `parts-simple-menu`}
+      className={`parts-simple-menu ${className}`}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      onTouchMove={onTouchMove}
+    >
       {items.map((item, i) => (
-        <option key={i} value={item[itemValue]}>
+        <option key={i} value={item[itemValue]} onClick={onClickOtion}>
           {item[itemText]}
         </option>
       ))}

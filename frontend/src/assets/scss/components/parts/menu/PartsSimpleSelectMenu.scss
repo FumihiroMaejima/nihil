@@ -11,6 +11,20 @@ $parts-simple-button-default-border-bottom-color: #00d21c;
   border-radius: 3px;
   border: 2px solid #757575;
   box-sizing: border-box;
+  max-height: 300px;
+  overflow: scroll;
+
+  &__hover {
+    z-index: 5;
+    /* position: relative;
+    top: 40px;
+    left: 40px;
+    z-index: 5; */
+
+    &--none {
+      display: none;
+    }
+  }
 
   &:hover {
     // border: 2px solid rgb(0, 0, 0, 0.42);

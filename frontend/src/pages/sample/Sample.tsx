@@ -8,6 +8,7 @@ import { PartsTitleBox } from '@/components/parts/box/PartsTitleBox'
 import { PartsCircleButton } from '@/components/parts/button/PartsCircleButton'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsSimpleFlatButton } from '@/components/parts/button/PartsSimpleFlatButton'
+import { PartsSimpleAutoComplete } from '@/components/parts/form/PartsSimpleAutoComplete'
 import { PartsSimpleSelectBox } from '@/components/parts/form/PartsSimpleSelectBox'
 import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextField'
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
@@ -180,7 +181,7 @@ export const Sample: React.VFC = () => {
             value={selectValue}
             onChange={(e) => setSelectValue(parseInt(e.target.value))}
             items={selectBoxItems}
-            placeholder="test selectbox"
+            placeholder="test select box"
             disabled={false}
           />
         </div>
@@ -189,10 +190,22 @@ export const Sample: React.VFC = () => {
 
       <div className="mxy-2">
         <div className="mxy-2">
+          <PartsSimpleAutoComplete
+            value={selectValue}
+            onChange={(e) => setSelectValue(parseInt(e.target.value))}
+            items={selectBoxItems}
+            placeholder="test auto complete box"
+            disabled={false}
+          />
+        </div>
+      </div>
+
+      <div className="mxy-2">
+        <div className="mxy-2">
           <PartsSimpleTextField
             value={textValue}
             onInput={(e) => setTextValue(e.currentTarget.value)}
-            placeholder="test custom selectbox"
+            placeholder="test custom select box"
           />
           <PartsSimpleMenu
             value={selectValue}

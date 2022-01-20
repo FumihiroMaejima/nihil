@@ -41,16 +41,26 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         value={searchValue}
         onInput={(e) => setSearchValue(e.currentTarget.value)}
         onFocus={(e) => {
-          console.log('focus: ' + JSON.stringify(e.target.width, null, 2))
+          console.log('input focus: ' + JSON.stringify(e.target.width, null, 2))
+          setFocusValue(true)
         }}
         onBlur={(e) => {
-          console.log('blur: ' + JSON.stringify(e.target.width, null, 2))
+          console.log('input blur: ' + JSON.stringify(e.target.width, null, 2))
         }}
         placeholder={placeholder}
       />
       <PartsSimpleMenu
+        className={
+          isFocus
+            ? 'parts-simple-menu__hover'
+            : 'parts-simple-menu__hover--none'
+        }
         value={value}
         onChange={onChange}
+        onClickOtion={(e) => {
+          console.log('menu click option: ')
+          setFocusValue(false)
+        }}
         items={items}
         multiple={false}
         placeholder={placeholder}
