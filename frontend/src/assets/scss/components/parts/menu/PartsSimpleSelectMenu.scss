@@ -4,6 +4,7 @@ $parts-simple-button-default-color: #85fd35;
 $parts-simple-button-default-border-bottom-color: #00d21c;
 
 .parts-simple-menu {
+  position: absolute;
   width: 100%;
   padding: 10px 15px;
   color: #757575;
@@ -13,17 +14,14 @@ $parts-simple-button-default-border-bottom-color: #00d21c;
   box-sizing: border-box;
   max-height: 300px;
   overflow: scroll;
+  background-color: $util-color-white;
 
-  &__hover {
-    z-index: 5;
-    /* position: relative;
-    top: 40px;
-    left: 40px;
-    z-index: 5; */
+  &__wrapper {
+    position: relative;
+  }
 
-    &--none {
-      display: none;
-    }
+  &__none {
+    display: none;
   }
 
   &:hover {
@@ -45,7 +43,20 @@ $parts-simple-button-default-border-bottom-color: #00d21c;
     text-align: left;
 
     &:hover {
-      background-color:rgb(0, 0, 0, 0.42);
+      // background-color:rgb(0, 0, 0, 0.42);
+      background-color:$util-color-light-blue;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+  }
+
+  div {
+    padding: 4px 8px;
+    text-align: left;
+
+    &:hover {
+      // background-color:rgb(0, 0, 0, 0.42);
+      background-color:$util-color-light-blue;
       border-radius: 2px;
       cursor: pointer;
     }

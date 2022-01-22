@@ -14,7 +14,8 @@ type Props = {
   onFocus?: FocusEventHandler<HTMLDivElement>
   onBlur?: FocusEventHandler<HTMLDivElement>
   onTouchMove?: TouchEventHandler<HTMLDivElement>
-  onClickOtion?: MouseEventHandler<HTMLOptionElement>
+  // onClickOtion?: MouseEventHandler<HTMLOptionElement>
+  onClickOtion?: MouseEventHandler<HTMLDivElement>
   items?: Record<string, string | number | string[] | undefined>[]
   itemText?: string
   itemValue?: string
@@ -42,19 +43,31 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
   disabled = false,
 }) => {
   return (
-    <div
-      // className={className !== '' ? className : `parts-simple-menu`}
-      className={`parts-simple-menu ${className}`}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      onTouchMove={onTouchMove}
-    >
-      {items.map((item, i) => (
-        <option key={i} value={item[itemValue]} onClick={onClickOtion}>
-          {item[itemText]}
-        </option>
-      ))}
+    <div className={`parts-simple-menu__wrapper`}>
+      <div
+        // className={className !== '' ? className : `parts-simple-menu`}
+        className={`parts-simple-menu${className ? ' ' + className : ''}`}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onTouchMove={onTouchMove}
+      >
+        {items.map((item, i) => (
+          /* <option key={i} value={item[itemValue]} onClick={onClickOtion}>
+            {item[itemText]}
+          </option> */
+          <div
+            className={`parts-simple-menu__item`}
+            key={i}
+            // value={item[itemValue]}
+            role="option"
+            onClick={onClickOtion}
+          >
+            {item[itemText]}
+          </div>
+        ))}
+      </div>
     </div>
+
     /* <select
       className="parts-simple-select-box"
       value={value}

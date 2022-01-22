@@ -209,17 +209,11 @@ export const Sample: React.VFC = () => {
 
       <div className="mxy-2">
         <div className="mxy-2">
-          <PartsSimpleTextField
-            value={textValue}
-            onInput={(e) => setTextValue(e.currentTarget.value)}
-            placeholder="test custom select box"
-          />
-          <PartsSimpleMenu
+          <PartsSimpleAutoComplete
             value={selectValue}
             onChange={(e) => setSelectValue(parseInt(e.target.value))}
             items={selectBoxItems}
-            multiple={false}
-            placeholder="test custom selectbox"
+            placeholder="test auto complete box"
             disabled={false}
           />
         </div>

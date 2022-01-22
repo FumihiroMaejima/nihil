@@ -50,11 +50,7 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         placeholder={placeholder}
       />
       <PartsSimpleMenu
-        className={
-          isFocus
-            ? 'parts-simple-menu__hover'
-            : 'parts-simple-menu__hover--none'
-        }
+        className={isFocus ? '' : 'parts-simple-menu__none'}
         value={value}
         onChange={onChange}
         onClickOtion={(e) => {
