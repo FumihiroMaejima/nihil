@@ -16,6 +16,8 @@ type Props = {
   onTouchMove?: TouchEventHandler<HTMLDivElement>
   onClickOtion?: MouseEventHandler<HTMLOptionElement>
   onClickItem?: MouseEventHandler<HTMLDivElement>
+  onClickCapture?: MouseEventHandler<HTMLDivElement>
+  onBlurCapture?: FocusEventHandler<HTMLDivElement>
   items?: Record<string, string | number | string[] | undefined>[]
   itemText?: string
   itemValue?: string
@@ -30,6 +32,8 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
   className = undefined,
   onInput = undefined,
   onChange = undefined,
+  onClickCapture = undefined,
+  onBlurCapture = undefined,
   onFocus = undefined,
   onBlur = undefined,
   onTouchMove = undefined,
@@ -54,6 +58,8 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
         // className={`parts-simple-menu${className ? ' ' + className : ''}`}
         className={`parts-simple-menu`}
         onFocus={onFocus}
+        onClickCapture={onClickCapture}
+        onBlurCapture={onBlurCapture}
         onBlur={onBlur}
         onTouchMove={onTouchMove}
       >
