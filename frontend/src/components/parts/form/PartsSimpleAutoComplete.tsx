@@ -3,6 +3,7 @@ import React, {
   FormEventHandler,
   ChangeEventHandler,
   FocusEventHandler,
+  MouseEventHandler,
 } from 'react'
 import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextField'
 import { PartsSimpleMenu } from '@/components/parts/menu/PartsSimpleMenu'
@@ -11,6 +12,8 @@ type Props = {
   value: string | number | readonly string[] | undefined
   onInput?: FormEventHandler<HTMLSelectElement>
   onChange?: ChangeEventHandler<HTMLSelectElement>
+  onClickOtion?: MouseEventHandler<HTMLOptionElement>
+  setter?: <T = string>(v: T) => void
   items?: Record<string, string | number | string[] | undefined>[]
   itemText?: string
   itemValue?: string
@@ -24,6 +27,8 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
   value = undefined,
   onInput = undefined,
   onChange = undefined,
+  onClickOtion = undefined,
+  setter = undefined,
   items = [],
   itemText = 'text',
   itemValue = 'value',
@@ -65,8 +70,12 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         className={isFocus ? '' : 'parts-simple-menu__none'}
         value={value}
         onChange={onChange}
-        onClickItem={(e) => {
-          console.log('menu click option: ')
+        onClickOtion={(e) => {
+          console.log('menu click option2: ' + e.currentTarget.value)
+
+          if (setter !== undefined) {
+            setter(e.currentTarget.value)
+          }
           setFocusValue(false)
         }}
         // items={items}

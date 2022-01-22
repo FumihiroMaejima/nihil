@@ -64,6 +64,24 @@ export const Sample: React.VFC = () => {
   const [selectValue, setSelectValue] = useState<undefined | number>(undefined)
   // const [multiSelectValue, setMultiSelectValue] = useState<number[]>([])
 
+  // TSX内でジェネリクスを使う場合の書き方。
+  // アロー関数は1つしか付けられない。
+  /* const genFunc = function <T>(x: T): T {
+    return x
+  }
+
+  const genFunc2 = <T, _>(x: T): T => {
+    return x
+  } */
+
+  const setAuctoCompleteSelect = function <T = string>(x: T): void {
+    if (typeof x === 'string') {
+      setSelectValue(parseInt(x))
+    } else {
+      throw Error('invalid type')
+    }
+  }
+
   return (
     <div className="page-container page-container__mx-auto">
       <PartsSimpleHeading
@@ -200,6 +218,7 @@ export const Sample: React.VFC = () => {
           <PartsSimpleAutoComplete
             value={selectValue}
             onChange={(e) => setSelectValue(parseInt(e.target.value))}
+            setter={setAuctoCompleteSelect}
             items={selectBoxItems}
             placeholder="test auto complete box"
             disabled={false}
@@ -208,7 +227,7 @@ export const Sample: React.VFC = () => {
       </div>
 
       <div className="mxy-2">
-        <div className="mxy-2">
+        {/* <div className="mxy-2">
           <PartsSimpleAutoComplete
             value={selectValue}
             onChange={(e) => setSelectValue(parseInt(e.target.value))}
@@ -216,7 +235,7 @@ export const Sample: React.VFC = () => {
             placeholder="test auto complete box"
             disabled={false}
           />
-        </div>
+        </div> */}
       </div>
 
       <div className="mxy-2">

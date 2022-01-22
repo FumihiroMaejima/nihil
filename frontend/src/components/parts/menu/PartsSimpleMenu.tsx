@@ -68,16 +68,23 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
           /* <option key={i} value={item[itemValue]} onClick={onClickOtion}>
             {item[itemText]}
           </option> */
-          <div
+          <option
             className={`parts-simple-menu__item`}
             key={i}
-            // value={item[itemValue]}
+            value={item[itemValue]}
+            onClick={onClickOtion}
+          >
+            {item[itemText]}
+          </option>
+          /* <div
+            className={`parts-simple-menu__item`}
+            key={i}
+            value={item[itemValue]}
             role="option"
             onClick={onClickItem}
           >
-            {/* <input type="checkbox" /> */}
             {item[itemText]}
-          </div>
+          </div> */
         ))}
       </div>
     </div>
