@@ -14,8 +14,8 @@ type Props = {
   onFocus?: FocusEventHandler<HTMLDivElement>
   onBlur?: FocusEventHandler<HTMLDivElement>
   onTouchMove?: TouchEventHandler<HTMLDivElement>
-  // onClickOtion?: MouseEventHandler<HTMLOptionElement>
-  onClickOtion?: MouseEventHandler<HTMLDivElement>
+  onClickOtion?: MouseEventHandler<HTMLOptionElement>
+  onClickItem?: MouseEventHandler<HTMLDivElement>
   items?: Record<string, string | number | string[] | undefined>[]
   itemText?: string
   itemValue?: string
@@ -34,6 +34,7 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
   onBlur = undefined,
   onTouchMove = undefined,
   onClickOtion = undefined,
+  onClickItem = undefined,
   items = [],
   itemText = 'text',
   itemValue = 'value',
@@ -66,8 +67,9 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
             key={i}
             // value={item[itemValue]}
             role="option"
-            onClick={onClickOtion}
+            onClick={onClickItem}
           >
+            {/* <input type="checkbox" /> */}
             {item[itemText]}
           </div>
         ))}

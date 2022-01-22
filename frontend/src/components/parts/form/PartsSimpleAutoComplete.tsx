@@ -65,7 +65,7 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         className={isFocus ? '' : 'parts-simple-menu__none'}
         value={value}
         onChange={onChange}
-        onClickOtion={(e) => {
+        onClickItem={(e) => {
           console.log('menu click option: ')
           setFocusValue(false)
         }}
