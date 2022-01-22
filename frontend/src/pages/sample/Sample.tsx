@@ -50,6 +50,13 @@ const selectBoxItems = [
   { text: 'test6', value: 6 },
   { text: 'test7', value: 7 },
   { text: 'test8', value: 8 },
+  { text: 'test9', value: 9 },
+  { text: 'test10', value: 10 },
+  { text: 'test11', value: 11 },
+  { text: 'test12', value: 12 },
+  { text: 'test13', value: 13 },
+  { text: 'test14', value: 14 },
+  { text: 'test15', value: 15 },
 ]
 
 export const Sample: React.VFC = () => {
