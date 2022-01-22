@@ -41,11 +41,23 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         value={searchValue}
         onInput={(e) => setSearchValue(e.currentTarget.value)}
         onFocus={(e) => {
-          console.log('input focus: ' + JSON.stringify(e.target.width, null, 2))
           setFocusValue(true)
+
+          // 隣接する要素の取得
+          const menu = e.currentTarget.nextElementSibling
+          if (menu) {
+            menu.addEventListener(
+              'click',
+              () => {
+                setFocusValue(true)
+              },
+              { once: true }
+            )
+          }
         }}
         onBlur={(e) => {
           console.log('input blur: ' + JSON.stringify(e.target.width, null, 2))
+          setFocusValue(false)
         }}
         placeholder={placeholder}
       />

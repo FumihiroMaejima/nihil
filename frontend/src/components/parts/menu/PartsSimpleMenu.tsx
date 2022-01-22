@@ -43,10 +43,15 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
   disabled = false,
 }) => {
   return (
-    <div className={`parts-simple-menu__wrapper`}>
+    <div
+      className={`parts-simple-menu__wrapper ${
+        className ? ' ' + className : ''
+      }`}
+    >
       <div
         // className={className !== '' ? className : `parts-simple-menu`}
-        className={`parts-simple-menu${className ? ' ' + className : ''}`}
+        // className={`parts-simple-menu${className ? ' ' + className : ''}`}
+        className={`parts-simple-menu`}
         onFocus={onFocus}
         onBlur={onBlur}
         onTouchMove={onTouchMove}
