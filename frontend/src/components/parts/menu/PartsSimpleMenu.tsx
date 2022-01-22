@@ -27,7 +27,7 @@ type Props = {
 
 export const PartsSimpleMenu: React.VFC<Props> = ({
   value = undefined,
-  className = '',
+  className = undefined,
   onInput = undefined,
   onChange = undefined,
   onFocus = undefined,

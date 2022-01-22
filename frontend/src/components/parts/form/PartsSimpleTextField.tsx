@@ -2,6 +2,7 @@ import React, { FormEventHandler, FocusEventHandler } from 'react'
 
 type Props = {
   value: string
+  className?: string
   onInput?: FormEventHandler<HTMLInputElement>
   onFocus?: FocusEventHandler<HTMLInputElement>
   onBlur?: FocusEventHandler<HTMLInputElement>
@@ -14,6 +15,7 @@ type Props = {
 
 export const PartsSimpleTextField: React.VFC<Props> = ({
   value = '',
+  className = undefined,
   onInput = undefined,
   onFocus = undefined,
   onBlur = undefined,
@@ -25,7 +27,8 @@ export const PartsSimpleTextField: React.VFC<Props> = ({
 }) => {
   return (
     <input
-      className={`parts-simple-text-field`}
+      // className={`parts-simple-text-field`}
+      className={`parts-simple-text-field ${className ? ' ' + className : ''}`}
       type="text"
       value={value}
       onInput={onInput}
