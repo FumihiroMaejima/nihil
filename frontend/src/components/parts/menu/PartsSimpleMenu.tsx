@@ -56,6 +56,7 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
         onBlur={onBlur}
         onTouchMove={onTouchMove}
       >
+        {items.length === 0 && 'no items!'}
         {items.map((item, i) => (
           /* <option key={i} value={item[itemValue]} onClick={onClickOtion}>
             {item[itemText]}

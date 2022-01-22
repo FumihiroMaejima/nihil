@@ -69,7 +69,21 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
           console.log('menu click option: ')
           setFocusValue(false)
         }}
-        items={items}
+        // items={items}
+        items={
+          searchValue === ''
+            ? items
+            : items.filter(
+                (
+                  item: Record<string, string | number | string[] | undefined>
+                ) => {
+                  const keyText = item[itemText]
+                  return typeof keyText === 'string'
+                    ? keyText.match(searchValue)
+                    : false
+                }
+              )
+        }
         multiple={false}
         placeholder={placeholder}
         disabled={false}
