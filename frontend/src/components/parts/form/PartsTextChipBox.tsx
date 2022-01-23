@@ -39,7 +39,9 @@ export const PartsTextChipBox: React.VFC<Props> = ({
       {selectedValue && (
         <div className={`parts-text-chip-box__selected-area`}>
           <PartsSimpleChip
+            className="parts-simple-chip__small"
             label={selectedValue}
+            value={selectedValue}
             isClose={true}
             onClickClose={onClickClose}
           />

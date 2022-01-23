@@ -5,6 +5,7 @@ $parts-simple-button-default-border-bottom-color: #00d21c;
 
 .parts-text-chip-box {
   display: flex;
+  align-items: center;
   width: 100%;
   // padding: 10px 15px;
   font-size: 16px;
@@ -23,7 +24,7 @@ $parts-simple-button-default-border-bottom-color: #00d21c;
   }
 
   &__selected-area {
-    padding: 4px 6px;
+    // padding: 4px 6px;
   }
 
   input {
