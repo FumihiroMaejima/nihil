@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 
 type Props = {
+  value?: string | number | readonly string[] | undefined
   label?: string
   className?: string
   isClose?: boolean
@@ -20,6 +21,7 @@ type Props = {
 
 export const PartsSimpleChip: React.VFC<Props> = ({
   label = 'label text',
+  value = undefined,
   className = undefined,
   isClose = false,
   onClick = undefined,
@@ -35,6 +37,7 @@ export const PartsSimpleChip: React.VFC<Props> = ({
         <button
           type="button"
           className="parts-simple-chip__close-chip"
+          value={value}
           onClick={onClickClose}
         ></button>
       )}
