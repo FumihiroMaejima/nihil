@@ -20,6 +20,10 @@ $parts-simple-chip-close-chip-active-color: rgb(119, 119, 119, 1.0);
     // cursor: pointer;
   }
 
+  &__small {
+    padding: 3px 6px;
+  }
+
   & > .parts-simple-chip__close-chip {
     display: inline-block;
     // background: #aaaaaa;
