@@ -7,7 +7,7 @@ $parts-simple-button-default-border-bottom-color: #00d21c;
   display: flex;
   align-items: center;
   width: 100%;
-  // padding: 10px 15px;
+  padding: 8px 16px;
   font-size: 16px;
   border-radius: 3px;
   border: 2px solid #757575;
@@ -28,8 +28,8 @@ $parts-simple-button-default-border-bottom-color: #00d21c;
   }
 
   input {
-    width: 100%;
-    padding: 10px 15px;
+    width: auto;
+    padding: 2px 8px;
     font-size: 16px;
     border: none;
     outline: none;
