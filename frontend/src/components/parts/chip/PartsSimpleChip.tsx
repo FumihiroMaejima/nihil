@@ -9,6 +9,7 @@ import React, {
 type Props = {
   label?: string
   className?: string
+  isClose?: boolean
   onInput?: FormEventHandler<HTMLSelectElement>
   onChange?: ChangeEventHandler<HTMLSelectElement>
   onFocus?: FocusEventHandler<HTMLDivElement>
@@ -19,6 +20,7 @@ type Props = {
 export const PartsSimpleChip: React.VFC<Props> = ({
   label = 'label text',
   className = undefined,
+  isClose = false,
   onClick = undefined,
 }) => {
   return (
@@ -27,6 +29,12 @@ export const PartsSimpleChip: React.VFC<Props> = ({
       onClick={onClick}
     >
       {label}
+      {isClose && (
+        <button
+          type="button"
+          className="parts-simple-chip__close-chip"
+        ></button>
+      )}
     </div>
   )
 }

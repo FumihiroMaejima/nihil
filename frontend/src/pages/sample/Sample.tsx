@@ -229,6 +229,7 @@ export const Sample: React.VFC = () => {
 
       <div className="mxy-2">
         <PartsSimpleChip label="Hello World" />
+        <PartsSimpleChip label="Hello World Close Test" isClose={true} />
       </div>
 
       <div className="mxy-2">
