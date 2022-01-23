@@ -5,6 +5,7 @@ import { PartsLabelTable } from '@/components/parts/table/PartsLabelTable'
 import { PartsMessageBoard } from '@/components/parts/PartsMessageBoard'
 import { PartsSimpleBox } from '@/components/parts/box/PartsSimpleBox'
 import { PartsTitleBox } from '@/components/parts/box/PartsTitleBox'
+import { PartsSimpleChip } from '@/components/parts/chip/PartsSimpleChip'
 import { PartsCircleButton } from '@/components/parts/button/PartsCircleButton'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsSimpleFlatButton } from '@/components/parts/button/PartsSimpleFlatButton'
@@ -224,6 +225,10 @@ export const Sample: React.VFC = () => {
             disabled={false}
           />
         </div>
+      </div>
+
+      <div className="mxy-2">
+        <PartsSimpleChip label="Hello World" />
       </div>
 
       <div className="mxy-2">
