@@ -15,6 +15,7 @@ type Props = {
   onFocus?: FocusEventHandler<HTMLDivElement>
   onBlur?: FocusEventHandler<HTMLDivElement>
   onClick?: MouseEventHandler<HTMLDivElement>
+  onClickClose?: MouseEventHandler<HTMLButtonElement>
 }
 
 export const PartsSimpleChip: React.VFC<Props> = ({
@@ -22,6 +23,7 @@ export const PartsSimpleChip: React.VFC<Props> = ({
   className = undefined,
   isClose = false,
   onClick = undefined,
+  onClickClose = undefined,
 }) => {
   return (
     <div
@@ -33,6 +35,7 @@ export const PartsSimpleChip: React.VFC<Props> = ({
         <button
           type="button"
           className="parts-simple-chip__close-chip"
+          onClick={onClickClose}
         ></button>
       )}
     </div>
