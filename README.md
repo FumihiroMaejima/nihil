@@ -9,7 +9,7 @@ My Application.
 | 名前 | バージョン |
 | :--- | :---: |
 | PHP | 8.0.13(php:8.0.13-fpm-alpine) |
-| MySQL | 8.0 |
+| MySQL | 5.7 |
 | Nginx | 1.19(nginx:1.19-alpine) |
 | Laravel | 8.* |
 
