@@ -63,6 +63,7 @@ const selectBoxItems = [
 export const Sample: React.VFC = () => {
   const [textValue, setTextValue] = useState('')
   const [selectValue, setSelectValue] = useState<undefined | number>(undefined)
+  const [selectMultiValue, setSelectMultiValue] = useState<number[]>([])
   // const [multiSelectValue, setMultiSelectValue] = useState<number[]>([])
 
   // TSX内でジェネリクスを使う場合の書き方。
@@ -79,6 +80,22 @@ export const Sample: React.VFC = () => {
     if (typeof x === 'string') {
       setSelectValue(parseInt(x))
     } else {
+      throw Error('invalid type')
+    }
+  }
+
+  const setMultiAuctoCompleteSelect = function <T = string>(x: T): void {
+    console.log('setter: ' + JSON.stringify(x, null, 2))
+    if (typeof x === 'string') {
+      // setSelectMultiValue([...selectMultiValue, parseInt(x)])
+      // 重複を削除しつつ配列の値を更新する。
+      setSelectMultiValue(
+        [...selectMultiValue, parseInt(x)].filter(
+          (v, i, self) => self.indexOf(v) === i
+        )
+      )
+    } else {
+      console.error('param: ' + JSON.stringify(x, null, 2))
       throw Error('invalid type')
     }
   }
@@ -229,6 +246,25 @@ export const Sample: React.VFC = () => {
               setSelectValue(undefined)
             }}
             placeholder="test auto complete box"
+            disabled={false}
+          />
+        </div>
+      </div>
+
+      <div className="mxy-2">
+        <div className="mxy-2">
+          <PartsSimpleAutoComplete
+            value={selectMultiValue.map((i) => String(i))}
+            setter={setMultiAuctoCompleteSelect}
+            items={selectBoxItems}
+            onClickClose={(e) => {
+              console.log(
+                'parent onClickClose: ' +
+                  JSON.stringify(e.currentTarget.value, null, 2)
+              )
+              setSelectMultiValue([])
+            }}
+            placeholder="test multi select auto complete box"
             disabled={false}
           />
         </div>

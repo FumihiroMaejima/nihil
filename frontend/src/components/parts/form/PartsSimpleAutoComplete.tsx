@@ -88,6 +88,15 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
             value: parseInt(value),
           },
         ]
+      } else if (Array.isArray(value)) {
+        return items
+          .filter((item) => value.includes(String(item[itemValue])))
+          .map((item) => {
+            return {
+              text: String(item[itemText]),
+              value: parseInt(item[itemValue] as string),
+            }
+          })
       } else {
         return items
           .filter((item) => item[itemValue] === value)
