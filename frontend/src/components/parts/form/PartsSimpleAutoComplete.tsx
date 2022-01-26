@@ -1,11 +1,14 @@
 import React, {
   useState,
+  useRef,
+  useEffect,
   FormEventHandler,
   ChangeEventHandler,
   FocusEventHandler,
   MouseEventHandler,
 } from 'react'
 import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextField'
+import { PartsTextChipBox } from '@/components/parts/form/PartsTextChipBox'
 import { PartsSimpleMenu } from '@/components/parts/menu/PartsSimpleMenu'
 
 type Props = {
@@ -18,6 +21,7 @@ type Props = {
   itemText?: string
   itemValue?: string
   multiple?: boolean
+  onClickClose?: MouseEventHandler<HTMLButtonElement>
   placeholder?: string
   required?: boolean
   disabled?: boolean
@@ -33,6 +37,7 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
   itemText = 'text',
   itemValue = 'value',
   multiple = false,
+  onClickClose = undefined,
   placeholder = undefined,
   required = undefined,
   disabled = false,
@@ -40,30 +45,51 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
   const [searchValue, setSearchValue] = useState<string>('')
   const [isFocus, setFocusValue] = useState<boolean>(false)
 
+  const refElement = useRef<HTMLDivElement>(null) // reference to container
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (refElement?.current?.contains(e.target)) {
+        console.log('in')
+        return
+      } else {
+        console.log('out')
+      }
+    }
+    // document.addEventListener('mousedown', handleClick)
+    // ;() => document.removeEventListener('mousedown', handleClick)
+    document.addEventListener('mousedown', (e) => {
+      handleClick(e)
+      document.removeEventListener('mousedown', handleClick)
+    })
+  }, [])
+
   return (
-    <div className="parts-simple-auto-complete">
-      <PartsSimpleTextField
+    <div className="parts-simple-auto-complete" ref={refElement}>
+      <PartsTextChipBox
         value={searchValue}
+        selectedValue={value ? String(value) : undefined}
         onInput={(e) => setSearchValue(e.currentTarget.value)}
         onFocus={(e) => {
           setFocusValue(true)
 
           // 隣接する要素の取得
-          /* const menu = e.currentTarget.nextElementSibling
-          if (menu) {
-            menu.addEventListener(
-              'click',
-              () => {
-                setFocusValue(true)
-              },
-              { once: true }
-            )
-          } */
+          // const menu = e.currentTarget.nextElementSibling
+          // if (menu) {
+          //   menu.addEventListener(
+          //     'click',
+          //     () => {
+          //       setFocusValue(true)
+          //     },
+          //     { once: true }
+          //   )
+          // }
         }}
         onBlur={(e) => {
-          console.log('input blur: ' + JSON.stringify(e.target.width, null, 2))
+          // console.log('input blur: ' + JSON.stringify(e.target.width, null, 2))
           // setFocusValue(false)
         }}
+        onClickClose={onClickClose}
         placeholder={placeholder}
       />
       <PartsSimpleMenu
@@ -71,12 +97,13 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         value={value}
         onChange={onChange}
         onClickOtion={(e) => {
-          console.log('menu click option2: ' + e.currentTarget.value)
+          // console.log('menu click option2: ' + e.currentTarget.value)
 
           if (setter !== undefined) {
             setter(e.currentTarget.value)
           }
           setFocusValue(false)
+          setSearchValue('')
         }}
         // items={items}
         items={
