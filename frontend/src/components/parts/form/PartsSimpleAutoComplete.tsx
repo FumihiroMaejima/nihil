@@ -49,8 +49,8 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
 
   // componentの外側をクリックした時のハンドリング
   useEffect(() => {
-    const handleClick = (e) => {
-      if (refElement?.current?.contains(e.target)) {
+    const handleClick = (e: MouseEvent) => {
+      if (refElement?.current?.contains(e.target as Node)) {
         // click inside thie component
         // console.log('in')
         return
@@ -65,30 +65,49 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
     }
     // document.addEventListener('mousedown', handleClick)
     // ;() => document.removeEventListener('mousedown', handleClick)
-    document.addEventListener('mousedown', (e) => {
+    document.addEventListener('mousedown', (e: MouseEvent) => {
       handleClick(e)
       document.removeEventListener('mousedown', handleClick)
     })
   }, [])
 
   /**
-   * get item label by item value.
+   * get selected items for chip by selected value.
    * @param {string | number | readonly string[] | undefined} value
-   * @return {string}
+   * @return {(Record<'text', string> & Record<'value', number>)[]}
    */
-  const getItemLabel = (
+  const getSelectedChipItems = (
     value: string | number | readonly string[] | undefined
-  ): string => {
-    const target = items.find((item) => item[itemValue] === value)
-    return target ? String(target[itemText]) : ''
+  ): (Record<'text', string> & Record<'value', number>)[] => {
+    if (value) {
+      if (typeof value === 'string') {
+        const target = items.find((item) => item[itemValue] === value)
+        return [
+          {
+            text: target ? String(target[itemText]) : '',
+            value: parseInt(value),
+          },
+        ]
+      } else {
+        return items
+          .filter((item) => item[itemValue] === value)
+          .map((item) => {
+            return {
+              text: String(item[itemText]),
+              value: parseInt(item[itemValue] as string),
+            }
+          })
+      }
+    } else {
+      return []
+    }
   }
 
   return (
     <div className="parts-simple-auto-complete" ref={refElement}>
       <PartsTextChipBox
         value={searchValue}
-        label={getItemLabel(value)}
-        selectedValue={value ? String(value) : undefined}
+        items={getSelectedChipItems(value)}
         onInput={(e) => setSearchValue(e.currentTarget.value)}
         onFocus={(e) => {
           setFocusValue(true)
