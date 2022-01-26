@@ -95,7 +95,17 @@ export const Sample: React.VFC = () => {
         )
       )
     } else {
-      console.error('param: ' + JSON.stringify(x, null, 2))
+      throw Error('invalid type')
+    }
+  }
+
+  const removeMultiAuctoCompleteSelect = function <T = string>(x: T): void {
+    console.log('remove: ' + JSON.stringify(x, null, 2))
+    if (typeof x === 'string') {
+      setSelectMultiValue([
+        ...selectMultiValue.filter((v) => v !== parseInt(x)),
+      ])
+    } else {
       throw Error('invalid type')
     }
   }
@@ -262,7 +272,7 @@ export const Sample: React.VFC = () => {
                 'parent onClickClose: ' +
                   JSON.stringify(e.currentTarget.value, null, 2)
               )
-              setSelectMultiValue([])
+              removeMultiAuctoCompleteSelect(e.currentTarget.value)
             }}
             placeholder="test multi select auto complete box"
             disabled={false}
