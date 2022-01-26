@@ -47,13 +47,20 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
 
   const refElement = useRef<HTMLDivElement>(null) // reference to container
 
+  // componentの外側をクリックした時のハンドリング
   useEffect(() => {
     const handleClick = (e) => {
       if (refElement?.current?.contains(e.target)) {
-        console.log('in')
+        // click inside thie component
+        // console.log('in')
         return
       } else {
-        console.log('out')
+        // click outside thie component
+        // console.log('out')
+
+        // フォーカスを閉じる
+        setFocusValue(false)
+        setSearchValue('')
       }
     }
     // document.addEventListener('mousedown', handleClick)
@@ -64,10 +71,23 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
     })
   }, [])
 
+  /**
+   * get item label by item value.
+   * @param {string | number | readonly string[] | undefined} value
+   * @return {string}
+   */
+  const getItemLabel = (
+    value: string | number | readonly string[] | undefined
+  ): string => {
+    const target = items.find((item) => item[itemValue] === value)
+    return target ? String(target[itemText]) : ''
+  }
+
   return (
     <div className="parts-simple-auto-complete" ref={refElement}>
       <PartsTextChipBox
         value={searchValue}
+        label={getItemLabel(value)}
         selectedValue={value ? String(value) : undefined}
         onInput={(e) => setSearchValue(e.currentTarget.value)}
         onFocus={(e) => {
@@ -85,10 +105,6 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
           //   )
           // }
         }}
-        onBlur={(e) => {
-          // console.log('input blur: ' + JSON.stringify(e.target.width, null, 2))
-          // setFocusValue(false)
-        }}
         onClickClose={onClickClose}
         placeholder={placeholder}
       />
@@ -97,13 +113,11 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         value={value}
         onChange={onChange}
         onClickOtion={(e) => {
-          // console.log('menu click option2: ' + e.currentTarget.value)
-
           if (setter !== undefined) {
             setter(e.currentTarget.value)
           }
-          setFocusValue(false)
-          setSearchValue('')
+          // setFocusValue(false)
+          // setSearchValue('')
         }}
         // items={items}
         items={
@@ -125,22 +139,6 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         disabled={false}
       />
     </div>
-    /* <select
-      className="parts-simple-select-box"
-      value={value}
-      onInput={onInput}
-      onChange={onChange}
-      multiple={multiple}
-      placeholder={placeholder}
-      required={required}
-      disabled={disabled}
-    >
-      {items.map((item, i) => (
-        <option key={i} value={item[itemValue]}>
-          {item[itemText]}
-        </option>
-      ))}
-    </select> */
   )
 }
 

@@ -8,6 +8,7 @@ import { PartsSimpleChip } from '@/components/parts/chip/PartsSimpleChip'
 type Props = {
   value: string
   className?: string
+  label?: string
   selectedValue?: string
   onInput?: FormEventHandler<HTMLInputElement>
   onFocus?: FocusEventHandler<HTMLInputElement>
@@ -23,6 +24,7 @@ type Props = {
 export const PartsTextChipBox: React.VFC<Props> = ({
   value = '',
   className = undefined,
+  label = '',
   selectedValue = undefined,
   onInput = undefined,
   onFocus = undefined,
@@ -40,7 +42,7 @@ export const PartsTextChipBox: React.VFC<Props> = ({
         <div className={`parts-text-chip-box__selected-area`}>
           <PartsSimpleChip
             className="parts-simple-chip__small"
-            label={selectedValue}
+            label={label}
             value={selectedValue}
             isClose={true}
             onClickClose={onClickClose}
