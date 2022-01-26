@@ -221,6 +221,13 @@ export const Sample: React.VFC = () => {
             onChange={(e) => setSelectValue(parseInt(e.target.value))}
             setter={setAuctoCompleteSelect}
             items={selectBoxItems}
+            onClickClose={(e) => {
+              console.log(
+                'parent onClickClose: ' +
+                  JSON.stringify(e.currentTarget.value, null, 2)
+              )
+              setSelectValue(undefined)
+            }}
             placeholder="test auto complete box"
             disabled={false}
           />
