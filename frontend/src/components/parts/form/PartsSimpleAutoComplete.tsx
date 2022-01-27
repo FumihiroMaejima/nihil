@@ -73,24 +73,24 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
 
   /**
    * get selected items for chip by selected value.
-   * @param {string | number | readonly string[] | undefined} value
+   * @param {string | number | readonly string[] | undefined} v
    * @return {(Record<'text', string> & Record<'value', number>)[]}
    */
   const getSelectedChipItems = (
-    value: string | number | readonly string[] | undefined
+    v: string | number | readonly string[] | undefined
   ): (Record<'text', string> & Record<'value', number>)[] => {
-    if (value) {
-      if (typeof value === 'string') {
-        const target = items.find((item) => item[itemValue] === value)
+    if (v) {
+      if (typeof v === 'string') {
+        const target = items.find((item) => item[itemValue] === v)
         return [
           {
             text: target ? String(target[itemText]) : '',
-            value: parseInt(value),
+            value: parseInt(v),
           },
         ]
-      } else if (Array.isArray(value)) {
+      } else if (Array.isArray(v)) {
         return items
-          .filter((item) => value.includes(String(item[itemValue])))
+          .filter((item) => v.includes(String(item[itemValue])))
           .map((item) => {
             return {
               text: String(item[itemText]),
@@ -99,7 +99,7 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
           })
       } else {
         return items
-          .filter((item) => item[itemValue] === value)
+          .filter((item) => item[itemValue] === v)
           .map((item) => {
             return {
               text: String(item[itemText]),
@@ -139,6 +139,7 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
       <PartsSimpleMenu
         className={isFocus ? '' : 'parts-simple-menu__none'}
         value={value}
+        selectedItems={getSelectedChipItems(value).map((v) => v.value)}
         onChange={onChange}
         onClickOtion={(e) => {
           if (setter !== undefined) {

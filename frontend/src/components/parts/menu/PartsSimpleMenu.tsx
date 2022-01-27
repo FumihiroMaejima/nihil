@@ -21,6 +21,7 @@ type Props = {
   items?: Record<string, string | number | string[] | undefined>[]
   itemText?: string
   itemValue?: string
+  selectedItems?: (string | number)[]
   multiple?: boolean
   placeholder?: string
   required?: boolean
@@ -42,14 +43,32 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
   items = [],
   itemText = 'text',
   itemValue = 'value',
+  selectedItems = [],
   multiple = false,
   placeholder = undefined,
   required = undefined,
   disabled = false,
 }) => {
+  /**
+   * get selected items for chip by selected value.
+   * @param {string | number | readonly string[] | undefined} v
+   * @return {boolean}
+   */
+  const checkIsSelected = (
+    v: string | number | readonly string[] | undefined
+  ): boolean => {
+    if (!v || Array.isArray(v)) {
+      return false
+    } else if (typeof v === 'string' || typeof v === 'number') {
+      return selectedItems.includes(v)
+    } else {
+      return false
+    }
+  }
+
   return (
     <div
-      className={`parts-simple-menu__wrapper ${
+      className={`parts-simple-menu__wrapper${
         className ? ' ' + className : ''
       }`}
     >
@@ -62,6 +81,7 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
         onBlurCapture={onBlurCapture}
         onBlur={onBlur}
         onTouchMove={onTouchMove}
+        defaultValue={value}
       >
         {items.length === 0 && 'no items!'}
         {items.map((item, i) => (
@@ -69,7 +89,11 @@ export const PartsSimpleMenu: React.VFC<Props> = ({
             {item[itemText]}
           </option> */
           <option
-            className={`parts-simple-menu__item`}
+            className={`parts-simple-menu__item${
+              checkIsSelected(item[itemValue])
+                ? ' parts-simple-menu__item--selected'
+                : ''
+            }`}
             key={i}
             value={item[itemValue]}
             onClick={onClickOtion}
