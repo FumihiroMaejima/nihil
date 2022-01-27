@@ -263,8 +263,8 @@ export const Sample: React.VFC = () => {
         <div className="mxy-2">
           <PartsSimpleAutoComplete
             value={selectValue}
-            onChange={(e) => setSelectValue(parseInt(e.target.value))}
-            setter={setAuctoCompleteSelect}
+            // onChange={(e) => setSelectValue(parseInt(e.target.value))}
+            onClickOtion={setAuctoCompleteSelect}
             items={selectBoxItems}
             onClickClose={(e) => {
               console.log(
@@ -274,7 +274,6 @@ export const Sample: React.VFC = () => {
               setSelectValue(undefined)
             }}
             placeholder="test auto complete box"
-            disabled={false}
           />
         </div>
       </div>
@@ -283,7 +282,7 @@ export const Sample: React.VFC = () => {
         <div className="mxy-2">
           <PartsSimpleAutoComplete
             value={selectMultiValue.map((i) => String(i))}
-            setter={setMultiAuctoCompleteSelect}
+            onClickOtion={setMultiAuctoCompleteSelect}
             items={selectBoxItems}
             onClickClose={(e) => {
               console.log(
@@ -293,7 +292,6 @@ export const Sample: React.VFC = () => {
               removeMultiAuctoCompleteSelect(e.currentTarget.value)
             }}
             placeholder="test multi select auto complete box"
-            disabled={false}
           />
         </div>
       </div>
@@ -301,18 +299,6 @@ export const Sample: React.VFC = () => {
       <div className="mxy-2">
         <PartsSimpleChip label="Hello World" />
         <PartsSimpleChip label="Hello World Close Test" isClose={true} />
-      </div>
-
-      <div className="mxy-2">
-        {/* <div className="mxy-2">
-          <PartsSimpleAutoComplete
-            value={selectValue}
-            onChange={(e) => setSelectValue(parseInt(e.target.value))}
-            items={selectBoxItems}
-            placeholder="test auto complete box"
-            disabled={false}
-          />
-        </div> */}
       </div>
 
       <div className="mxy-2">

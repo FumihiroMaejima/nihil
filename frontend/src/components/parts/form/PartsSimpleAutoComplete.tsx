@@ -13,12 +13,13 @@ type Props = {
   value: string | number | readonly string[] | undefined
   onInput?: FormEventHandler<HTMLSelectElement>
   onChange?: ChangeEventHandler<HTMLSelectElement>
-  onClickOtion?: MouseEventHandler<HTMLOptionElement>
-  setter?: <T = string>(v: T) => void
+  // onClickOtion?: MouseEventHandler<HTMLOptionElement>
+  onClickOtion?: <T = string>(v: T) => void
+  // setter?: <T = string>(v: T) => void
   items?: Record<string, string | number | string[] | undefined>[]
   itemText?: string
   itemValue?: string
-  multiple?: boolean
+  // multiple?: boolean
   onClickClose?: MouseEventHandler<HTMLButtonElement>
   placeholder?: string
   required?: boolean
@@ -30,11 +31,11 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
   onInput = undefined,
   onChange = undefined,
   onClickOtion = undefined,
-  setter = undefined,
+  // setter = undefined,
   items = [],
   itemText = 'text',
   itemValue = 'value',
-  multiple = false,
+  // multiple = false,
   onClickClose = undefined,
   placeholder = undefined,
   required = undefined,
@@ -116,7 +117,7 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         value={searchValue}
         items={getSelectedChipItems(value)}
         onInput={(e) => setSearchValue(e.currentTarget.value)}
-        onFocus={(e) => {
+        onFocus={() => {
           setFocusValue(true)
 
           // 隣接する要素の取得
@@ -133,6 +134,8 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         }}
         onClickClose={onClickClose}
         placeholder={placeholder}
+        required={required}
+        disabled={disabled}
       />
       <PartsSimpleMenu
         className={isFocus ? '' : 'parts-simple-menu__none'}
@@ -140,8 +143,8 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         selectedItems={getSelectedChipItems(value).map((v) => v.value)}
         // onChange={onChange}
         onClickOtion={(e) => {
-          if (setter !== undefined) {
-            setter(e.currentTarget.value)
+          if (onClickOtion !== undefined) {
+            onClickOtion(e.currentTarget.value)
           }
           // setFocusValue(false)
           // setSearchValue('')
