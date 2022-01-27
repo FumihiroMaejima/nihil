@@ -17,6 +17,7 @@ import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeadin
 import { PartsSimpleList } from '@/components/parts/list/PartsSimpleList'
 import { PartsSimpleMenu } from '@/components/parts/menu/PartsSimpleMenu'
 import { PartsStickyNoteList } from '@/components/parts/list/PartsStickyNoteList'
+import { PartsSimpleToast } from '@/components/parts/toast/PartsSimpleToast'
 import {
   PartsSimpleTable,
   TableHeaderType,
@@ -61,6 +62,7 @@ const selectBoxItems = [
 ]
 
 export const Sample: React.VFC = () => {
+  const [toastValue, setToastValue] = useState<boolean>(false)
   const [textValue, setTextValue] = useState('')
   const [selectValue, setSelectValue] = useState<undefined | number>(undefined)
   const [selectMultiValue, setSelectMultiValue] = useState<number[]>([])
@@ -112,6 +114,10 @@ export const Sample: React.VFC = () => {
 
   return (
     <div className="page-container page-container__mx-auto">
+      <PartsSimpleToast
+        value={toastValue}
+        data={{ text: 'test message', status: 'success' }}
+      />
       <PartsSimpleHeading
         text="simple heading"
         color="dark-grey"
@@ -128,6 +134,16 @@ export const Sample: React.VFC = () => {
         <p className="util-color__text--blue">test util basic color blue</p>
         <p className="util-color__text--green">test util basic color green</p>
         <p className="util-color__text--white">test util basic color white</p>
+      </div>
+
+      <div className="mxy-2">
+        <button
+          onClick={(_) => {
+            setToastValue(true)
+          }}
+        >
+          open toast
+        </button>
       </div>
 
       <div className="mxy-2">
