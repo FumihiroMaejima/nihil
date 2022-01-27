@@ -8,7 +8,6 @@ import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeadin
 import {
   PartsSimpleEditTable,
   TableHeaderType,
-  SimpleTableDataType,
 } from '@/components/parts/table/PartsSimpleEditTable'
 import { createTodo, updateTodo, deleteTodo } from '@/graphql/mutations'
 import { queryApi, createApi, updateApi, deleteApi } from '@/graphql/utils'

@@ -140,7 +140,7 @@ export const Sample: React.VFC = () => {
 
       <div className="mxy-2">
         <button
-          onClick={(_) => {
+          onClick={() => {
             setToastValue(true)
           }}
         >

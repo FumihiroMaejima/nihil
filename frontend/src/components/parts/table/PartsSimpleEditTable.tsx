@@ -1,4 +1,4 @@
-import React, { FormEventHandler, ChangeEventHandler } from 'react'
+import React, { ChangeEventHandler } from 'react'
 
 export type TableHeaderType = Record<'label', string>
 
