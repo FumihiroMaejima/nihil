@@ -117,6 +117,9 @@ export const Sample: React.VFC = () => {
       <PartsSimpleToast
         value={toastValue}
         data={{ text: 'test message', status: 'success' }}
+        onAnimationEnd={(_) => {
+          setToastValue(false)
+        }}
       />
       <PartsSimpleHeading
         text="simple heading"

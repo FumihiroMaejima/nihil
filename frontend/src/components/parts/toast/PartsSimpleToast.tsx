@@ -11,12 +11,14 @@ type Props = {
   className?: string
   data?: Record<'text', string> &
     Record<'status', 'success' | 'waring' | 'error'>
+  onAnimationEnd?: React.AnimationEventHandler<HTMLDivElement> | undefined
 }
 
 export const PartsSimpleToast: React.VFC<Props> = ({
   value = false,
   className = undefined,
   data = undefined,
+  onAnimationEnd = undefined,
 }) => {
   return (
     <div
@@ -24,6 +26,7 @@ export const PartsSimpleToast: React.VFC<Props> = ({
         value ? ' parts-simple-toast__display' : ''
       }
         ${value && data ? ' parts-simple-toast__status--' + data.status : ''}`}
+      onAnimationEnd={onAnimationEnd}
     >
       {data ? data.text : ''}
     </div>

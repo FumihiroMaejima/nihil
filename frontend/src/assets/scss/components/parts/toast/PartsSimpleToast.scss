@@ -12,10 +12,12 @@ $parts-simple-button-default-border-bottom-color: #00d21c;
   max-width: 200px;
   padding: 10px;
   color: $util-color-white;
+  border-radius: 2px;
   transform: translateX(220px);
 
   &.parts-simple-toast__status--success {
-    background-color: #28a746;
+    // background-color: #28a746;
+    background-color: $util-color-green;
   }
 
   &.parts-simple-toast__status--waring {
@@ -28,6 +30,10 @@ $parts-simple-button-default-border-bottom-color: #00d21c;
 
   &.parts-simple-toast__display {
     animation: showAnimation 3s ease 1 normal;
+  }
+
+  &:hover {
+    background-color: $util-color-dark-green;
   }
 
   &__none {
