@@ -15,7 +15,6 @@ import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextFie
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
 import { PartsSimpleList } from '@/components/parts/list/PartsSimpleList'
-import { PartsSimpleMenu } from '@/components/parts/menu/PartsSimpleMenu'
 import { PartsStickyNoteList } from '@/components/parts/list/PartsStickyNoteList'
 import { PartsSimpleToast } from '@/components/parts/toast/PartsSimpleToast'
 import {
@@ -117,7 +116,7 @@ export const Sample: React.VFC = () => {
       <PartsSimpleToast
         value={toastValue}
         data={{ text: 'test message', status: 'success' }}
-        onAnimationEnd={(_) => {
+        onAnimationEnd={() => {
           setToastValue(false)
         }}
       />

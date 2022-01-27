@@ -1,10 +1,4 @@
-import React, {
-  FormEventHandler,
-  ChangeEventHandler,
-  FocusEventHandler,
-  TouchEventHandler,
-  MouseEventHandler,
-} from 'react'
+import React from 'react'
 
 type Props = {
   value?: boolean
@@ -22,7 +16,7 @@ export const PartsSimpleToast: React.VFC<Props> = ({
 }) => {
   return (
     <div
-      className={`parts-simple-toast${
+      className={`parts-simple-toast${className ? ' ' + className : ''}${
         value ? ' parts-simple-toast__display' : ''
       }
         ${value && data ? ' parts-simple-toast__status--' + data.status : ''}`}

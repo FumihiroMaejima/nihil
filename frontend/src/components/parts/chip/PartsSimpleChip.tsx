@@ -2,7 +2,6 @@ import React, {
   FormEventHandler,
   ChangeEventHandler,
   FocusEventHandler,
-  TouchEventHandler,
   MouseEventHandler,
 } from 'react'
 

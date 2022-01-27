@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
-import { PartsCircleLoading } from '@/components/parts/PartsCircleLoading'
+// import { PartsCircleLoading } from '@/components/parts/PartsCircleLoading'
 import { PartsSimpleCarousel } from '@/components/parts/carousel/PartsSimpleCarousel'
 import { PartsSimpleModal } from '@/components/parts/modal/PartsSimpleModal'
 

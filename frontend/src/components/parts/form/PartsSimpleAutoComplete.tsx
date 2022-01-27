@@ -4,10 +4,8 @@ import React, {
   useEffect,
   FormEventHandler,
   ChangeEventHandler,
-  FocusEventHandler,
   MouseEventHandler,
 } from 'react'
-import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextField'
 import { PartsTextChipBox } from '@/components/parts/form/PartsTextChipBox'
 import { PartsSimpleMenu } from '@/components/parts/menu/PartsSimpleMenu'
 
@@ -140,7 +138,7 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         className={isFocus ? '' : 'parts-simple-menu__none'}
         value={value}
         selectedItems={getSelectedChipItems(value).map((v) => v.value)}
-        onChange={onChange}
+        // onChange={onChange}
         onClickOtion={(e) => {
           if (setter !== undefined) {
             setter(e.currentTarget.value)
@@ -163,9 +161,9 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
                 }
               )
         }
-        multiple={false}
-        placeholder={placeholder}
-        disabled={false}
+        // multiple={false}
+        // placeholder={placeholder}
+        // disabled={false}
       />
     </div>
   )
