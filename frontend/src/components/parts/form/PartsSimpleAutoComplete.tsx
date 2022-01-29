@@ -2,8 +2,8 @@ import React, {
   useState,
   useRef,
   useEffect,
-  FormEventHandler,
-  ChangeEventHandler,
+  // FormEventHandler,
+  // ChangeEventHandler,
   MouseEventHandler,
 } from 'react'
 import { PartsTextChipBox } from '@/components/parts/form/PartsTextChipBox'
@@ -11,8 +11,8 @@ import { PartsSimpleMenu } from '@/components/parts/menu/PartsSimpleMenu'
 
 type Props = {
   value: string | number | readonly string[] | undefined
-  onInput?: FormEventHandler<HTMLSelectElement>
-  onChange?: ChangeEventHandler<HTMLSelectElement>
+  // onInput?: FormEventHandler<HTMLSelectElement>
+  // onChange?: ChangeEventHandler<HTMLSelectElement>
   // onClickOtion?: MouseEventHandler<HTMLOptionElement>
   onClickOtion?: <T = string>(v: T) => void
   // setter?: <T = string>(v: T) => void
@@ -28,8 +28,8 @@ type Props = {
 
 export const PartsSimpleAutoComplete: React.VFC<Props> = ({
   value = undefined,
-  onInput = undefined,
-  onChange = undefined,
+  // onInput = undefined,
+  // onChange = undefined,
   onClickOtion = undefined,
   // setter = undefined,
   items = [],

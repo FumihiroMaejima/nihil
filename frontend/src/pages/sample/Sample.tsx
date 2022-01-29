@@ -86,7 +86,6 @@ export const Sample: React.VFC = () => {
   }
 
   const setMultiAuctoCompleteSelect = function <T = string>(x: T): void {
-    console.log('setter: ' + JSON.stringify(x, null, 2))
     if (typeof x === 'string') {
       // setSelectMultiValue([...selectMultiValue, parseInt(x)])
       // 重複を削除しつつ配列の値を更新する。
@@ -266,11 +265,7 @@ export const Sample: React.VFC = () => {
             // onChange={(e) => setSelectValue(parseInt(e.target.value))}
             onClickOtion={setAuctoCompleteSelect}
             items={selectBoxItems}
-            onClickClose={(e) => {
-              console.log(
-                'parent onClickClose: ' +
-                  JSON.stringify(e.currentTarget.value, null, 2)
-              )
+            onClickClose={() => {
               setSelectValue(undefined)
             }}
             placeholder="test auto complete box"
@@ -285,10 +280,6 @@ export const Sample: React.VFC = () => {
             onClickOtion={setMultiAuctoCompleteSelect}
             items={selectBoxItems}
             onClickClose={(e) => {
-              console.log(
-                'parent onClickClose: ' +
-                  JSON.stringify(e.currentTarget.value, null, 2)
-              )
               removeMultiAuctoCompleteSelect(e.currentTarget.value)
             }}
             placeholder="test multi select auto complete box"
