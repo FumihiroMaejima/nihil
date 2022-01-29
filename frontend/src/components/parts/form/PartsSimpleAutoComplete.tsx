@@ -48,7 +48,7 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
 
   // componentの外側をクリックした時のハンドリング
   useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
+    const closeMenuByFocusEventHandler = (e: MouseEvent | FocusEvent) => {
       if (refElement?.current?.contains(e.target as Node)) {
         // click inside thie component
         // console.log('in')
@@ -62,11 +62,16 @@ export const PartsSimpleAutoComplete: React.VFC<Props> = ({
         setSearchValue('')
       }
     }
-    // document.addEventListener('mousedown', handleClick)
-    // ;() => document.removeEventListener('mousedown', handleClick)
+    // document.addEventListener('mousedown', closeMenuByFocusEventHandler)
+    // ;() => document.removeEventListener('mousedown', closeMenuByFocusEventHandler)
     document.addEventListener('mousedown', (e: MouseEvent) => {
-      handleClick(e)
-      document.removeEventListener('mousedown', handleClick)
+      closeMenuByFocusEventHandler(e)
+      document.removeEventListener('mousedown', closeMenuByFocusEventHandler)
+    })
+
+    document.addEventListener('focusout', (e: FocusEvent) => {
+      closeMenuByFocusEventHandler(e)
+      document.removeEventListener('focusout', closeMenuByFocusEventHandler)
     })
   }, [])
 
