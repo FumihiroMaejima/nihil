@@ -19,9 +19,9 @@ jobs:
         node-version: '14'
         cache: 'yarn'
     - name: Install Dependencies
-    - run: cd frontend && yarn install
+      run: cd frontend && yarn install
     - name: Execute tests(Unit Test)
-    - run: cd frontend && yarn test:unit
+      run: cd frontend && yarn test:unit
 
 # steps:
 # # see https://github.com/actions/setup-node
