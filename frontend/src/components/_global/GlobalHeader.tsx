@@ -1,18 +1,6 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
-// import '@/assets/scss/index.scss'
-
-type SquaresType = (string | null)[]
-
-interface History {
-  squares: SquaresType
-}
 
 export const GlobalHeader: React.VFC = () => {
-  const [history, setHistory] = useState<History[]>([
-    { squares: Array(9).fill(null) },
-  ])
-  const [stepNumber, setStepNumber] = useState(0)
   // ナビゲーションメニューの開閉フラグ
   const [isOpen, setOpenStatus] = useState(false)
 

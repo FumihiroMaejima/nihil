@@ -1,7 +1,20 @@
+@import '../_variables.scss';
 
+// util color class
+@each $name, $color in $basic-color-code {
+  // .util-basic-color-#{$name} {
+  // .util-basic-color-#{"" + $name} {
 
+  .util-color__text--#{"" + $name} {
+    color: $color;
+  }
 
-// util colors
+  .util-color__bg--#{"" + $name} {
+    background: $color;
+  }
+}
+
+/* // util colors
 $util-color-black: #000000;
 $util-color-dark-grey: #757575;
 $util-color-blue: #1565c0;
@@ -23,58 +36,4 @@ $util-color-dark-dark-grey: #3b3b3b;
 $util-color-dark-blue: #004a9e;
 $util-color-dark-green: #005548;
 $util-color-dark-red: #910c00;
-$util-color-dark-white: #d2d2d2;
-
-.util-color {
-  &__bg {
-    &--black {
-      background: $util-color-black;
-    }
-
-    &--dark-grey {
-      background: $util-color-dark-grey;
-    }
-
-    &--blue {
-      background: $util-color-blue;
-    }
-
-    &--green {
-      background: $util-color-green;
-    }
-
-    &--red {
-      background: $util-color-red;
-    }
-
-    &--white {
-      background: $util-color-white;
-    }
-  }
-
-  &__text {
-    &--black {
-      color: $util-color-black;
-    }
-
-    &--dark-grey {
-      color: $util-color-dark-grey;
-    }
-
-    &--blue {
-      color: $util-color-blue;
-    }
-
-    &--green {
-      color: $util-color-green;
-    }
-
-    &--red {
-      color: $util-color-red;
-    }
-
-    &--white {
-      color: $util-color-white;
-    }
-  }
-}
+$util-color-dark-white: #d2d2d2; */

@@ -4,13 +4,13 @@ type ColorType = 'black' | 'dark-grey' | 'blue' | 'green' | 'red' | 'white'
 type ItemType = number | string | Record<'key', number | string>
 type Props = {
   items: ItemType[]
-  color?: ColorType
+  // color?: ColorType
   textColor?: ColorType
 }
 
 export const PartsStickyNoteList: React.VFC<Props> = ({
   items = [],
-  color = 'dark-grey',
+  // color = 'dark-grey',
   textColor = 'dark-grey',
 }) => {
   return (

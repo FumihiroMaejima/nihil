@@ -3,6 +3,7 @@ export type IAppConfig = {
   headerContents: string[]
   noticeData: NoticeData[]
   aboutMessage: AboutMessageType
+  authEndpoint: EndpointType
 }
 
 export type NoticeData = {
@@ -15,4 +16,11 @@ export type AboutMessageType = {
   main: string
   author: string
   contact: string
+}
+
+export type AuthEndpoint = {
+  [key: string]: string
+  authLogin: string
+  authLogout: string
+  authSelf: string
 }

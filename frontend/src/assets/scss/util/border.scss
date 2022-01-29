@@ -1,316 +1,83 @@
+@import '../_variables.scss';
 
 
-
-
-@import './colors.scss';
-
-.util-border {
-  &-full {
-    &-solid {
-      // 2px
-      &-2p {
-        &__color {
-          &--black {
-            border: solid 2px $util-color-black;
-          }
-
-          &--dark-grey {
-            border: solid 2px $util-color-dark-grey;
-          }
-
-          &--blue {
-            border: solid 2px $util-color-blue;
-          }
-
-          &--green {
-            border: solid 2px $util-color-green;
-          }
-
-          &--red {
-            border: solid 2px $util-color-red;
-          }
-
-          &--dash {
-            border: dashed $util-color-dark-grey;
-          }
-
-          &--double {
-            border: double 2px $util-color-dark-grey;
-          }
-        }
-      }
-
-      // 3px
-      &-3p {
-        &__color {
-          &--black {
-            border: solid 3px $util-color-black;
-          }
-
-          &--dark-grey {
-            border: solid 3px $util-color-dark-grey;
-          }
-
-          &--blue {
-            border: solid 3px $util-color-blue;
-          }
-
-          &--green {
-            border: solid 3px $util-color-green;
-          }
-
-          &--red {
-            border: solid 3px $util-color-red;
-          }
-
-          &--dash {
-            border: dashed $util-color-dark-grey;
-          }
-
-          &--double {
-            border: double 3px $util-color-dark-grey;
-          }
-        }
-      }
-    }
-
-    &-dash {
-      &__color {
-        &--black {
-          border: dashed $util-color-black;
-        }
-
-        &--dark-grey {
-          border: dashed $util-color-dark-grey;
-        }
-
-        &--blue {
-          border: dashed $util-color-blue;
-        }
-
-        &--green {
-          border: dashed $util-color-green;
-        }
-
-        &--red {
-          border: dashed $util-color-red;
-        }
-      }
-    }
+@each $name, $color in $basic-color-code {
+  // full
+  .util-border-full-solid-2p__color--#{"" + $name} {
+    border: solid 2px $color;
   }
 
-  &-bottom {
-    &-solid {
-      // 2px
-      &-2p {
-        &__color {
-          &--black {
-            border-bottom: solid 2px $util-color-black;
-          }
-
-          &--dark-grey {
-            border-bottom: solid 2px $util-color-dark-grey;
-          }
-
-          &--blue {
-            border-bottom: solid 2px $util-color-blue;
-          }
-
-          &--green {
-            border-bottom: solid 2px $util-color-green;
-          }
-
-          &--red {
-            border-bottom: solid 2px $util-color-red;
-          }
-
-          &--dash {
-            color: $util-color-dark-grey;
-            border-bottom: dashed $util-color-dark-grey;
-          }
-
-          &--double {
-            border-bottom: double 2px $util-color-dark-grey;
-          }
-        }
-      }
-      // 3px
-      &-3p {
-        &__color {
-          &--black {
-            border-bottom: solid 3px $util-color-black;
-          }
-
-          &--dark-grey {
-            border-bottom: solid 3px $util-color-dark-grey;
-          }
-
-          &--blue {
-            border-bottom: solid 3px $util-color-blue;
-          }
-
-          &--green {
-            border-bottom: solid 3px $util-color-green;
-          }
-
-          &--red {
-            border-bottom: solid 3px $util-color-red;
-          }
-
-          &--dash {
-            color: $util-color-dark-grey;
-            border-bottom: dashed $util-color-dark-grey;
-          }
-
-          &--double {
-            border-bottom: double 3px $util-color-dark-grey;
-          }
-        }
-      }
-    }
-
-    &-dash {
-      &__color {
-        &--black {
-          border-bottom: dashed $util-color-black;
-        }
-
-        &--dark-grey {
-          border-bottom: dashed $util-color-dark-grey;
-        }
-
-        &--blue {
-          border-bottom: dashed $util-color-blue;
-        }
-
-        &--green {
-          border-bottom: dashed $util-color-green;
-        }
-
-        &--red {
-          border-bottom: dashed $util-color-red;
-        }
-      }
-    }
+  .util-border-full-double-2p__color--#{"" + $name} {
+    border: double 2px $color;
   }
 
-  &-left {
-    &-solid {
-      // 2px
-      &-2p {
-        &__color {
-          &--black {
-            border-bottom: solid 2px $util-color-black;
-          }
-
-          &--dark-grey {
-            border-bottom: solid 2px $util-color-dark-grey;
-          }
-
-          &--blue {
-            border-bottom: solid 2px $util-color-blue;
-          }
-
-          &--green {
-            border-bottom: solid 2px $util-color-green;
-          }
-
-          &--red {
-            border-bottom: solid 2px $util-color-red;
-          }
-
-          &--dash {
-            color: $util-color-dark-grey;
-            border-bottom: dashed $util-color-dark-grey;
-          }
-
-          &--double {
-            border-bottom: double 2px $util-color-dark-grey;
-          }
-        }
-      }
-      // 3px
-      &-3p {
-        &__color {
-          &--black {
-            border-bottom: solid 3px $util-color-black;
-          }
-
-          &--dark-grey {
-            border-bottom: solid 3px $util-color-dark-grey;
-          }
-
-          &--blue {
-            border-bottom: solid 3px $util-color-blue;
-          }
-
-          &--green {
-            border-bottom: solid 3px $util-color-green;
-          }
-
-          &--red {
-            border-bottom: solid 3px $util-color-red;
-          }
-
-          &--dash {
-            color: $util-color-dark-grey;
-            border-bottom: dashed $util-color-dark-grey;
-          }
-
-          &--double {
-            border-bottom: double 3px $util-color-dark-grey;
-          }
-        }
-      }
-
-      &-5p {
-        &__color {
-          &--black {
-            border-left: solid 5px $util-color-black;
-          }
-
-          &--dark-grey {
-            border-left: solid 5px $util-color-dark-grey;
-          }
-
-          &--blue {
-            border-left: solid 5px $util-color-blue;
-          }
-
-          &--green {
-            border-left: solid 5px $util-color-green;
-          }
-
-          &--red {
-            border-left: solid 5px $util-color-red;
-          }
-
-          &--dash {
-            color: $util-color-dark-grey;
-            border-left: dashed $util-color-dark-grey;
-          }
-
-          &--double {
-            border-left: double 5px $util-color-dark-grey;
-          }
-        }
-      }
-    }
+  .util-border-full-solid-3p__color--#{"" + $name} {
+    border: solid 3px $color;
   }
 
-  &-radius {
-    &__round {
-      &--5p {
-        border-radius: 5px;
-      }
+  .util-border-full-double-3p__color--#{"" + $name} {
+    border: double 3px $color;
+  }
 
-      &--8p {
-        border-radius: 8px;
-      }
+  // border-bottom
+  .util-border-bottom-solid-2p__color--#{"" + $name} {
+    border-bottom: solid 2px $color;
+  }
 
-      &--10p {
-        border-radius: 10px;
-      }
-    }
+  .util-border-bottom-double-2p__color--#{"" + $name} {
+    border-bottom: double 2px $color;
+  }
+
+  .util-border-bottom-solid-3p__color--#{"" + $name} {
+    border-bottom: solid 3px $color;
+  }
+
+  .util-border-bottom-double-3p__color--#{"" + $name} {
+    border-bottom: double 3px $color;
+  }
+
+  // border-left
+  .util-border-left-solid-2p__color--#{"" + $name} {
+    border-left: solid 2px $color;
+  }
+
+  .util-border-left-double-2p__color--#{"" + $name} {
+    border-left: double 2px $color;
+  }
+
+  .util-border-left-solid-3p__color--#{"" + $name} {
+    border-left: solid 3px $color;
+  }
+
+  .util-border-left-double-3p__color--#{"" + $name} {
+    border-left: double 3px $color;
+  }
+
+  .util-border-left-solid-5p__color--#{"" + $name} {
+    border-left: solid 5px $color;
+  }
+
+  .util-border-left-double-5p__color--#{"" + $name} {
+    border-left: double 5px $color;
+  }
+
+  // dashed
+  .util-border-full-dash__color--#{"" + $name} {
+    color: $util-color-dark-grey;
+    border: dashed $color;
+  }
+
+  .util-border-bottom-dash__color--#{"" + $name} {
+    border-bottom: dashed $color;
+  }
+
+  .util-border-left-dash__color--#{"" + $name} {
+    border-left: dashed $color;
+  }
+}
+
+@each $name, $point in $border-radius-points {
+  .util-border-radius__round--#{$name} {
+    border-radius: $point;
   }
 }

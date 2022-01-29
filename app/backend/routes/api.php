@@ -169,4 +169,3 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:api'], function () {
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('self', [AuthController::class, 'getAuthUser']);
 });
-
