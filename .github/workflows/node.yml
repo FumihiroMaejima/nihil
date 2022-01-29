@@ -18,7 +18,9 @@ jobs:
       with:
         node-version: '14'
         cache: 'yarn'
+    - name: Install Dependencies
     - run: cd frontend && yarn install
+    - name: Execute tests(Unit Test)
     - run: cd frontend && yarn test:unit
 
 # steps:
