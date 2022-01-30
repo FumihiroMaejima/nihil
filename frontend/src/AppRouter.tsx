@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home } from '@/pages/Home'
 // sample pages
 // import { Graph } from '@/pages/sample/Graph'
+import { Login } from '@/pages/sample/Login'
 import { Sample } from '@/pages/sample/Sample'
 import { Picsum } from '@/pages/sample/Picsum'
 import { Test1 } from '@/pages/sample/Test1'
@@ -29,6 +30,10 @@ export const AppRouter = (): JSX.Element => {
     {
       path: '/sample',
       element: <Sample />,
+    },
+    {
+      path: '/login',
+      element: <Login />,
     },
   ]
 
