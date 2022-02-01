@@ -1,13 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import React, {
-  useState,
-  ReactNode,
-  useCallback,
-  createContext,
-  Dispatch,
-  SetStateAction,
-  FC,
-} from 'react'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React, { useState } from 'react'
 
 export type UseToastStateType = {
   isOpen: boolean
@@ -24,29 +16,26 @@ const initialStateFactory = (initialState?: Partial<State>): State => ({
   ...initialState,
 })
 
-const initialData: State = {
+export const initialData: State = {
   message: 'message',
   isShow: false,
 }
 
-export function useNotificationCore(initialState?: Partial<State>) {
-  /* const [state, dispatch] = React.useReducer(
-    reducer,
-    initialStateFactory(initialState)
-  ) */
-  const [state, dispatchTest] = React.useState<State>({ ...initialData })
+export type UseNotificationCoreType = {
+  state: State
+  updateState: (message: string, isShow: boolean) => void
+}
 
-  const showNotification = (message: string, isShow: true) => {
-    dispatchTest({ message, isShow })
+export function useNotificationCore() {
+  const [state, dispatch] = React.useState<State>({ ...initialData })
+  // const [state, dispatch] = React.useReducer(() => {return {...initialData}}, initialData)
+
+  const updateState = (message: string, isShow: boolean) => {
+    dispatch({ ...state, message, isShow })
   }
 
-  const hideNotification = (message: string, isShow: true) => {
-    dispatchTest({ message, isShow })
-  }
-  //
   return {
     state,
-    showNotification,
-    hideNotification,
+    updateState,
   } as const
 }

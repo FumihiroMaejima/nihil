@@ -1,41 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextField'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
 import { PartsSimpleToast } from '@/components/parts/toast/PartsSimpleToast'
 
+import { NotificationContext } from '@/components/container/NotificationProviderContainer'
+
 export const Login: React.VFC = () => {
-  const [toastValue, setToastValue] = useState<boolean>(false)
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
+
+  const { state, updateState } = useContext(NotificationContext)
+  console.log('child: ' + JSON.stringify(updateState, null, 2))
 
   return (
     <div className="page-container page-container__mx-auto">
       <PartsSimpleToast
-        value={toastValue}
+        value={state.isShow}
         data={{ text: 'test message', status: 'success' }}
         onAnimationEnd={() => {
-          setToastValue(false)
+          updateState('close', false)
         }}
       />
-      <PartsSimpleHeading
-        text="Login Page"
-        color="dark-grey"
-        isDashed={false}
-        isDouble={false}
-      />
 
-      <div className="mxy-2">
-        <button
-          onClick={() => {
-            setToastValue(true)
-          }}
-        >
-          open toast
-        </button>
-      </div>
+      <PartsSimpleHeading text="Login Page" color="dark-grey" />
 
-      <div className="mxy-2">
+      <div className="mxy-4">
         <div className="util-border-full-solid-2p__color--dark-grey util-border-radius__round--5p util-color__text--dark-grey">
           <div className="mxy-4">
             <PartsSimpleTextField
@@ -56,7 +46,13 @@ export const Login: React.VFC = () => {
 
           <div className="mxy-4">
             <div className="d-flex flex-justify-right">
-              <PartsSimpleButton text="login" color="green" />
+              <PartsSimpleButton
+                text="login"
+                color="green"
+                onClick={() => {
+                  updateState('open', true)
+                }}
+              />
             </div>
           </div>
         </div>
