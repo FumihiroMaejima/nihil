@@ -4,7 +4,7 @@ type Props = {
   value?: boolean
   className?: string
   data?: Record<'message', string> &
-    Record<'status', 'success' | 'warning' | 'error'>
+    Record<'status', 'normal' | 'success' | 'warning' | 'error'>
   onAnimationEnd?: React.AnimationEventHandler<HTMLDivElement> | undefined
 }
 

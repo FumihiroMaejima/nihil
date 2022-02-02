@@ -15,6 +15,11 @@ $parts-simple-button-default-border-bottom-color: #00d21c;
   border-radius: 2px;
   transform: translateX(220px);
 
+  &.parts-simple-toast__status--normal {
+    // background-color: #28a746;
+    background-color: $util-color-dark-grey;
+  }
+
   &.parts-simple-toast__status--success {
     // background-color: #28a746;
     background-color: $util-color-green;

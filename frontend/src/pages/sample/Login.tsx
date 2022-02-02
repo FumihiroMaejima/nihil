@@ -19,7 +19,7 @@ export const Login: React.VFC = () => {
         value={state.isDisplay}
         data={{ message: state.message, status: state.status }}
         onAnimationEnd={() => {
-          updateState('close', 'success', false)
+          updateState('close', 'normal', false)
         }}
       />
 

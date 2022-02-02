@@ -5,7 +5,7 @@ export type UseToastStateType = {
   isOpen: boolean
 }
 
-export type StatusType = 'success' | 'warning' | 'error'
+export type StatusType = 'normal' | 'success' | 'warning' | 'error'
 
 export type State = {
   message: string
@@ -13,12 +13,12 @@ export type State = {
   isDisplay: boolean
 }
 
-const initialStateFactory = (initialState?: Partial<State>): State => ({
+/* const initialStateFactory = (initialState?: Partial<State>): State => ({
   message: '',
   status: 'success',
   isDisplay: false,
   ...initialState,
-})
+}) */
 
 export const initialData: State = {
   message: 'message',

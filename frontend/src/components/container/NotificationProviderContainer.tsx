@@ -1,7 +1,6 @@
 import React, { createContext } from 'react'
 import {
   useNotificationCore,
-  initialData,
   StatusType,
   UseNotificationCoreType,
 } from '@/hooks/useNotification'
