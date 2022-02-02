@@ -2,6 +2,7 @@ import React, { createContext } from 'react'
 import {
   useNotificationCore,
   initialData,
+  StatusType,
   UseNotificationCoreType,
 } from '@/hooks/useNotification'
 
@@ -10,9 +11,9 @@ import {
 } */
 
 const defaultContextValue: UseNotificationCoreType = {
-  state: { message: '', isDisplay: false },
+  state: { message: '', status: 'success', isDisplay: false },
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  updateState: (message: string, isDisplay: boolean) => {},
+  updateState: (message: string, status: StatusType, isDisplay: boolean) => {},
 }
 export const NotificationContext = createContext(defaultContextValue)
 

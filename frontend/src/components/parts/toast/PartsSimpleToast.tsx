@@ -3,8 +3,8 @@ import React from 'react'
 type Props = {
   value?: boolean
   className?: string
-  data?: Record<'text', string> &
-    Record<'status', 'success' | 'waring' | 'error'>
+  data?: Record<'message', string> &
+    Record<'status', 'success' | 'warning' | 'error'>
   onAnimationEnd?: React.AnimationEventHandler<HTMLDivElement> | undefined
 }
 
@@ -22,7 +22,7 @@ export const PartsSimpleToast: React.VFC<Props> = ({
         ${value && data ? ' parts-simple-toast__status--' + data.status : ''}`}
       onAnimationEnd={onAnimationEnd}
     >
-      {data ? data.text : ''}
+      {data ? data.message : ''}
     </div>
   )
 }

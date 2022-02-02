@@ -17,9 +17,9 @@ export const Login: React.VFC = () => {
     <div className="page-container page-container__mx-auto">
       <PartsSimpleToast
         value={state.isDisplay}
-        data={{ text: state.message, status: 'success' }}
+        data={{ message: state.message, status: state.status }}
         onAnimationEnd={() => {
-          updateState('close', false)
+          updateState('close', 'success', false)
         }}
       />
 
@@ -50,7 +50,7 @@ export const Login: React.VFC = () => {
                 text="login"
                 color="green"
                 onClick={() => {
-                  updateState('open toast', true)
+                  updateState('open toast', 'success', true)
                 }}
               />
             </div>

@@ -5,33 +5,48 @@ export type UseToastStateType = {
   isOpen: boolean
 }
 
+export type StatusType = 'success' | 'warning' | 'error'
+
 export type State = {
   message: string
+  status: StatusType
   isDisplay: boolean
 }
 
 const initialStateFactory = (initialState?: Partial<State>): State => ({
   message: '',
+  status: 'success',
   isDisplay: false,
   ...initialState,
 })
 
 export const initialData: State = {
   message: 'message',
+  status: 'success',
   isDisplay: false,
 }
 
 export type UseNotificationCoreType = {
   state: State
-  updateState: (message: string, isDisplay: boolean) => void
+  updateState: (message: string, status: StatusType, isDisplay: boolean) => void
 }
 
 export function useNotificationCore(): UseNotificationCoreType {
   const [state, dispatch] = React.useState<State>({ ...initialData })
   // const [state, dispatch] = React.useReducer(() => {return {...initialData}}, initialData)
 
-  const updateState = (message: string, isDisplay: boolean) => {
-    dispatch({ ...state, message, isDisplay })
+  /**
+   * update state by parameter value.
+   * @param {string} message
+   * @param {boolean} isDisplay
+   * @return {void}
+   */
+  const updateState = (
+    message: string,
+    status: StatusType,
+    isDisplay: boolean
+  ): void => {
+    dispatch({ ...state, message, status, isDisplay })
   }
 
   return {
