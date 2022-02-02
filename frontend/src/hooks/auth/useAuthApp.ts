@@ -33,6 +33,19 @@ const headerPrefix = 'Bearer'
   authentication: Authentication
 } */
 
+export const initialHeaders = {
+  Authorization: '',
+  'X-Auth-ID': '',
+  'X-Auth-Authority': '',
+  'Content-Type': '',
+}
+
+export const initialHeaderOptions: AuthAppHeaderOptions = {
+  headers: { ...initialHeaders },
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  callback: () => {},
+}
+
 const initialAuthState: AuthState = {
   name: '',
   id: null,
@@ -40,7 +53,7 @@ const initialAuthState: AuthState = {
 }
 
 export type UseAuthAppType = {
-  state: AuthState
+  // state: AuthState
   getAuthId: () => AuthState['id']
   getAuthName: () => AuthState['name']
   getAuthAuthority: () => AuthState['authority']
@@ -322,7 +335,7 @@ export function useAuthApp(): UseAuthAppType {
   }
 
   return {
-    state,
+    // state,
     getAuthId,
     getAuthName,
     getAuthAuthority,
