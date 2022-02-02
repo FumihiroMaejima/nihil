@@ -1,13 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { createContext } from 'react'
 import {
   useNotificationCore,
   StatusType,
   UseNotificationCoreType,
 } from '@/hooks/useNotification'
-
-/* type Props = {
-  open: boolean
-} */
 
 const defaultContextValue: UseNotificationCoreType = {
   state: { message: '', status: 'success', isDisplay: false },
