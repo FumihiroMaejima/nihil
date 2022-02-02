@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-// import React, { useState } from 'react'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React, { useState } from 'react'
 // import axios, { AxiosResponse, AxiosError } from 'axios'
 import Authentication from '@/plugins/auth/authentication'
 import {
@@ -20,23 +21,54 @@ const endpoint: AuthEndpoint = config.authEndpoint
 const appKey = 'application_token'
 const headerPrefix = 'Bearer'
 
+/* export type State = {
+  router: unknown
+  store: AuthState
+  authentication: Authentication
+} */
+
+/* export type UseAuthAppStateType = {
+  router: unknown
+  store: AuthState
+  authentication: Authentication
+} */
+
 const initialAuthState: AuthState = {
   name: '',
   id: null,
   authority: [],
 }
 
-export type UseAuthAppStateType = {
-  router: unknown
-  store: AuthState
-  authentication: Authentication
+export type UseAuthAppType = {
+  state: AuthState
+  getAuthId: () => AuthState['id']
+  getAuthName: () => AuthState['name']
+  getAuthAuthority: () => AuthState['authority']
+  checkAuthority: (scope: string[]) => boolean
+  getHeaderOptions: () => AuthAppHeaderOptions
+  login: (email: string, password: string) => Promise<boolean>
+  logout: () => Promise<boolean>
+  checkAuthenticated: () => Promise<boolean>
 }
 
-export const useAuthApp = () => {
-  const state: UseAuthAppStateType = {
-    router: undefined,
-    store: { ...initialAuthState },
-    authentication: new Authentication(endpoint),
+export function useAuthApp(): UseAuthAppType {
+  const [state, dispatch] = React.useState<AuthState>({ ...initialAuthState })
+  const router = undefined
+  const authentication = new Authentication(endpoint)
+
+  /**
+   * update state by parameter value.
+   * @param {number | null} id
+   * @param {string | null} name
+   * @param {string[]} authority
+   * @return {void}
+   */
+  const updateState = (
+    id: number | null,
+    name: string | null,
+    authority: string[]
+  ): void => {
+    dispatch({ ...state, id, name, authority })
   }
 
   /**
@@ -44,7 +76,7 @@ export const useAuthApp = () => {
    * @return {number} id
    */
   const getAuthId = (): AuthState['id'] => {
-    return state.store.id
+    return state.id
   }
 
   /**
@@ -52,7 +84,7 @@ export const useAuthApp = () => {
    * @return {string} name
    */
   const getAuthName = (): AuthState['name'] => {
-    return state.store.name
+    return state.name
   }
 
   /**
@@ -60,7 +92,7 @@ export const useAuthApp = () => {
    * @return {Object} authority
    */
   const getAuthAuthority = (): AuthState['authority'] => {
-    return state.store.authority
+    return state.authority
   }
 
   /**
@@ -112,7 +144,8 @@ export const useAuthApp = () => {
     name: string | null,
     authority: string[] = []
   ) => {
-    state.store = { id, name, authority }
+    // state.store = { id, name, authority }
+    updateState(id, name, authority)
   }
 
   /**
@@ -155,7 +188,7 @@ export const useAuthApp = () => {
    * @return {Object}
    */
   const authInstance = async (headers: BaseAddHeaderResponse) => {
-    const response = await state.authentication.getUser(headers)
+    const response = await authentication.getUser(headers)
     if (response.status !== 200) {
       return {
         id: null,
@@ -190,7 +223,9 @@ export const useAuthApp = () => {
    */
   const refreshAuthData = () => {
     // state.store.dispatch('auth/getAuthData', { id: null, name: null, authority: [] })
-    state.store = { ...initialAuthState }
+    // state.store = { ...initialAuthState }
+    const tmp = { ...initialAuthState }
+    updateState(tmp.id, tmp.name, tmp.authority)
     // ('auth/getAuthData', { id: null, name: null, authority: [] })
   }
 
@@ -218,7 +253,7 @@ export const useAuthApp = () => {
    * @return {boolean}
    */
   const login = async (email: string, password: string): Promise<boolean> => {
-    const response = await state.authentication.loginRequest({
+    const response = await authentication.loginRequest({
       email: email,
       password: password,
     })
@@ -245,7 +280,7 @@ export const useAuthApp = () => {
    * @return {Object}
    */
   const logout = async (): Promise<boolean> => {
-    const response = await state.authentication.logoutRequest(
+    const response = await authentication.logoutRequest(
       getHeaderOptions().headers
     )
     const result = response.status === 200
@@ -297,9 +332,15 @@ export const useAuthApp = () => {
     logout,
     checkAuthenticated,
   }
+  /* return {
+    state,
+    getAuthId,
+    getAuthName,
+    getAuthAuthority,
+    checkAuthority,
+    getHeaderOptions,
+    login,
+    logout,
+    checkAuthenticated,
+  } as const */
 }
-
-// get return type of a function type
-export type UseAuthAppType = ReturnType<typeof useAuthApp>
-// export const UseAuthAppStateKey: InjectionKey<UseAuthAppType> = Symbol('useAuthAppState')
-export const UseAuthAppStateKey = Symbol('useAuthAppState')
