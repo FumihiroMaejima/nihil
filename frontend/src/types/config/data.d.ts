@@ -2,7 +2,7 @@ export type IAppConfig = {
   headerName: string
   headerContents: string[]
   noticeData: NoticeData[]
-  aboutMessage: AboutMessageType
+  // aboutMessage: AboutMessageType
   authEndpoint: AuthEndpoint
 }
 
