@@ -38,6 +38,7 @@ export function useNotificationCore(): UseNotificationCoreType {
   /**
    * update state by parameter value.
    * @param {string} message
+   * @param {StatusType} status
    * @param {boolean} isDisplay
    * @return {void}
    */

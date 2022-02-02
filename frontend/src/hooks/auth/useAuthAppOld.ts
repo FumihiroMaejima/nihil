@@ -32,7 +32,7 @@ export type UseAuthAppStateType = {
   authentication: Authentication
 }
 
-export const useAuthApp = () => {
+export const useAuthAppOld = () => {
   const state: UseAuthAppStateType = {
     router: undefined,
     store: { ...initialAuthState },
