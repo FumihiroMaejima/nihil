@@ -7,31 +7,31 @@ export type UseToastStateType = {
 
 export type State = {
   message: string
-  isShow: boolean
+  isDisplay: boolean
 }
 
 const initialStateFactory = (initialState?: Partial<State>): State => ({
   message: '',
-  isShow: false,
+  isDisplay: false,
   ...initialState,
 })
 
 export const initialData: State = {
   message: 'message',
-  isShow: false,
+  isDisplay: false,
 }
 
 export type UseNotificationCoreType = {
   state: State
-  updateState: (message: string, isShow: boolean) => void
+  updateState: (message: string, isDisplay: boolean) => void
 }
 
-export function useNotificationCore() {
+export function useNotificationCore(): UseNotificationCoreType {
   const [state, dispatch] = React.useState<State>({ ...initialData })
   // const [state, dispatch] = React.useReducer(() => {return {...initialData}}, initialData)
 
-  const updateState = (message: string, isShow: boolean) => {
-    dispatch({ ...state, message, isShow })
+  const updateState = (message: string, isDisplay: boolean) => {
+    dispatch({ ...state, message, isDisplay })
   }
 
   return {

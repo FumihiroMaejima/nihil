@@ -9,12 +9,12 @@ import {
   open: boolean
 } */
 
-const defaultValueTest: UseNotificationCoreType = {
-  state: { message: '', isShow: false },
+const defaultContextValue: UseNotificationCoreType = {
+  state: { message: '', isDisplay: false },
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  updateState: (message: string, isShow: boolean) => {},
+  updateState: (message: string, isDisplay: boolean) => {},
 }
-export const NotificationContext = createContext(defaultValueTest)
+export const NotificationContext = createContext(defaultContextValue)
 
 export const NotificationProviderContainer: React.FC = (props) => {
   const { state, updateState } = useNotificationCore()
