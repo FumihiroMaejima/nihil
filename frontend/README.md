@@ -1,6 +1,6 @@
-# amplify-test
+# frontend application
 
-my amplify test.
+my frontend application.
 
 ---
 
