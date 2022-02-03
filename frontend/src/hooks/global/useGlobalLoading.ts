@@ -2,15 +2,15 @@
 import React, { useState } from 'react'
 
 export type UseGlobalLoadingType = {
-  state: boolean
+  isOpenLoading: boolean
   updateGlobalLoading: (value: boolean) => void
 }
 
 export function useGlobalLoading(): UseGlobalLoadingType {
-  const [state, updateGlobalLoading] = React.useState<boolean>(false)
+  const [isOpenLoading, updateGlobalLoading] = React.useState<boolean>(false)
 
   return {
-    state,
+    isOpenLoading,
     updateGlobalLoading,
   } as const
 }

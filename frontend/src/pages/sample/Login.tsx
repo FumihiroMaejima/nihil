@@ -3,20 +3,25 @@ import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextField'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
 import { PartsSimpleToast } from '@/components/parts/toast/PartsSimpleToast'
+import { PartsCircleLoading } from '@/components/parts/PartsCircleLoading'
 
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { NotificationContext } from '@/components/container/NotificationProviderContainer'
+import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
 export const Login: React.VFC = () => {
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
 
+  const { isOpenLoading, updateGlobalLoading } =
+    useContext(GlobalLoadingContext)
   const { state, updateState } = useContext(NotificationContext)
   console.log('child: ' + JSON.stringify(updateState, null, 2))
   const { login } = useContext(AuthAppContext)
 
   return (
     <div className="page-container page-container__mx-auto">
+      {isOpenLoading && <PartsCircleLoading />}
       <PartsSimpleToast
         value={state.isDisplay}
         data={{ message: state.message, status: state.status }}
@@ -65,6 +70,7 @@ export const Login: React.VFC = () => {
                 color="green"
                 disabled={emailValue.length === 0 || passwordValue.length === 0}
                 onClick={async () => {
+                  updateGlobalLoading(true)
                   const result = await login(emailValue, passwordValue)
 
                   updateState(
@@ -72,6 +78,7 @@ export const Login: React.VFC = () => {
                     result ? 'success' : 'error',
                     true
                   )
+                  updateGlobalLoading(false)
                 }}
               />
             </div>

@@ -6,7 +6,7 @@ import {
 } from '@/hooks/global/useGlobalLoading'
 
 const defaultContextValue: UseGlobalLoadingType = {
-  state: false,
+  isOpenLoading: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   updateGlobalLoading: (value: boolean) => {},
 }
@@ -14,9 +14,11 @@ const defaultContextValue: UseGlobalLoadingType = {
 export const GlobalLoadingContext = createContext(defaultContextValue)
 
 export const GlobalLoadingProviderContainer: React.FC = (props) => {
-  const { state, updateGlobalLoading } = useGlobalLoading()
+  const { isOpenLoading, updateGlobalLoading } = useGlobalLoading()
   return (
-    <GlobalLoadingContext.Provider value={{ state, updateGlobalLoading }}>
+    <GlobalLoadingContext.Provider
+      value={{ isOpenLoading, updateGlobalLoading }}
+    >
       {props.children}
     </GlobalLoadingContext.Provider>
   )
