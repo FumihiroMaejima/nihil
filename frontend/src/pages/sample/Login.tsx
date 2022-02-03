@@ -29,21 +29,31 @@ export const Login: React.VFC = () => {
 
       <div className="mxy-4">
         <div className="util-border-full-solid-2p__color--dark-grey util-border-radius__round--5p util-color__text--dark-grey">
-          <div className="mxy-4">
+          <div className="mxy-4 d-flex flex-align-center">
+            <label className="mr-2" htmlFor="email">
+              email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
             <PartsSimpleTextField
+              id="email"
               value={emailValue}
               onInput={(e) => setEmailValue(e.currentTarget.value)}
               placeholder="email"
             />
+            {/* <small class="p-error">{{ emailError }}</small> */}
           </div>
 
-          <div className="mxy-4">
+          <div className="mxy-4 d-flex flex-align-center">
+            <label className="mr-2" htmlFor="password">
+              password
+            </label>
             <PartsSimpleTextField
+              id="password"
               value={passwordValue}
               onInput={(e) => setPasswordValue(e.currentTarget.value)}
               placeholder="password"
               type="password"
             />
+            {/* <small class="p-error">{{ passwordError }}</small> */}
           </div>
 
           <div className="mxy-4">
