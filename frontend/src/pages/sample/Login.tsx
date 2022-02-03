@@ -63,6 +63,7 @@ export const Login: React.VFC = () => {
               <PartsSimpleButton
                 text="login"
                 color="green"
+                disabled={emailValue.length === 0 || passwordValue.length === 0}
                 onClick={async () => {
                   const result = await login(emailValue, passwordValue)
 
