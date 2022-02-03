@@ -8,14 +8,18 @@ import {
   // RootState,
   HeaderDataState,
   AuthEndpoint,
-  IAppConfig,
+  // IAppConfig,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   BaseAddHeaderResponse,
   // ServerRequestType,
   AuthAppHeaderOptions,
 } from '@/types'
 
-const config: IAppConfig = require('@/config/data')
+// JSX側でエラーが発生
+// const config: IAppConfig = require('@/config/data')
+import { appConfig } from '@/config/data'
+
+const config = { ...appConfig }
 
 const endpoint: AuthEndpoint = config.authEndpoint
 const appKey = 'application_token'
