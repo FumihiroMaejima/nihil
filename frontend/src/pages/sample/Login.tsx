@@ -4,6 +4,7 @@ import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextFie
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
 import { PartsSimpleToast } from '@/components/parts/toast/PartsSimpleToast'
 
+import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { NotificationContext } from '@/components/container/NotificationProviderContainer'
 
 export const Login: React.VFC = () => {
@@ -12,6 +13,7 @@ export const Login: React.VFC = () => {
 
   const { state, updateState } = useContext(NotificationContext)
   console.log('child: ' + JSON.stringify(updateState, null, 2))
+  const { login } = useContext(AuthAppContext)
 
   return (
     <div className="page-container page-container__mx-auto">
@@ -49,8 +51,14 @@ export const Login: React.VFC = () => {
               <PartsSimpleButton
                 text="login"
                 color="green"
-                onClick={() => {
-                  updateState('open toast', 'success', true)
+                onClick={async () => {
+                  const result = await login(emailValue, passwordValue)
+
+                  updateState(
+                    result ? 'login success' : 'login failed',
+                    result ? 'success' : 'error',
+                    true
+                  )
                 }}
               />
             </div>

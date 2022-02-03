@@ -31,8 +31,13 @@ export default defineConfig({
     // Configure custom proxy rules for the dev server.
     proxy: {
       // '/api': 'http://localhost:8000/api',
+      /* '/api': {
+        target: 'http://localhost:8000/api',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      }, */
       '/api': {
-        target: 'http://localhost:8000',
+        target: 'http://localhost:50100/api',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
