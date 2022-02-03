@@ -114,7 +114,7 @@ export const Sample: React.VFC = () => {
     <div className="page-container page-container__mx-auto">
       <PartsSimpleToast
         value={toastValue}
-        data={{ text: 'test message', status: 'success' }}
+        data={{ message: 'test message', status: 'success' }}
         onAnimationEnd={() => {
           setToastValue(false)
         }}
