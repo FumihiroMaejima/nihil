@@ -89,6 +89,10 @@
   .flex-justify-#{$name} {
     justify-content: $direction;
   }
+
+  .text-#{$name} {
+    text-align: $direction;
+  }
 }
 
 @each $name, $direction in $layout-align-directions {
