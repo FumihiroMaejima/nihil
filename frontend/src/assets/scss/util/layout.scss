@@ -74,6 +74,12 @@
   }
 }
 
+@each $name, $point in $layout-width-points {
+  .width-#{$name} {
+    width: $point;
+  }
+}
+
 .d-flex {
   display: flex;
 }
