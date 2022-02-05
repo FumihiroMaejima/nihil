@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 // import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextField'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
@@ -20,6 +21,25 @@ export const NotFoundPage404: React.VFC = () => {
           <div className="mxy-4 d-flex flex-align-center">
             <label className="width-2 text-left">404 not found</label>
             {/* <small class="p-error">{{ emailError }}</small> */}
+            <div className="">
+              <ul>
+                <li>
+                  <Link to={`/`}>Go To Home</Link>
+                </li>
+                <li>
+                  <Link to={`/login`}>Go To Login</Link>
+                </li>
+                <li>
+                  <Link to={`/test1`}>Go To Test1</Link>
+                </li>
+                <li>
+                  <Link to={`/sample`}>Go To Sample</Link>
+                </li>
+                <li>
+                  <Link to={`/picsum`}>Go To Picsum</Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div className="mxy-4">
