@@ -1,11 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { createContext } from 'react'
-import {
-  useNotificationCore,
-  StatusType,
-  UseNotificationCoreType,
-} from '@/hooks/useNotification'
 
 import {
   useAuthApp,
@@ -40,23 +35,8 @@ const defaultContextValue: UseAuthAppType = {
   },
 }
 
-/* const defaultContextValue: UseNotificationCoreType = {
-  state: { message: '', status: 'success', isDisplay: false },
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  updateState: (message: string, status: StatusType, isDisplay: boolean) => {},
-} */
-
 // export const NotificationContext = createContext(defaultContextValue)
 export const AuthAppContext = createContext(defaultContextValue)
-
-/* export const AuthAppProviderContainer: React.FC = (props) => {
-  const { state, updateState } = useNotificationCore()
-  return (
-    <NotificationContext.Provider value={{ state, updateState }}>
-      {props.children}
-    </NotificationContext.Provider>
-  )
-} */
 
 export const AuthAppProviderContainer: React.FC = (props) => {
   // const { state, updateState } = useAuthApp()

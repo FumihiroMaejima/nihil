@@ -5,7 +5,6 @@ import { GlobalHeader } from '@/components/_global/GlobalHeader'
 import { GlobalBackToPageTopButton } from '@/components/_global/GlobalBackToPageTopButton'
 import { AuthAppProviderContainer } from '@/components/container/AuthAppProviderContainer'
 import { GlobalLoadingProviderContainer } from '@/components/container/GlobalLoadingProviderContainer'
-// import { NotificationProviderContainer } from '@/components/container/NotificationProviderContainer'
 import { ToastProviderContainer } from '@/components/container/ToastProviderContainer'
 
 function App() {

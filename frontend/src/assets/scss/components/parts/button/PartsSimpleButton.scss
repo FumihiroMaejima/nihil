@@ -92,6 +92,6 @@ $parts-simple-button-default-border-bottom-color: #00d21c;
   &__disabled {
     color: $util-color-dark-grey !important;
     background: $util-color-dark-dark-grey;
-    cursor: none;
+    cursor: not-allowed !important;
   }
 }

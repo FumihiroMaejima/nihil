@@ -4,7 +4,7 @@ import {
   useNotificationCore,
   StatusType,
   UseNotificationCoreType,
-} from '@/hooks/useNotification'
+} from '@/hooks/global/useNotification'
 
 const defaultContextValue: UseNotificationCoreType = {
   state: { message: '', status: 'success', isDisplay: false },
