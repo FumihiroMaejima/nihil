@@ -13,23 +13,13 @@ export const Login: React.VFC = () => {
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
 
-  const { isOpenLoading, updateGlobalLoading } =
-    useContext(GlobalLoadingContext)
-  const { state, updateToastState } = useContext(ToastContext)
-  console.log('child: ' + JSON.stringify(updateToastState, null, 2))
+  const { updateGlobalLoading } = useContext(GlobalLoadingContext)
+  const { updateToastState } = useContext(ToastContext)
   const { login } = useContext(AuthAppContext)
+  console.log('child: ' + JSON.stringify(updateToastState, null, 2))
 
   return (
     <div className="page-container page-container__mx-auto">
-      {isOpenLoading && <PartsCircleLoading />}
-      <PartsSimpleToast
-        value={state.isDisplay}
-        data={{ message: state.message, status: state.status }}
-        onAnimationEnd={() => {
-          updateToastState('close', 'normal', false)
-        }}
-      />
-
       <PartsSimpleHeading text="Login Page" color="dark-grey" />
 
       <div className="mxy-4">

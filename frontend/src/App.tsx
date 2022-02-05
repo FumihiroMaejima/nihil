@@ -1,5 +1,6 @@
 // import React, { useState } from 'react'
 import { AppRouter } from '@/AppRouter'
+import { GlobalContextWrapper } from '@/components/_global/GlobalContextWrapper'
 import { GlobalFooter } from '@/components/_global/GlobalFooter'
 import { GlobalHeader } from '@/components/_global/GlobalHeader'
 import { GlobalBackToPageTopButton } from '@/components/_global/GlobalBackToPageTopButton'
@@ -15,6 +16,7 @@ function App() {
       <GlobalLoadingProviderContainer>
         <AuthAppProviderContainer>
           <ToastProviderContainer>
+            <GlobalContextWrapper />
             <GlobalBackToPageTopButton />
             <GlobalHeader />
             <div className="app-content">
