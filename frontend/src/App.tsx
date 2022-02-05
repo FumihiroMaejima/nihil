@@ -5,7 +5,8 @@ import { GlobalHeader } from '@/components/_global/GlobalHeader'
 import { GlobalBackToPageTopButton } from '@/components/_global/GlobalBackToPageTopButton'
 import { AuthAppProviderContainer } from '@/components/container/AuthAppProviderContainer'
 import { GlobalLoadingProviderContainer } from '@/components/container/GlobalLoadingProviderContainer'
-import { NotificationProviderContainer } from '@/components/container/NotificationProviderContainer'
+// import { NotificationProviderContainer } from '@/components/container/NotificationProviderContainer'
+import { ToastProviderContainer } from '@/components/container/ToastProviderContainer'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -14,14 +15,14 @@ function App() {
     <div className="app">
       <GlobalLoadingProviderContainer>
         <AuthAppProviderContainer>
-          <NotificationProviderContainer>
+          <ToastProviderContainer>
             <GlobalBackToPageTopButton />
             <GlobalHeader />
             <div className="app-content">
               <AppRouter />
             </div>
             <GlobalFooter />
-          </NotificationProviderContainer>
+          </ToastProviderContainer>
         </AuthAppProviderContainer>
       </GlobalLoadingProviderContainer>
     </div>

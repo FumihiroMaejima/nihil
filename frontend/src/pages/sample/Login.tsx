@@ -6,7 +6,8 @@ import { PartsSimpleToast } from '@/components/parts/toast/PartsSimpleToast'
 import { PartsCircleLoading } from '@/components/parts/PartsCircleLoading'
 
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
-import { NotificationContext } from '@/components/container/NotificationProviderContainer'
+// import { NotificationContext } from '@/components/container/NotificationProviderContainer'
+import { ToastContext } from '@/components/container/ToastProviderContainer'
 import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
 export const Login: React.VFC = () => {
@@ -15,8 +16,8 @@ export const Login: React.VFC = () => {
 
   const { isOpenLoading, updateGlobalLoading } =
     useContext(GlobalLoadingContext)
-  const { state, updateState } = useContext(NotificationContext)
-  console.log('child: ' + JSON.stringify(updateState, null, 2))
+  const { state, updateToastState } = useContext(ToastContext)
+  console.log('child: ' + JSON.stringify(updateToastState, null, 2))
   const { login } = useContext(AuthAppContext)
 
   return (
@@ -26,7 +27,7 @@ export const Login: React.VFC = () => {
         value={state.isDisplay}
         data={{ message: state.message, status: state.status }}
         onAnimationEnd={() => {
-          updateState('close', 'normal', false)
+          updateToastState('close', 'normal', false)
         }}
       />
 
@@ -73,7 +74,7 @@ export const Login: React.VFC = () => {
                   updateGlobalLoading(true)
                   const result = await login(emailValue, passwordValue)
 
-                  updateState(
+                  updateToastState(
                     result ? 'login success' : 'login failed',
                     result ? 'success' : 'error',
                     true

@@ -1,40 +1,61 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-// import React, { useState } from 'react'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React, { useState } from 'react'
 
-export type UseToastStateType = {
+/* export type UseToastStateType = {
   isOpen: boolean
+} */
+
+export type StatusType = 'normal' | 'success' | 'warning' | 'error'
+
+export type State = {
+  message: string
+  status: StatusType
+  isDisplay: boolean
 }
 
-export const useToast = () => {
-  const state: UseToastStateType = {
-    isOpen: false,
-  }
+/* const initialStateFactory = (initialState?: Partial<State>): State => ({
+  message: '',
+  status: 'success',
+  isDisplay: false,
+  ...initialState,
+}) */
+
+export const initialData: State = {
+  message: 'message',
+  status: 'success',
+  isDisplay: false,
+}
+
+export type UseToastType = {
+  state: State
+  updateToastState: (
+    message: string,
+    status: StatusType,
+    isDisplay: boolean
+  ) => void
+}
+
+export function useToast(): UseToastType {
+  const [state, dispatch] = React.useState<State>({ ...initialData })
+  // const [state, dispatch] = React.useReducer(() => {return {...initialData}}, initialData)
 
   /**
-   * return is open state
-   * @return {boolean}
-   */
-  const getToastFlag = (): boolean => {
-    return state.isOpen
-  }
-
-  /**
-   * set toast flag.
-   * @param {boolean} value
+   * update state by parameter value.
+   * @param {string} message
+   * @param {StatusType} status
+   * @param {boolean} isDisplay
    * @return {void}
    */
-  const setToastFlag = (value: boolean) => {
-    state.isOpen = value
+  const updateToastState = (
+    message: string,
+    status: StatusType,
+    isDisplay: boolean
+  ): void => {
+    dispatch({ ...state, message, status, isDisplay })
   }
 
   return {
     state,
-    getToastFlag,
-    setToastFlag,
-  }
+    updateToastState,
+  } as const
 }
-
-// get return type of a function type
-export type UseToastType = ReturnType<typeof useToast>
-// export const UseAuthAppStateKey: InjectionKey<UseAuthAppType> = Symbol('useAuthAppState')
-export const UseToastStateKey = Symbol('useToastState')
