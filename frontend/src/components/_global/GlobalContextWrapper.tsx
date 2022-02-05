@@ -15,7 +15,7 @@ export const GlobalContextWrapper: React.VFC = () => {
   )
 
   return (
-    <div>
+    <div className="global-context-wrapper">
       {isOpenLoading && <PartsCircleLoading />}
       <PartsSimpleToast
         value={state.isDisplay}
