@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\AdminsRoles\AdminsRolesRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Config;
 
 class AuthController extends Controller
 {
@@ -27,8 +28,18 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['email', 'password']);
-        // $credentials = request(['name', 'password']);
+        // $credentials = request(['email', 'password']);
+
+        $credentials = [];
+        if (Config::get('app.env') === 'production' || Config::get('app.env') === 'testing') {
+            $credentials = request(['email', 'password']);
+        } else {
+            // ローカル開発時はnameだけでログインする。
+            $credentials = [
+                'name'     => request()->email,
+                'password' => Config::get('myapp.seeder.password.testadmin')
+            ];
+        }
 
         if (!$token = auth('api-admins')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
