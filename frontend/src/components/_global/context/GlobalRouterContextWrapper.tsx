@@ -33,7 +33,11 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
     navigate('/login', { replace: true })
   }
 
-  useEffect(() => {
+  /**
+   * change locatiom path name handler.
+   * @return {void}
+   */
+  const changeLocationPathNameHandler = (): void => {
     const currentRoute = routes.find(
       (route) => route.path === locationState.pathname
     )
@@ -65,7 +69,9 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
         }
       })
     }
-  }, [locationState.pathname])
+  }
+
+  useEffect(changeLocationPathNameHandler, [locationState.pathname])
 
   return (
     <div className="global-router-context-wrapper" style={{ display: 'none' }}>
