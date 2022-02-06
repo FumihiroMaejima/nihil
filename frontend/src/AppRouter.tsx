@@ -5,15 +5,58 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home } from '@/pages/Home'
 // sample pages
 // import { Graph } from '@/pages/sample/Graph'
-import { Login } from '@/pages/sample/Login'
+import { Login } from '@/pages/Login'
+import { NotFoundPage404 } from '@/pages/errors/404'
 import { Sample } from '@/pages/sample/Sample'
 import { Picsum } from '@/pages/sample/Picsum'
 import { Test1 } from '@/pages/sample/Test1'
 
-type AppRouteType = {
-  path: string
-  element: JSX.Element
-}
+import {
+  GlobalRouterContextWrapper,
+  AppRouteType,
+} from '@/components/_global/context/GlobalRouterContextWrapper'
+// import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
+// import { ToastContext } from '@/components/container/ToastProviderContainer'
+// import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
+
+const routes: AppRouteType[] = [
+  {
+    path: '/',
+    element: <Home />,
+    requiredAuth: false,
+    // permissions: ['master'],
+  },
+  {
+    path: '/sample',
+    element: <Sample />,
+    requiredAuth: true,
+    permissions: ['master'],
+  },
+  {
+    path: '/login',
+    element: <Login />,
+    requiredAuth: false,
+  },
+  {
+    path: '*',
+    element: <NotFoundPage404 />,
+    requiredAuth: false,
+  },
+]
+
+// 開発時専用ページ
+const devlopOnlyRoutes: AppRouteType[] = [
+  {
+    path: '/picsum',
+    element: <Picsum />,
+    requiredAuth: false,
+  },
+  {
+    path: '/test1',
+    element: <Test1 />,
+    requiredAuth: false,
+  },
+]
 
 export const AppRouter = (): JSX.Element => {
   // process.envがdevelopかの判定
@@ -22,50 +65,20 @@ export const AppRouter = (): JSX.Element => {
 
   const servicePathName = 'admin' || undefined
 
-  const routes: AppRouteType[] = [
-    {
-      path: '/',
-      element: <Home />,
-    },
-    {
-      path: '/sample',
-      element: <Sample />,
-    },
-    {
-      path: '/login',
-      element: <Login />,
-    },
-  ]
-
-  // 開発時専用ページ
-  const devlopOnlyRoutes: AppRouteType[] = [
-    {
-      path: '/picsum',
-      element: <Picsum />,
-    },
-    {
-      path: '/test1',
-      element: <Test1 />,
-    },
-  ]
-
   return (
     <BrowserRouter basename={servicePathName}>
+      <GlobalRouterContextWrapper routes={routes} />
       <Routes>
-        {!isDevelop &&
+        {/* {!isDevelop &&
           routes.map((route, i) => (
             <Route key={i} path={route.path} element={route.element} />
-          ))}
+          ))} */}
         {isDevelop &&
           routes
             .concat(devlopOnlyRoutes)
             .map((route, i) => (
               <Route key={i} path={route.path} element={route.element} />
             ))}
-        {/* <Route path="/" element={<Home />} />
-        <Route path="/sample" element={<Sample />} />
-        {isDevelop && <Route path="/picsum" element={<Picsum />} />}
-        {isDevelop && <Route path="/test1" element={<Test1 />} />} */}
       </Routes>
     </BrowserRouter>
   )

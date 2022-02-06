@@ -337,6 +337,9 @@ export const Sample: React.VFC = () => {
       <div className="">
         <Link to={`/sample`}>Go To Sample</Link>
       </div>
+      <div className="">
+        <Link to={`/404`}>Go To 404</Link>
+      </div>
     </div>
   )
 }
