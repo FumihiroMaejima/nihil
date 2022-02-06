@@ -23,8 +23,8 @@ const routes: AppRouteType[] = [
   {
     path: '/',
     element: <Home />,
-    requiredAuth: false,
-    // permissions: ['master'],
+    requiredAuth: true,
+    permissions: ['master'],
   },
   {
     path: '/sample',
@@ -67,12 +67,14 @@ export const AppRouter = (): JSX.Element => {
 
   return (
     <BrowserRouter basename={servicePathName}>
-      <GlobalRouterContextWrapper routes={routes} />
+      <GlobalRouterContextWrapper
+        routes={isDevelop ? routes.concat(devlopOnlyRoutes) : routes}
+      />
       <Routes>
-        {/* {!isDevelop &&
+        {!isDevelop &&
           routes.map((route, i) => (
             <Route key={i} path={route.path} element={route.element} />
-          ))} */}
+          ))}
         {isDevelop &&
           routes
             .concat(devlopOnlyRoutes)
