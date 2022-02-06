@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextField'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
@@ -10,6 +11,7 @@ import { ToastContext } from '@/components/container/ToastProviderContainer'
 import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
 export const Login: React.VFC = () => {
+  const navigate = useNavigate()
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
 
@@ -69,6 +71,10 @@ export const Login: React.VFC = () => {
                     true
                   )
                   updateGlobalLoading(false)
+
+                  if (result) {
+                    navigate('/')
+                  }
                 }}
               />
             </div>
