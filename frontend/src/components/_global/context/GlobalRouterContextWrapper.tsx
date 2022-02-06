@@ -1,13 +1,9 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-// import { PartsSimpleToast } from '@/components/parts/toast/PartsSimpleToast'
-// import { PartsCircleLoading } from '@/components/parts/PartsCircleLoading'
 
 // global context
-// import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
-// import { ToastContext } from '@/components/container/ToastProviderContainer'
-import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
+import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
 export type AppRouteType = {
   path?: string
@@ -24,18 +20,15 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
   routes = [],
 }) => {
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
-  // const { state, updateToastState } = useContext(ToastContext)
   const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
-  /* console.log(
-    'global wrapper component.: ' + JSON.stringify(updateToastState, null, 2)
-  ) */
 
   const locationState = useLocation()
   const navigate = useNavigate()
 
-  // console.log('global-router-context-wrapper link: ' + JSON.stringify(link.pathname, null, 2))
-  // console.log('global-router-context-wrapper navidate: ' + JSON.stringify(navigate, null, 2))
-
+  /**
+   * redirect login page.
+   * @return {void}
+   */
   const redirectLoginPage = () => {
     navigate('/login', { replace: true })
   }
@@ -45,53 +38,31 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
       (route) => route.path === locationState.pathname
     )
 
-    // console.log('currentRoute: ' + JSON.stringify(currentRoute, null, 2))
-
     // 認証が必要なページ
     if (currentRoute && currentRoute.requiredAuth) {
-      console.log(
-        'current route is required authenticated: ' + locationState.pathname
-      )
-
       updateGlobalLoading(true)
       // 認証情報のチェック処理
       checkAuthenticated().then((result) => {
-        console.log(
-          'checkAuthenticated result: ' + JSON.stringify(result, null, 2)
-        )
-
         updateGlobalLoading(false)
         if (!result) {
-          // redirect login page
-          // navigate('/login', { replace: true })
           redirectLoginPage()
         } else {
           if (currentRoute.permissions) {
-            console.log(
-              'permissions: ' +
-                JSON.stringify(currentRoute.permissions, null, 2)
-            )
-            console.log(
-              'getAuthAuthority(): ' +
-                JSON.stringify(getAuthAuthority().length, null, 2)
-            )
-            // check page authority.
+            // 権限情報のチェック
             if (
               !getAuthAuthority().some((role) =>
-                currentRoute.permissions.includes(role)
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                currentRoute.permissions!.includes(role)
               )
             ) {
-              // navigate('/login', { replace: true })
-              // redirectLoginPage()
+              // 認可されていないユーザーの場合
+              redirectLoginPage()
             }
           } else {
-            // no authority set.
-            // navigate('/login', { replace: true })
-            // redirectLoginPage()
+            // 認証付きページかつ認可情報が設定されていない場合
+            redirectLoginPage()
           }
         }
-
-        // updateGlobalLoading(false)
       })
     }
   }, [locationState.pathname])
