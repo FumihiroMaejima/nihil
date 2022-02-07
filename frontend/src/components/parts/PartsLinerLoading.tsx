@@ -7,8 +7,9 @@ import React from 'react'
 export const PartsLinerLoading: React.VFC = () => {
   return (
     <div className="parts-liner-loading">
+      {/* <div className="parts-liner-loading__bar"></div> */}
       <div className="parts-liner-loading__line"></div>
-      <div className="parts-liner-loading__line"></div>
+      <div className="parts-liner-loading__line mx-2"></div>
       <div className="parts-liner-loading__line"></div>
     </div>
   )
