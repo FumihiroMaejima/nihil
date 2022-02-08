@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { PartsSimpleToast } from '@/components/parts/toast/PartsSimpleToast'
-import { PartsCircleLoading } from '@/components/parts/PartsCircleLoading'
-import { PartsLinerLoading } from '@/components/parts/PartsLinerLoading'
+import { PartsCircleLoading } from '@/components/parts/loading/PartsCircleLoading'
+import { PartsLinerLoading } from '@/components/parts/loading/PartsLinerLoading'
 // global context
 // import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { ToastContext } from '@/components/container/ToastProviderContainer'

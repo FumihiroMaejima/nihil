@@ -5,10 +5,8 @@
 @import './components/_global/GlobalHeader.scss';
 
 // parts
-@import './components/parts/PartsCircleLoading.scss';
 @import './components/parts/PartsLabelHeader.scss';
 @import './components/parts/PartsContentsBoard.scss';
-@import './components/parts/PartsLinerLoading.scss';
 @import './components/parts/PartsMessageBoard.scss';
 @import './components/parts/box/PartsSimpleBox.scss';
 @import './components/parts/box/PartsTitleBox.scss';
@@ -24,6 +22,8 @@
 @import './components/parts/heading/PartsSimpleHeading.scss';
 @import './components/parts/list/PartsSimpleList.scss';
 @import './components/parts/list/PartsStickyNoteList.scss';
+@import './components/parts/loading/PartsCircleLoading.scss';
+@import './components/parts/loading/PartsLinerLoading.scss';
 @import './components/parts/menu/PartsSimpleMenu.scss';
 @import './components/parts/modal/PartsSimpleModal.scss';
 @import './components/parts/table/PartsLabelTable.scss';
