@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { PartsLabelHeader } from '@/components/parts/PartsLabelHeader'
+// import { PartsLabelHeader } from '@/components/parts/PartsLabelHeader'
+// import { PartsMessageBoard } from '@/components/parts/PartsMessageBoard'
 import { PartsLabelTable } from '@/components/parts/table/PartsLabelTable'
-import { PartsMessageBoard } from '@/components/parts/PartsMessageBoard'
 import { PartsSimpleBox } from '@/components/parts/box/PartsSimpleBox'
 import { PartsTitleBox } from '@/components/parts/box/PartsTitleBox'
 import { PartsSimpleChip } from '@/components/parts/chip/PartsSimpleChip'
@@ -312,8 +312,6 @@ export const Sample: React.VFC = () => {
         <PartsStickyNoteList items={[1, 2, 3, 4, 5]} />
       </div>
 
-      <PartsLabelHeader text="Slot label header" color="blue" />
-
       <div className="mxy-2">
         <PartsLabelTable items={tableData} />
       </div>
@@ -325,20 +323,19 @@ export const Sample: React.VFC = () => {
         />
       </div>
 
-      <div className="">
-        <p>Hello Home!</p>
-        <PartsMessageBoard>
-          <PartsLabelHeader text="Slot label header" color="blue" />
-        </PartsMessageBoard>
-      </div>
-      <div className="">
-        <Link to={`/about`}>Go To About</Link>
-      </div>
-      <div className="">
-        <Link to={`/sample`}>Go To Sample</Link>
-      </div>
-      <div className="">
-        <Link to={`/404`}>Go To 404</Link>
+      <div className="my-4">
+        <div className="">
+          <Link to={`/about`}>Go To About</Link>
+        </div>
+        <div className="">
+          <Link to={`/sample`}>Go To Sample</Link>
+        </div>
+        <div className="">
+          <Link to={`/test1`}>Go To Test1</Link>
+        </div>
+        <div className="">
+          <Link to={`/404`}>Go To 404</Link>
+        </div>
       </div>
     </div>
   )

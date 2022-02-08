@@ -5,9 +5,9 @@
 @import './components/_global/GlobalHeader.scss';
 
 // parts
-@import './components/parts/PartsLabelHeader.scss';
-@import './components/parts/PartsContentsBoard.scss';
-@import './components/parts/PartsMessageBoard.scss';
+
+@import './components/parts/box/PartsContentsBoard.scss';
+@import './components/parts/box/PartsMessageBoard.scss';
 @import './components/parts/box/PartsSimpleBox.scss';
 @import './components/parts/box/PartsTitleBox.scss';
 @import './components/parts/button/PartsCircleButton.scss';
@@ -18,6 +18,7 @@
 @import './components/parts/form/PartsSimpleSelectBox.scss';
 @import './components/parts/form/PartsSimpleTextField.scss';
 @import './components/parts/form/PartsTextChipBox.scss';
+@import './components/parts/heading/PartsLabelHeader.scss';
 @import './components/parts/heading/PartsLabelHeading.scss';
 @import './components/parts/heading/PartsSimpleHeading.scss';
 @import './components/parts/list/PartsSimpleList.scss';
