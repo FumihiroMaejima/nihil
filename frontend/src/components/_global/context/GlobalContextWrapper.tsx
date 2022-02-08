@@ -1,12 +1,15 @@
 import React, { useContext } from 'react'
 import { PartsSimpleToast } from '@/components/parts/toast/PartsSimpleToast'
 import { PartsCircleLoading } from '@/components/parts/PartsCircleLoading'
+import { PartsLinerLoading } from '@/components/parts/PartsLinerLoading'
 // global context
 // import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { ToastContext } from '@/components/container/ToastProviderContainer'
+import { GlobalLinerLoadingContext } from '@/components/container/GlobalLinerLoadingProviderContainer'
 import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
 export const GlobalContextWrapper: React.VFC = () => {
+  const { isOpenLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { isOpenLoading } = useContext(GlobalLoadingContext)
   const { state, updateToastState } = useContext(ToastContext)
   // const { login } = useContext(AuthAppContext)
@@ -16,6 +19,7 @@ export const GlobalContextWrapper: React.VFC = () => {
 
   return (
     <div className="global-context-wrapper">
+      {isOpenLinerLoading && <PartsLinerLoading />}
       {isOpenLoading && <PartsCircleLoading />}
       <PartsSimpleToast
         value={state.isDisplay}

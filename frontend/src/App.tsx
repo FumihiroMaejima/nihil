@@ -5,6 +5,7 @@ import { GlobalHeader } from '@/components/_global/GlobalHeader'
 import { GlobalBackToPageTopButton } from '@/components/_global/GlobalBackToPageTopButton'
 import { GlobalContextWrapper } from '@/components/_global/context/GlobalContextWrapper'
 import { AuthAppProviderContainer } from '@/components/container/AuthAppProviderContainer'
+import { GlobalLinerLoadingProviderContainer } from '@/components/container/GlobalLinerLoadingProviderContainer'
 import { GlobalLoadingProviderContainer } from '@/components/container/GlobalLoadingProviderContainer'
 import { ToastProviderContainer } from '@/components/container/ToastProviderContainer'
 
@@ -13,19 +14,21 @@ function App() {
 
   return (
     <div className="app">
-      <GlobalLoadingProviderContainer>
-        <AuthAppProviderContainer>
-          <ToastProviderContainer>
-            <GlobalContextWrapper />
-            <GlobalBackToPageTopButton />
-            <GlobalHeader />
-            <div className="app-content">
-              <AppRouter />
-            </div>
-            <GlobalFooter />
-          </ToastProviderContainer>
-        </AuthAppProviderContainer>
-      </GlobalLoadingProviderContainer>
+      <GlobalLinerLoadingProviderContainer>
+        <GlobalLoadingProviderContainer>
+          <AuthAppProviderContainer>
+            <ToastProviderContainer>
+              <GlobalContextWrapper />
+              <GlobalBackToPageTopButton />
+              <GlobalHeader />
+              <div className="app-content">
+                <AppRouter />
+              </div>
+              <GlobalFooter />
+            </ToastProviderContainer>
+          </AuthAppProviderContainer>
+        </GlobalLoadingProviderContainer>
+      </GlobalLinerLoadingProviderContainer>
     </div>
   )
 }

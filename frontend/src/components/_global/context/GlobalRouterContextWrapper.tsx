@@ -3,7 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 // global context
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
-import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
+// import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
+import { GlobalLinerLoadingContext } from '@/components/container/GlobalLinerLoadingProviderContainer'
 
 export type AppRouteType = {
   path?: string
@@ -19,7 +20,8 @@ type Props = {
 export const GlobalRouterContextWrapper: React.VFC<Props> = ({
   routes = [],
 }) => {
-  const { updateGlobalLoading } = useContext(GlobalLoadingContext)
+  // const { updateGlobalLoading } = useContext(GlobalLoadingContext)
+  const { updateGlobalLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
 
   const locationState = useLocation()
@@ -44,10 +46,10 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
 
     // 認証が必要なページ
     if (currentRoute && currentRoute.requiredAuth) {
-      updateGlobalLoading(true)
+      updateGlobalLinerLoading(true)
       // 認証情報のチェック処理
       checkAuthenticated().then((result) => {
-        updateGlobalLoading(false)
+        updateGlobalLinerLoading(false)
         if (!result) {
           redirectLoginPage()
         } else {
