@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { PartsSimpleToast } from '@/components/parts/toast/PartsSimpleToast'
 import { PartsCircleLoading } from '@/components/parts/loading/PartsCircleLoading'
 import { PartsLinerLoading } from '@/components/parts/loading/PartsLinerLoading'
+import { PartsLinerLoadingWrapper } from '@/components/parts/loading/PartsLinerLoadingWrapper'
 // global context
 // import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { ToastContext } from '@/components/container/ToastProviderContainer'
@@ -19,7 +20,8 @@ export const GlobalContextWrapper: React.VFC = () => {
 
   return (
     <div className="global-context-wrapper">
-      {isOpenLinerLoading && <PartsLinerLoading />}
+      {/* {isOpenLinerLoading && <PartsLinerLoading />} */}
+      {isOpenLinerLoading && <PartsLinerLoadingWrapper />}
       {isOpenLoading && <PartsCircleLoading />}
       <PartsSimpleToast
         value={state.isDisplay}

@@ -8,7 +8,9 @@ import { PartsLinerLoading } from '@/components/parts/loading/PartsLinerLoading'
 export const PartsLinerLoadingWrapper: React.VFC = () => {
   return (
     <div className="parts-liner-loading-wrapper">
-      <PartsLinerLoading />
+      <div className="parts-liner-loading-wrapper__content">
+        <PartsLinerLoading />
+      </div>
     </div>
   )
 }
