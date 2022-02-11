@@ -2,6 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
+// const developServerPort = '50100'
+// const developServerPort = import.meta.env.VITE_APP_CURRENT_YEAR || '50100'
+const developServerPort = process.env.VITE_APP_BAKEND_PORT || '50100'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -43,8 +47,14 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ''),
       }, */
       // TODO remove comment out when using backend server
+      /* '/api': {
+        // target: 'http://localhost:50100/api',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      }, */
+      // TODO set server port.
       '/api': {
-        target: 'http://localhost:50100/api',
+        target: `http://localhost:${developServerPort}/api`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
