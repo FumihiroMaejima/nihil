@@ -9,18 +9,20 @@ export type UseGlobalLoadingType = {
 /**
  * reducer function.
  * @param {boolean} currentValue
- * @param {'update'} action
+ * @param {Record<'value', boolean> & Record<'type', 'update'>} action
  * @return {void}
  */
-const reducer = (currentValue: boolean, action: 'update') => {
+const reducer = (
+  currentValue: boolean,
+  action: Record<'value', boolean> & Record<'type', 'update'>
+) => {
   console.log('下記は現在の値: ')
   console.log('reducer currentValue: ' + currentValue)
-  if (action === 'update') {
-    return !currentValue
+  if (action.type === 'update') {
+    return action.value
   } else {
     return currentValue
   }
-  // return value
 }
 
 const initialData = false
@@ -32,9 +34,7 @@ export function useGlobalLoading(): UseGlobalLoadingType {
 
   const updateGlobalLoading = React.useCallback(
     (nextValue: boolean) => {
-      // dispatchに設定する必要はないからパラメーターの指定は必要ない。
-      console.log('useCallback Test: ' + nextValue)
-      dispatch('update')
+      dispatch({ type: 'update', value: nextValue })
     },
     [dispatch]
   )
