@@ -3,7 +3,7 @@ import React, { createContext } from 'react'
 import { useToast, StatusType, UseToastType } from '@/hooks/global/useToast'
 
 const defaultContextValue: UseToastType = {
-  state: { message: '', status: 'success', isDisplay: false },
+  toastState: { message: '', status: 'success', isDisplay: false },
   updateToastState: (
     message: string,
     status: StatusType,
@@ -14,9 +14,9 @@ const defaultContextValue: UseToastType = {
 export const ToastContext = createContext(defaultContextValue)
 
 export const ToastProviderContainer: React.FC = (props) => {
-  const { state, updateToastState } = useToast()
+  const { toastState, updateToastState } = useToast()
   return (
-    <ToastContext.Provider value={{ state, updateToastState }}>
+    <ToastContext.Provider value={{ toastState, updateToastState }}>
       {props.children}
     </ToastContext.Provider>
   )

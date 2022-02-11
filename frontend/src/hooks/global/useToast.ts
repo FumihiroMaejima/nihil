@@ -27,7 +27,7 @@ export const initialData: State = {
 }
 
 export type UseToastType = {
-  state: State
+  toastState: State
   updateToastState: (
     message: string,
     status: StatusType,
@@ -60,7 +60,7 @@ const reducer = (
 export function useToast(): UseToastType {
   // const [state, dispatch] = React.useState<State>({ ...initialData })
   // const [state, dispatch] = React.useReducer(() => {return {...initialData}}, initialData)
-  const [state, dispatch] = React.useReducer(reducer, {
+  const [toastState, dispatch] = React.useReducer(reducer, {
     ...initialData,
   })
 
@@ -94,7 +94,7 @@ export function useToast(): UseToastType {
   } */
 
   return {
-    state,
+    toastState,
     updateToastState,
   } as const
 }
