@@ -16,8 +16,6 @@ const reducer = (
   currentValue: boolean,
   action: Record<'value', boolean> & Record<'type', 'update'>
 ) => {
-  console.log('下記は現在の値: ')
-  console.log('reducer currentValue: ' + currentValue)
   if (action.type === 'update') {
     return action.value
   } else {
