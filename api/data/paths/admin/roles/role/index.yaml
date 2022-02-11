@@ -20,6 +20,12 @@
           type: array
           items:
             type: string
+      - name: auth_id
+        in: header
+        description: auth id
+        required: true
+        schema:
+          type: string
     requestBody:
       $ref: "../../../../components/requestBodies/createRoleWithForm.yaml"
     responses:
@@ -44,6 +50,7 @@
     security:
       - authenticaion_key: []
       - authority_key: []
+      - auth_id: []
   delete:
     tags:
       - roles
@@ -114,3 +121,4 @@
     security:
       - authenticaion_key: []
       - authority_key: []
+      - auth_id: []

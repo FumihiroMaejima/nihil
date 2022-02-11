@@ -20,6 +20,12 @@
           type: array
           items:
             type: string
+      - name: auth_id
+        in: header
+        description: auth id
+        required: true
+        schema:
+          type: string
     requestBody:
       content:
         # application/x-www-form-urlencoded:
@@ -70,3 +76,4 @@
     security:
       - authenticaion_key: []
       - authority_key: []
+      - auth_id: []

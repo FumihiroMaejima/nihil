@@ -43,6 +43,10 @@ securitySchemes:
     type: apiKey
     name: X-Auth-Authority
     in: header
+  auth_id:
+    type: apiKey
+    name: X-Auth-ID
+    in: header
   api_key:
     type: apiKey
     name: api_key

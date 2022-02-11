@@ -110,6 +110,8 @@ components:
       $ref: "./data/components/securitySchemes/authenticaionKey.yaml"
     authority_key:
       $ref: "./data/components/securitySchemes/authorityKey.yaml"
+    auth_id:
+      $ref: "./data/components/securitySchemes/authId.yaml"
   schemas:
     # $ref: "./data/schemas/index.yaml"
     AuthRequestResponse:

@@ -19,6 +19,12 @@
           type: array
           items:
             type: string
+      - name: auth_id
+        in: header
+        description: auth id
+        required: true
+        schema:
+          type: string
     responses:
       "200":
         description: Authenticated

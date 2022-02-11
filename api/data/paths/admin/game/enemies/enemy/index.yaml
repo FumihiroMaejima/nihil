@@ -20,6 +20,12 @@
           type: array
           items:
             type: string
+      - name: auth_id
+        in: header
+        description: auth id
+        required: true
+        schema:
+          type: string
       - name: enemies
         in: query
         description: ID of Enemies
@@ -69,3 +75,4 @@
     security:
       - authenticaion_key: []
       - authority_key: []
+      - auth_id: []
