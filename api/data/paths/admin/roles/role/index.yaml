@@ -42,9 +42,8 @@
             schema:
               $ref: "../../../../schemas/request/ApiErrorResponse.yaml"
     security:
-      - members_auth:
-          - write:members
-          - read:members
+      - authenticaion_key: []
+      - authority_key: []
   delete:
     tags:
       - roles
@@ -113,6 +112,5 @@
             schema:
               $ref: "../../../../schemas/request/ApiErrorResponse.yaml"
     security:
-      - members_auth:
-          - write:members
-          - read:members
+      - authenticaion_key: []
+      - authority_key: []

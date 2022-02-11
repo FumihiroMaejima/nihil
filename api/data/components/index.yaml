@@ -26,14 +26,14 @@ requestBodies:
             - detail
             - permissions
 securitySchemes:
-  members_auth:
-    type: oauth2
-    flows:
-      implicit:
-        authorizationUrl: http://example.com
-        scopes:
-          write:members: modify members in your account
-          read:members: read your members
+  # members_auth:
+  #   type: oauth2
+  #   flows:
+  #     implicit:
+  #       authorizationUrl: http://example.com
+  #       scopes:
+  #         write:members: modify members in your account
+  #         read:members: read your members
   authenticaion_key:
     type: apiKey
     name: Authorization

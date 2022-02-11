@@ -1,4 +1,4 @@
-# /auth/admin/self:
+# /admin/auth/self:
   post:
     tags:
       - auth
@@ -25,19 +25,19 @@
         content:
           application/json:
             schema:
-              $ref: "../../schemas/auth/AuthenticatedUser.yaml"
+              $ref: "../../../schemas/auth/AuthenticatedUser.yaml"
               # $ref: "#/components/schemas/AuthenticatedUser"
       "401":
         description: Unahthorithed
         content:
           application/json:
             schema:
-              $ref: "../../schemas/request/ApiErrorResponse.yaml"
+              $ref: "../../../schemas/request/ApiErrorResponse.yaml"
               # $ref: "#/components/schemas/ApiErrorResponse"
       default:
         description: unsuccessful operation
         content:
           application/json:
             schema:
-              $ref: "../../schemas/request/ApiErrorResponse.yaml"
+              $ref: "../../../schemas/request/ApiErrorResponse.yaml"
               # $ref: "#/components/schemas/ApiErrorResponse"
