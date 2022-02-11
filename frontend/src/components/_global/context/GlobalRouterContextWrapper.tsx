@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 // global context
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
-// import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 import { GlobalLinerLoadingContext } from '@/components/container/GlobalLinerLoadingProviderContainer'
 
 export type AppRouteType = {
@@ -20,7 +19,6 @@ type Props = {
 export const GlobalRouterContextWrapper: React.VFC<Props> = ({
   routes = [],
 }) => {
-  // const { updateGlobalLoading } = useContext(GlobalLoadingContext)
   const { updateGlobalLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
 
