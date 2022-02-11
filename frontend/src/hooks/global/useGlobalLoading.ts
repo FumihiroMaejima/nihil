@@ -30,10 +30,14 @@ export function useGlobalLoading(): UseGlobalLoadingType {
   // const [state, dispatch] = React.useReducer(() => {return {...initialData}}, initialData)
   const [isOpenLoading, dispatch] = React.useReducer(reducer, initialData)
 
-  const updateGlobalLoading = React.useCallback(() => {
-    console.log('useCallback Test: ')
-    dispatch('update')
-  }, [dispatch])
+  const updateGlobalLoading = React.useCallback(
+    (nextValue: boolean) => {
+      // dispatchに設定する必要はないからパラメーターの指定は必要ない。
+      console.log('useCallback Test: ' + nextValue)
+      dispatch('update')
+    },
+    [dispatch]
+  )
 
   return {
     isOpenLoading,
