@@ -12,7 +12,7 @@ import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProvid
 export const GlobalContextWrapper: React.VFC = () => {
   const { isOpenLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { isOpenLoading } = useContext(GlobalLoadingContext)
-  const { state, updateToastState } = useContext(ToastContext)
+  const { toastState, updateToastState } = useContext(ToastContext)
   // const { login } = useContext(AuthAppContext)
   console.log(
     'global wrapper component.: ' + JSON.stringify(updateToastState, null, 2)
@@ -24,8 +24,8 @@ export const GlobalContextWrapper: React.VFC = () => {
       {isOpenLinerLoading && <PartsLinerLoadingWrapper />}
       {isOpenLoading && <PartsCircleLoading />}
       <PartsSimpleToast
-        value={state.isDisplay}
-        data={{ message: state.message, status: state.status }}
+        value={toastState.isDisplay}
+        data={{ message: toastState.message, status: toastState.status }}
         onAnimationEnd={() => {
           updateToastState('close', 'normal', false)
         }}
