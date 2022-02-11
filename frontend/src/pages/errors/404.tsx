@@ -13,7 +13,7 @@ export const NotFoundPage404: React.VFC = () => {
   // console.log('child: ' + JSON.stringify(updateToastState, null, 2))
 
   return (
-    <div className="page-container page-container__mx-auto">
+    <div className="not-found-page page-container page-container__mx-auto">
       <PartsSimpleHeading text="Not Found 404" color="dark-grey" />
 
       <div className="mxy-4">

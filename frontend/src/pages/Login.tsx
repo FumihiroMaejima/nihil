@@ -21,7 +21,7 @@ export const Login: React.VFC = () => {
   console.log('child: ' + JSON.stringify(updateToastState, null, 2))
 
   return (
-    <div className="page-container page-container__mx-auto">
+    <div className="login page-container page-container__mx-auto">
       <PartsSimpleHeading text="Login Page" color="dark-grey" />
 
       <div className="mxy-4">
@@ -73,7 +73,8 @@ export const Login: React.VFC = () => {
                   updateGlobalLoading(false)
 
                   if (result) {
-                    navigate('/')
+                    // TODO homeに変更する
+                    navigate('/404')
                   }
                 }}
               />

@@ -7,7 +7,7 @@ import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeadin
 
 export const Home: React.VFC = () => {
   return (
-    <div className="page-container page-container__mx-auto">
+    <div className="home page-container page-container__mx-auto">
       <PartsSimpleHeading text="サンプル ページ" color="dark-grey" />
       <div className="mx-2">
         <PartsLabelHeading text="サブヘッダー1" color="blue" />

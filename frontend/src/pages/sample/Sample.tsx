@@ -111,7 +111,7 @@ export const Sample: React.VFC = () => {
   }
 
   return (
-    <div className="page-container page-container__mx-auto">
+    <div className="sample page-container page-container__mx-auto">
       <PartsSimpleToast
         value={toastValue}
         data={{ message: 'test message', status: 'success' }}
