@@ -19,6 +19,10 @@ import {
 // import { ToastContext } from '@/components/container/ToastProviderContainer'
 // import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
+type Props = {
+  updateIsAuthentecatedEventHandler?: (value: boolean) => void
+}
+
 const routes: AppRouteType[] = [
   {
     path: '/',
@@ -58,7 +62,9 @@ const devlopOnlyRoutes: AppRouteType[] = [
   },
 ]
 
-export const AppRouter = (): JSX.Element => {
+export const AppRouter: React.VFC<Props> = ({
+  updateIsAuthentecatedEventHandler = undefined,
+}) => {
   // process.envがdevelopかの判定
   // 開発時用専用のページを用意したい時に設定する
   const isDevelop = import.meta.env.DEV || false
@@ -69,6 +75,7 @@ export const AppRouter = (): JSX.Element => {
     <BrowserRouter basename={servicePathName}>
       <GlobalRouterContextWrapper
         routes={isDevelop ? routes.concat(devlopOnlyRoutes) : routes}
+        updateIsAuthentecatedEventHandler={updateIsAuthentecatedEventHandler}
       />
       <Routes>
         {!isDevelop &&

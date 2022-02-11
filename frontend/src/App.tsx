@@ -1,5 +1,6 @@
-// import React, { useState } from 'react'
+import { useState } from 'react'
 import { AppRouter } from '@/AppRouter'
+import { AuthGlobalHeader } from '@/components/_global/AuthGlobalHeader'
 import { GlobalFooter } from '@/components/_global/GlobalFooter'
 import { GlobalHeader } from '@/components/_global/GlobalHeader'
 import { GlobalBackToPageTopButton } from '@/components/_global/GlobalBackToPageTopButton'
@@ -10,7 +11,7 @@ import { GlobalLoadingProviderContainer } from '@/components/container/GlobalLoa
 import { ToastProviderContainer } from '@/components/container/ToastProviderContainer'
 
 function App() {
-  // const [count, setCount] = useState(0)
+  const [isAuthenticated, updateIsAuth] = useState(false)
 
   return (
     <div className="app">
@@ -20,9 +21,13 @@ function App() {
             <ToastProviderContainer>
               <GlobalContextWrapper />
               <GlobalBackToPageTopButton />
-              <GlobalHeader />
+              {isAuthenticated ? <AuthGlobalHeader /> : <GlobalHeader />}
               <div className="app-content">
-                <AppRouter />
+                <AppRouter
+                  updateIsAuthentecatedEventHandler={(isAuth) =>
+                    updateIsAuth(isAuth)
+                  }
+                />
               </div>
               <GlobalFooter />
             </ToastProviderContainer>

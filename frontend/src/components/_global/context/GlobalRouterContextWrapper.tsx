@@ -14,10 +14,12 @@ export type AppRouteType = {
 
 type Props = {
   routes?: AppRouteType[]
+  updateIsAuthentecatedEventHandler?: (value: boolean) => void
 }
 
 export const GlobalRouterContextWrapper: React.VFC<Props> = ({
   routes = [],
+  updateIsAuthentecatedEventHandler = undefined,
 }) => {
   const { updateGlobalLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
@@ -30,6 +32,9 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
    * @return {void}
    */
   const redirectLoginPage = () => {
+    if (updateIsAuthentecatedEventHandler) {
+      updateIsAuthentecatedEventHandler(false)
+    }
     navigate('/login', { replace: true })
   }
 
@@ -61,6 +66,11 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
             ) {
               // 認可されていないユーザーの場合
               redirectLoginPage()
+            } else {
+              // 認証・認可を満たすユーザー
+              if (updateIsAuthentecatedEventHandler) {
+                updateIsAuthentecatedEventHandler(true)
+              }
             }
           } else {
             // 認証付きページかつ認可情報が設定されていない場合

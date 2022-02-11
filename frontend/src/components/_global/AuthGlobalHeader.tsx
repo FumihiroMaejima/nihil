@@ -1,12 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
+import { ToastContext } from '@/components/container/ToastProviderContainer'
+import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
-type Props = {
-  signOut: (data?: Record<string | number | symbol, any> | undefined) => void
-}
-
-export const AuthGlobalHeader: React.VFC<Props> = (props) => {
+export const AuthGlobalHeader: React.VFC = () => {
   // ナビゲーションメニューの開閉フラグ
   const [isOpen, setOpenStatus] = useState(false)
+  const { logout } = useContext(AuthAppContext)
+  const { updateToastState } = useContext(ToastContext)
+  const { updateGlobalLoading } = useContext(GlobalLoadingContext)
+
+  const signOutHandler = async () => {
+    updateGlobalLoading(true)
+    const result = await logout()
+    updateGlobalLoading(false)
+
+    if (result) {
+      // リダイレクトするとトーストが出せない。
+      // updateToastState('Logout Success.', 'success', true)
+      // Router外の為baseNameも指定
+      location.assign('/admin/login')
+    } else {
+      updateToastState('Logout Filed', 'error', true)
+    }
+  }
 
   return (
     <header className="global-header">
@@ -61,7 +78,7 @@ export const AuthGlobalHeader: React.VFC<Props> = (props) => {
             </a>
             <div
               className="global-header__navigation-item-button"
-              onClick={props.signOut}
+              onClick={signOutHandler}
             >
               <span>Sign Out</span>
             </div>
@@ -71,7 +88,7 @@ export const AuthGlobalHeader: React.VFC<Props> = (props) => {
           <div className="global-header__blok-button-left">
             <button
               className={`parts-simple-button parts-simple-button__color--dark-grey util-color__text--white`}
-              onClick={props.signOut}
+              onClick={signOutHandler}
             >
               Sign Out
             </button>
