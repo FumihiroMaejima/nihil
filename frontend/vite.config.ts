@@ -36,6 +36,13 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       }, */
+      // TODO remove comment out when using swagger mock server
+      /* '/api': {
+        target: 'http://localhost:3200/api',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      }, */
+      // TODO remove comment out when using backend server
       '/api': {
         target: 'http://localhost:50100/api',
         changeOrigin: true,
