@@ -113,7 +113,6 @@ components:
     auth_id:
       $ref: "./data/components/securitySchemes/authId.yaml"
   schemas:
-    # $ref: "./data/schemas/index.yaml"
     AuthRequestResponse:
       $ref: "./data/schemas/auth/AuthRequestResponse.yaml"
     AuthenticatedUser:
