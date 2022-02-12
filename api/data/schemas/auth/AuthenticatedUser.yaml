@@ -6,9 +6,24 @@
       format: int64
     name:
       type: string
+    # authority:
+    #   type: integer
+    #   format: int32
+    #   description: User authority id
     authority:
-      type: integer
-      format: int32
-      description: User authority id
+      type: array
+      items:
+        type: string
+        # type: object
+        # properties:
+        #   id:
+        #     type: integer
+        #     format: int64
+        #   name:
+        #     type: string
+        #   email:
+        #     type: string
+        #   password:
+        #     type: string
   xml:
     name: AuthenticatedUser

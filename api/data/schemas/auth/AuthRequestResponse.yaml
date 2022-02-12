@@ -6,7 +6,8 @@
     token_type:
       type: string
     expires_in:
-      type: string
+      type: integer
+      format: int64
     user:
       description: AuthenticatedUser shcema.
       # $ref: "#/components/schemas/AuthenticatedUser.yaml"
