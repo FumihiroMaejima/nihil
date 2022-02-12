@@ -45,9 +45,10 @@
         description: api key
         required: true
         schema:
-          type: array
-          items:
-            type: string
+          type: string
+          # type: array
+          # items:
+          #   type: string
     requestBody:
       content:
         multipart/form-data:

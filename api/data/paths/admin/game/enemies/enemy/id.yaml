@@ -17,9 +17,10 @@
         description: api key
         required: true
         schema:
-          type: array
-          items:
-            type: string
+          type: string
+          # type: array
+          # items:
+          #   type: string
       - name: auth_id
         in: header
         description: auth id
