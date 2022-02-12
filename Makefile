@@ -144,6 +144,9 @@ swagger-down:
 swagger-ps:
 	docker-compose -f ./docker-compose.swagger.yml ps
 
+swagger-dev:
+	sh ./scripts/swagger-container.sh
+
 ##############################
 # swagger codegen mock-server
 ##############################
