@@ -5,22 +5,19 @@
     summary: Refresh authenticated token
     description: Refresh Authenticated token Function
     parameters:
-      - name: authenticaion_key
+      - name: Authorization
         in: header
         description: api key
         required: true
         schema:
           type: string
-      - name: authority_key
+      - name: X-Auth-Authority
         in: header
         description: api key
         required: true
         schema:
           type: string
-          # type: array
-          # items:
-          #   type: string
-      - name: auth_id
+      - name: X-Auth-ID
         in: header
         description: auth id
         required: true
