@@ -2,7 +2,7 @@
 import { useState, useReducer, useCallback } from 'react'
 import { useRequest } from '@/hooks/useRequest'
 import { appConfig } from '@/config/data'
-/* import {
+import {
   IAppConfig,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   BaseAddHeaderResponse,
@@ -10,7 +10,7 @@ import { appConfig } from '@/config/data'
   AuthAppHeaderOptions,
 } from '@/types'
 // import { TableColumnSetting } from '@/types/config/data'
-import { ToastData, SelectBoxType } from '@/types/applications/index'
+/* import { ToastData, SelectBoxType } from '@/types/applications/index'
 import {
   validateName,
   validateEmail,
@@ -56,7 +56,7 @@ type ReducerActionType = {
  * @param {ReducerActionType} action
  * @return {void}
  */
-const reducer = (currentValue: StateType, action: ReducerActionType) => {
+/* const reducer = (currentValue: StateType, action: ReducerActionType) => {
   return {
     ...currentValue,
     members: currentValue.members.map((member, i) => {
@@ -70,13 +70,14 @@ const reducer = (currentValue: StateType, action: ReducerActionType) => {
       return member
     }),
   }
-}
+} */
 
 //export function useMembers(): UseToastType {
 export function useMembers() {
-  const [membersState, dispatch] = useReducer(reducer, {
+  /* const [membersState, dispatch] = useReducer(reducer, {
     ...initialData,
-  })
+  }) */
+  const [membersState, dispatch] = useState({ ...initialData })
 
   /**
    * update member's text value.
@@ -85,12 +86,20 @@ export function useMembers() {
    * @param {string} value
    * @return {void}
    */
-  const updateMemberTextData = useCallback(
-    (index: number, key: MemberTextKeys, value: string) => {
-      dispatch({ type: key, index, value })
-    },
-    [dispatch]
-  )
+  const updateMemberTextData = (
+    index: number,
+    key: MemberTextKeys,
+    value: string
+  ) => {
+    dispatch({
+      members: membersState.members.map((member, i) => {
+        if (i === index) {
+          member[key as MemberTextKeys] = value
+        }
+        return member
+      }),
+    })
+  }
 
   /**
    * update member's number value.
@@ -99,12 +108,50 @@ export function useMembers() {
    * @param {number} value
    * @return {void}
    */
-  const updateMemberNumberData = useCallback(
+  const updateMemberNumberData = (
+    index: number,
+    key: MemberSelectKeys,
+    value: number
+  ) => {
+    dispatch({
+      members: membersState.members.map((member, i) => {
+        if (i === index) {
+          member[key as MemberSelectKeys] = value
+        }
+        return member
+      }),
+    })
+  }
+
+  // ------------------ useReducer() version
+
+  /**
+   * update member's text value.
+   * @param {number} index
+   * @param {MemberTextKeys} key
+   * @param {string} value
+   * @return {void}
+   */
+  /* const updateMemberTextData = useCallback(
+    (index: number, key: MemberTextKeys, value: string) => {
+      dispatch({ type: key, index, value })
+    },
+    [dispatch]
+  ) */
+
+  /**
+   * update member's number value.
+   * @param {number} index
+   * @param {MemberSelectKeys} key
+   * @param {number} value
+   * @return {void}
+   */
+  /* const updateMemberNumberData = useCallback(
     (index: number, key: MemberSelectKeys, value: number) => {
       dispatch({ type: key, index, value })
     },
     [dispatch]
-  )
+  ) */
 
   return {
     membersState,
