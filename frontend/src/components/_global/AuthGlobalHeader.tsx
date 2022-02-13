@@ -17,6 +17,7 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
   const navigate = useNavigate()
   const refElement = useRef<HTMLHeadElement>(null)
+  const refNavigationElement = useRef<HTMLDivElement>(null)
 
   // mount後に実行する処理
   const onDidMount = (): void => {
@@ -30,6 +31,18 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
         updateOpenStatus(false)
       }
     }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const resizeEventHandler = (e: UIEvent) => {
+      // resizeイベントが発火した場合は開いているナビゲーションメニューを閉じる。
+      if (
+        refNavigationElement?.current?.className ===
+        'global-header__navigation-menu-block'
+      ) {
+        updateOpenStatus(false)
+      }
+    }
+
     document.addEventListener('mousedown', (e: MouseEvent) => {
       closeMenuByFocusEventHandler(e)
       document.removeEventListener('mousedown', closeMenuByFocusEventHandler)
@@ -38,6 +51,11 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
     document.addEventListener('focusout', (e: FocusEvent) => {
       closeMenuByFocusEventHandler(e)
       document.removeEventListener('focusout', closeMenuByFocusEventHandler)
+    })
+
+    window.addEventListener('resize', (e: UIEvent) => {
+      resizeEventHandler(e)
+      window.removeEventListener('resize', resizeEventHandler)
     })
   }
   useEffect(onDidMount, [])
@@ -94,6 +112,7 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
               ? 'global-header__navigation-menu-block'
               : 'global-header__navigation-menu-hidden'
           }
+          ref={refNavigationElement}
         >
           <div className="global-header__navigation-item">
             {routes.map((route, i) => (
