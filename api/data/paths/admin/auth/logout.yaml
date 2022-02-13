@@ -1,43 +1,46 @@
-# /auth/admin/self:
+# /admin/auth/logout:
   post:
     tags:
       - auth
-    summary: Check authenticated
-    description: Check Authenticated Function
+    summary: Logs out current logged in user session
+    description: Logout Function
     parameters:
-      - name: authenticaion_key
+      - name: Authorization
         in: header
         description: api key
         required: true
         schema:
           type: string
-      - name: authority_key
+      - name: X-Auth-Authority
         in: header
         description: api key
         required: true
         schema:
-          type: array
-          items:
-            type: string
+          type: string
+      - name: X-Auth-ID
+        in: header
+        description: auth id
+        required: true
+        schema:
+          type: string
     responses:
       "200":
-        description: Authenticated
+        description: successful Logout
         content:
           application/json:
             schema:
-              $ref: "../../schemas/auth/AuthenticatedUser.yaml"
-              # $ref: "#/components/schemas/AuthenticatedUser"
+              $ref: "../../../schemas/request/ApiSuccessResponse.yaml"
       "401":
         description: Unahthorithed
         content:
           application/json:
             schema:
-              $ref: "../../schemas/request/ApiErrorResponse.yaml"
+              $ref: "../../../schemas/request/ApiErrorResponse.yaml"
               # $ref: "#/components/schemas/ApiErrorResponse"
       default:
         description: unsuccessful operation
         content:
           application/json:
             schema:
-              $ref: "../../schemas/request/ApiErrorResponse.yaml"
+              $ref: "../../../schemas/request/ApiErrorResponse.yaml"
               # $ref: "#/components/schemas/ApiErrorResponse"

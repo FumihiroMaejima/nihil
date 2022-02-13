@@ -28,6 +28,38 @@ My Application.
 
 ---
 
+# Swaggerの設定
+
+ ### ローカル環境にswagger-codegenのインストール(mockサーバーのコード出力)
+
+```shell-session
+ $ brew install swagger-codegen
+```
+
+### API仕様から出力するmockサーバーについて
+
+API仕様からmockサーバーの出力
+
+```shell-session
+ $ swagger-codegen generate -i api/api.yaml -l nodejs-server -o api/nodejs
+```
+
+node.jsのサーバーなので、`node_modules`のインストールが必要
+
+`npm run install`と`npm run prestart`を実行後に起動出来る。
+
+```shell-session
+ $ npm run prestart
+```
+
+mockサーバーの起動
+
+```shell-session
+ $ npm run start
+```
+
+---
+
 # 構成
 
 

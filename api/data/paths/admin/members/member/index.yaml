@@ -6,23 +6,28 @@
     description: ""
     operationId: createMemberWithForm
     parameters:
-      - name: authenticaion_key
+      - name: Authorization
         in: header
         description: api key
         required: true
         schema:
           type: string
-      - name: authority_key
+      - name: X-Auth-Authority
         in: header
         description: api key
         required: true
         schema:
-          type: array
-          items:
-            type: string
+          type: string
+      - name: X-Auth-ID
+        in: header
+        description: auth id
+        required: true
+        schema:
+          type: string
     requestBody:
       content:
-        application/x-www-form-urlencoded:
+        # application/x-www-form-urlencoded:
+        application/json:
           schema:
             type: object
             properties:
@@ -67,6 +72,6 @@
             schema:
               $ref: "../../../../schemas/request/ApiErrorResponse.yaml"
     security:
-      - members_auth:
-          - write:members
-          - read:members
+      - authenticaion_key: []
+      - authority_key: []
+      - auth_id: []

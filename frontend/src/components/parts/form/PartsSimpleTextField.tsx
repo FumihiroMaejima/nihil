@@ -3,9 +3,11 @@ import React, { FormEventHandler, FocusEventHandler } from 'react'
 type Props = {
   value: string
   className?: string
+  id?: string
   onInput?: FormEventHandler<HTMLInputElement>
   onFocus?: FocusEventHandler<HTMLInputElement>
   onBlur?: FocusEventHandler<HTMLInputElement>
+  type?: React.HTMLInputTypeAttribute
   placeholder?: string
   maxLength?: number
   required?: boolean
@@ -16,9 +18,11 @@ type Props = {
 export const PartsSimpleTextField: React.VFC<Props> = ({
   value = '',
   className = undefined,
+  id = undefined,
   onInput = undefined,
   onFocus = undefined,
   onBlur = undefined,
+  type = 'text',
   placeholder = undefined,
   maxLength = undefined,
   required = undefined,
@@ -29,7 +33,8 @@ export const PartsSimpleTextField: React.VFC<Props> = ({
     <input
       // className={`parts-simple-text-field`}
       className={`parts-simple-text-field ${className ? ' ' + className : ''}`}
-      type="text"
+      type={type}
+      id={id}
       value={value}
       onInput={onInput}
       onFocus={onFocus}

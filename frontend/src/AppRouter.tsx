@@ -1,51 +1,103 @@
-// import React from 'react'
+import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 // pages
 import { Home } from '@/pages/Home'
 // sample pages
 // import { Graph } from '@/pages/sample/Graph'
+import { Login } from '@/pages/Login'
+import { NotFoundPage404 } from '@/pages/errors/404'
 import { Sample } from '@/pages/sample/Sample'
 import { Picsum } from '@/pages/sample/Picsum'
 import { Test1 } from '@/pages/sample/Test1'
 
-type AppRouteType = {
-  path: string
-  element: JSX.Element
-}
+import { AuthGlobalHeader } from '@/components/_global/AuthGlobalHeader'
+import { GlobalHeader } from '@/components/_global/GlobalHeader'
 
-export const AppRouter = (): JSX.Element => {
+import {
+  GlobalRouterContextWrapper,
+  AppRouteType,
+} from '@/components/_global/context/GlobalRouterContextWrapper'
+// import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
+// import { ToastContext } from '@/components/container/ToastProviderContainer'
+// import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
+
+const routes: AppRouteType[] = [
+  {
+    title: 'ホーム | 管理システム',
+    shortTitle: 'ホーム',
+    path: '/',
+    element: <Home />,
+    requiredAuth: true,
+    permissions: ['master'],
+  },
+  {
+    title: 'サンプル | 管理システム',
+    shortTitle: 'サンプル',
+    path: '/sample',
+    element: <Sample />,
+    requiredAuth: true,
+    permissions: ['master'],
+  },
+  {
+    title: 'ログイン | 管理システム',
+    shortTitle: 'ログイン',
+    path: '/login',
+    element: <Login />,
+    requiredAuth: false,
+  },
+  {
+    title: 'NotFound | 管理システム',
+    shortTitle: 'NotFound',
+    path: '*',
+    element: <NotFoundPage404 />,
+    requiredAuth: false,
+  },
+]
+
+// 開発時専用ページ
+const devlopOnlyRoutes: AppRouteType[] = [
+  {
+    title: 'picsumページ | 開発用テストページ',
+    shortTitle: 'picsum',
+    path: '/picsum',
+    element: <Picsum />,
+    requiredAuth: false,
+  },
+  {
+    title: 'test1ページ | 開発用テストページ',
+    shortTitle: 'test1',
+    path: '/test1',
+    element: <Test1 />,
+    requiredAuth: false,
+  },
+]
+
+export const AppRouter: React.VFC = () => {
   // process.envがdevelopかの判定
   // 開発時用専用のページを用意したい時に設定する
   const isDevelop = import.meta.env.DEV || false
 
   const servicePathName = 'admin' || undefined
 
-  const routes: AppRouteType[] = [
-    {
-      path: '/',
-      element: <Home />,
-    },
-    {
-      path: '/sample',
-      element: <Sample />,
-    },
-  ]
-
-  // 開発時専用ページ
-  const devlopOnlyRoutes: AppRouteType[] = [
-    {
-      path: '/picsum',
-      element: <Picsum />,
-    },
-    {
-      path: '/test1',
-      element: <Test1 />,
-    },
-  ]
+  const [isAuthenticated, updateIsAuth] = useState(false)
 
   return (
     <BrowserRouter basename={servicePathName}>
+      {isAuthenticated ? (
+        /* <AuthGlobalHeader routes={routes} /> */
+        <AuthGlobalHeader
+          routes={routes.filter(
+            (route) => !(route.path === '/login' || route.path === '*')
+          )}
+        />
+      ) : (
+        <GlobalHeader />
+      )}
+      <GlobalRouterContextWrapper
+        routes={isDevelop ? routes.concat(devlopOnlyRoutes) : routes}
+        updateIsAuthentecatedEventHandler={updateIsAuth}
+      />
       <Routes>
         {!isDevelop &&
           routes.map((route, i) => (
@@ -57,10 +109,6 @@ export const AppRouter = (): JSX.Element => {
             .map((route, i) => (
               <Route key={i} path={route.path} element={route.element} />
             ))}
-        {/* <Route path="/" element={<Home />} />
-        <Route path="/sample" element={<Sample />} />
-        {isDevelop && <Route path="/picsum" element={<Picsum />} />}
-        {isDevelop && <Route path="/test1" element={<Test1 />} />} */}
       </Routes>
     </BrowserRouter>
   )

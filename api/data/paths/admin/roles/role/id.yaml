@@ -37,3 +37,4 @@
     security:
       - authenticaion_key: []
       - authority_key: []
+      - auth_id: []

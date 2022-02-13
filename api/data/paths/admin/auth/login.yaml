@@ -1,4 +1,4 @@
-# /auth/admin/login:
+# /admin/auth/login:
   post:
     tags:
       - auth
@@ -6,7 +6,8 @@
     description: Login Function
     requestBody:
       content:
-        application/x-www-form-urlencoded:
+        # application/x-www-form-urlencoded:
+        application/json:
           schema:
             type: object
             properties:
@@ -25,16 +26,16 @@
         content:
           application/json:
             schema:
-              $ref: "../../schemas/auth/AuthRequestResponse.yaml"
+              $ref: "../../../schemas/auth/AuthRequestResponse.yaml"
       "400":
         description: Invalid username/password supplied
         content:
           application/json:
             schema:
-              $ref: "../../schemas/request/ApiErrorResponse.yaml"
+              $ref: "../../../schemas/request/ApiErrorResponse.yaml"
       "422":
         description: Invalid input
         content:
           application/json:
             schema:
-              $ref: "../../schemas/request/ApiErrorResponse.yaml"
+              $ref: "../../../schemas/request/ApiErrorResponse.yaml"

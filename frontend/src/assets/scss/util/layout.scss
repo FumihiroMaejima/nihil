@@ -74,6 +74,12 @@
   }
 }
 
+@each $name, $point in $layout-width-points {
+  .width-#{$name} {
+    width: $point;
+  }
+}
+
 .d-flex {
   display: flex;
 }
@@ -82,6 +88,10 @@
 @each $name, $direction in $layout-directions {
   .flex-justify-#{$name} {
     justify-content: $direction;
+  }
+
+  .text-#{$name} {
+    text-align: $direction;
   }
 }
 

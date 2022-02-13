@@ -161,7 +161,7 @@ export const Graph: React.VFC = () => {
   }
 
   return (
-    <div className="page-container page-container__mx-auto">
+    <div className="graph page-container page-container__mx-auto">
       <PartsSimpleHeading
         text="GraphQLテストページ"
         color="dark-grey"

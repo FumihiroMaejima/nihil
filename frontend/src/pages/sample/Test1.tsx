@@ -33,7 +33,7 @@ export const Test1: React.VFC = () => {
   }
 
   return (
-    <div className="page-container page-container__mx-auto">
+    <div className="test1 page-container page-container__mx-auto">
       {/* <PartsCircleLoading /> */}
       <PartsSimpleModal
         isOpen={isOpenModal}

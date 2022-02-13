@@ -2,8 +2,8 @@ export type IAppConfig = {
   headerName: string
   headerContents: string[]
   noticeData: NoticeData[]
-  aboutMessage: AboutMessageType
-  authEndpoint: EndpointType
+  // aboutMessage: AboutMessageType
+  authEndpoint: AuthEndpoint
 }
 
 export type NoticeData = {

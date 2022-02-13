@@ -1,3 +1,5 @@
+.PHONY: help
+.DEFAULT_GOAL := help
 ##############################
 # make docker environmental
 ##############################
@@ -144,6 +146,9 @@ swagger-down:
 swagger-ps:
 	docker-compose -f ./docker-compose.swagger.yml ps
 
+swagger-dev:
+	sh ./scripts/swagger-container.sh
+
 ##############################
 # swagger codegen mock-server
 ##############################
@@ -161,3 +166,9 @@ codegen-prestart:
 
 codegen-start:
 	cd api/node-mock && npm run start
+
+##############################
+# etc
+##############################
+help:
+	@cat Makefile

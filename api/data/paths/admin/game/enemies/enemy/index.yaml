@@ -6,20 +6,24 @@
     description: ""
     operationId: deleteEnemies
     parameters:
-      - name: authenticaion_key
+      - name: Authorization
         in: header
         description: api key
         required: true
         schema:
           type: string
-      - name: authority_key
+      - name: X-Auth-Authority
         in: header
         description: api key
         required: true
         schema:
-          type: array
-          items:
-            type: string
+          type: string
+      - name: X-Auth-ID
+        in: header
+        description: auth id
+        required: true
+        schema:
+          type: string
       - name: enemies
         in: query
         description: ID of Enemies
@@ -69,3 +73,4 @@
     security:
       - authenticaion_key: []
       - authority_key: []
+      - auth_id: []
