@@ -123,6 +123,48 @@ export function useMembers() {
     })
   }
 
+  /**
+   * set member's data.
+   * @param {MemberType[]} members
+   * @return {void}
+   */
+  const setMembers = (members: MemberType[]) => {
+    dispatch({
+      members: [...members],
+    })
+  }
+
+  /**
+   * get members data.
+   * @param {BaseAddHeaderResponse} header
+   * @return {void}
+   */
+  const getMembersRequest = async (
+    options: AuthAppHeaderOptions
+  ): Promise<ServerRequestType> => {
+    // axios.defaults.withCredentials = true
+    return await useRequest()
+      .getRequest<ServerRequestType<any>>(config.endpoint.members.members, {
+        headers: options.headers,
+      })
+      .then((response) => {
+        setMembers(response.data.data)
+        return { data: response.data, status: 200 }
+        // setMembers(response.data.data)
+        // return { data: response.data.data, status: response.status }
+      })
+      .catch((error) => {
+        return { data: error, status: 404 | 500 }
+        /* return {
+        data: error,
+        status: error.response ? error.response.status : 401
+      } */
+      })
+      .finally(() => {
+        options.callback()
+      })
+  }
+
   // ------------------ useReducer() version
 
   /**
@@ -157,6 +199,7 @@ export function useMembers() {
     membersState,
     updateMemberTextData,
     updateMemberNumberData,
+    getMembersRequest,
   } as const
 }
 

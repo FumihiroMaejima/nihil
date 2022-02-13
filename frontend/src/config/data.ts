@@ -28,6 +28,23 @@ export const appConfig: IAppConfig = {
     authLogout: '/api/v1/admin/auth/logout',
     authSelf: '/api/v1/admin/auth/self',
   },
+  endpoint: {
+    members: {
+      members: '/api/v1/admin/members',
+      csv: '/api/v1/admin/members/csv',
+      member: '/api/v1/admin/members/member/:id',
+      create: '/api/v1/admin/members/member',
+      roles: '/api/v1/admin/roles/list',
+    },
+    roles: {
+      roles: '/api/v1/admin/roles',
+      csv: '/api/v1/admin/roles/csv',
+      role: '/api/v1/admin/roles/role/:id',
+      create: '/api/v1/admin/roles/role',
+      delete: '/api/v1/admin/roles/role',
+      permissions: '/api/v1/admin/permissions/list',
+    },
+  },
 }
 
 export default appConfig
