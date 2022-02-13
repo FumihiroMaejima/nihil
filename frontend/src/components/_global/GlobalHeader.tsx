@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export const GlobalHeader: React.VFC = () => {
   // ナビゲーションメニューの開閉フラグ
-  const [isOpen, setOpenStatus] = useState(false)
+  // const [isOpen, updateOpenStatus] = useState(false)
 
   return (
     <header className="global-header">
@@ -10,10 +10,10 @@ export const GlobalHeader: React.VFC = () => {
         <div className="global-header__title-wrapper">
           <span className="global-header__title">Header Name</span>
         </div>
-        <div className="global-header__blok-button-area">
+        {/* <div className="global-header__blok-button-area">
           <button
             className="global-header__blok-button"
-            onClick={() => setOpenStatus((isOpen) => !isOpen)}
+            onClick={() => updateOpenStatus((isOpen) => !isOpen)}
           >
             <svg
               className="global-header__blok-button-image"
@@ -28,8 +28,8 @@ export const GlobalHeader: React.VFC = () => {
               )}
             </svg>
           </button>
-        </div>
-        <div
+        </div> */}
+        {/* <div
           className={
             isOpen === true
               ? 'global-header__navigation-menu-block'
@@ -37,7 +37,7 @@ export const GlobalHeader: React.VFC = () => {
           }
         >
           <div className="global-header__navigation-item">
-            {/* <a
+            <a
               className="global-header__navigation-item-button"
               href="#responsive-header1"
             >
@@ -54,9 +54,9 @@ export const GlobalHeader: React.VFC = () => {
               href="#responsive-header3"
             >
               test link3
-            </a> */}
+            </a>
           </div>
-        </div>
+        </div> */}
       </nav>
     </header>
   )

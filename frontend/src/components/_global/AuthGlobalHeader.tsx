@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { AppRouteType } from '@/components/_global/context/GlobalRouterContextWrapper'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
@@ -11,12 +11,41 @@ type Props = {
 
 export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
   // ナビゲーションメニューの開閉フラグ
-  const [isOpen, setOpenStatus] = useState(false)
+  const [isOpen, updateOpenStatus] = useState(false)
   const { logout } = useContext(AuthAppContext)
   const { updateToastState } = useContext(ToastContext)
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
   const navigate = useNavigate()
+  const refElement = useRef<HTMLHeadElement>(null)
 
+  // mount後に実行する処理
+  const onDidMount = (): void => {
+    const closeMenuByFocusEventHandler = (e: MouseEvent | FocusEvent) => {
+      if (refElement?.current?.contains(e.target as Node)) {
+        // click inside thie component
+        // console.log('in')
+        return
+      } else {
+        // click outside thie component
+        updateOpenStatus(false)
+      }
+    }
+    document.addEventListener('mousedown', (e: MouseEvent) => {
+      closeMenuByFocusEventHandler(e)
+      document.removeEventListener('mousedown', closeMenuByFocusEventHandler)
+    })
+
+    document.addEventListener('focusout', (e: FocusEvent) => {
+      closeMenuByFocusEventHandler(e)
+      document.removeEventListener('focusout', closeMenuByFocusEventHandler)
+    })
+  }
+  useEffect(onDidMount, [])
+
+  /**
+   * exectute sign out handiling.
+   * @return {Promise<void>}
+   */
   const signOutHandler = async () => {
     updateGlobalLoading(true)
     const result = await logout()
@@ -35,7 +64,7 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
   }
 
   return (
-    <header className="global-header">
+    <header className="global-header" ref={refElement}>
       <nav className="global-header__navigation">
         <div className="global-header__title-wrapper">
           <span className="global-header__title">Header Name</span>
@@ -43,7 +72,7 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
         <div className="global-header__blok-button-area">
           <button
             className="global-header__blok-button"
-            onClick={() => setOpenStatus((isOpen) => !isOpen)}
+            onClick={() => updateOpenStatus(!isOpen)}
           >
             <svg
               className="global-header__blok-button-image"
@@ -81,25 +110,15 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
               href="#responsive-header1"
             >
               test link1
-            </a>
-            <a
-              className="global-header__navigation-item-button"
-              href="#responsive-header2"
-            >
-              test link2
-            </a>
-            <a
-              className="global-header__navigation-item-button"
-              href="#responsive-header3"
-            >
-              test link3
             </a> */}
-            <div
-              className="global-header__navigation-item-button"
-              onClick={signOutHandler}
-            >
-              <span>Sign Out</span>
-            </div>
+            {isOpen && (
+              <div
+                className="global-header__navigation-item-button"
+                onClick={signOutHandler}
+              >
+                <span>Sign Out</span>
+              </div>
+            )}
           </div>
         </div>
         {isOpen === false && (
