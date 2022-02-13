@@ -2,6 +2,16 @@
   type: array
   items:
     type: object
+    required:
+      - id
+      - name
+      - level
+      - hp
+      - mp
+      - offence
+      - defense
+      - speed
+      - magic
     properties:
       id:
         type: integer
@@ -17,7 +27,7 @@
       mp:
         type: integer
         format: int64
-      offece:
+      offence:
         type: integer
         format: int64
       defense:
@@ -29,3 +39,31 @@
       magic:
         type: integer
         format: int64
+  example:
+  - id: 1
+    name: 'test enemy1'
+    level: 1
+    hp: 10
+    mp: 10
+    offence: 15
+    defense: 12
+    speed: 10
+    magic: 10
+  - id: 2
+    name: 'test enemy2'
+    level: 5
+    hp: 30
+    mp: 50
+    offence: 15
+    defense: 20
+    speed: 10
+    magic: 50
+  - id: 3
+    name: 'test enemy3'
+    level: 7
+    hp: 45
+    mp: 30
+    offence: 30
+    defense: 20
+    speed: 50
+    magic: 20

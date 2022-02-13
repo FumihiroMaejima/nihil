@@ -1,5 +1,9 @@
 # AuthenticatedUser:
   type: object
+  required:
+    - id
+    - name
+    - authority
   properties:
     id:
       type: integer
