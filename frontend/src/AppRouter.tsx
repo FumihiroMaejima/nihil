@@ -24,23 +24,31 @@ import {
 
 const routes: AppRouteType[] = [
   {
+    title: 'ホーム | 管理システム',
+    shortTitle: 'ホーム',
     path: '/',
     element: <Home />,
     requiredAuth: true,
     permissions: ['master'],
   },
   {
+    title: 'サンプル | 管理システム',
+    shortTitle: 'サンプル',
     path: '/sample',
     element: <Sample />,
     requiredAuth: true,
     permissions: ['master'],
   },
   {
+    title: 'ログイン | 管理システム',
+    shortTitle: 'ログイン',
     path: '/login',
     element: <Login />,
     requiredAuth: false,
   },
   {
+    title: 'NotFound | 管理システム',
+    shortTitle: 'NotFound',
     path: '*',
     element: <NotFoundPage404 />,
     requiredAuth: false,
@@ -50,11 +58,15 @@ const routes: AppRouteType[] = [
 // 開発時専用ページ
 const devlopOnlyRoutes: AppRouteType[] = [
   {
+    title: 'picsumページ | 開発用テストページ',
+    shortTitle: 'picsum',
     path: '/picsum',
     element: <Picsum />,
     requiredAuth: false,
   },
   {
+    title: 'test1ページ | 開発用テストページ',
+    shortTitle: 'test1',
     path: '/test1',
     element: <Test1 />,
     requiredAuth: false,
@@ -72,7 +84,16 @@ export const AppRouter: React.VFC = () => {
 
   return (
     <BrowserRouter basename={servicePathName}>
-      {isAuthenticated ? <AuthGlobalHeader /> : <GlobalHeader />}
+      {isAuthenticated ? (
+        /* <AuthGlobalHeader routes={routes} /> */
+        <AuthGlobalHeader
+          routes={routes.filter(
+            (route) => !(route.path === '/login' || route.path === '*')
+          )}
+        />
+      ) : (
+        <GlobalHeader />
+      )}
       <GlobalRouterContextWrapper
         routes={isDevelop ? routes.concat(devlopOnlyRoutes) : routes}
         updateIsAuthentecatedEventHandler={updateIsAuth}

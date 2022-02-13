@@ -6,8 +6,10 @@ import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { GlobalLinerLoadingContext } from '@/components/container/GlobalLinerLoadingProviderContainer'
 
 export type AppRouteType = {
-  path?: string
-  element?: JSX.Element
+  title: string
+  shortTitle: string
+  path: string
+  element: JSX.Element
   requiredAuth?: boolean
   permissions?: string[]
 }

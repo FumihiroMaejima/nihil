@@ -1,14 +1,21 @@
 import React, { useState, useContext } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import { AppRouteType } from '@/components/_global/context/GlobalRouterContextWrapper'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { ToastContext } from '@/components/container/ToastProviderContainer'
 import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
-export const AuthGlobalHeader: React.VFC = () => {
+type Props = {
+  routes?: AppRouteType[]
+}
+
+export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
   // ナビゲーションメニューの開閉フラグ
   const [isOpen, setOpenStatus] = useState(false)
   const { logout } = useContext(AuthAppContext)
   const { updateToastState } = useContext(ToastContext)
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
+  const navigate = useNavigate()
 
   const signOutHandler = async () => {
     updateGlobalLoading(true)
@@ -16,10 +23,12 @@ export const AuthGlobalHeader: React.VFC = () => {
     updateGlobalLoading(false)
 
     if (result) {
-      // リダイレクトするとトーストが出せない。
-      // updateToastState('Logout Success.', 'success', true)
+      updateToastState('Logout Success.', 'success', true)
+      navigate('/login')
+
+      // リダイレクトするとトーストは出せない。
       // Router外の為baseNameも指定
-      location.assign('/admin/login')
+      // location.assign('/admin/login')
     } else {
       updateToastState('Logout Filed', 'error', true)
     }
@@ -58,7 +67,16 @@ export const AuthGlobalHeader: React.VFC = () => {
           }
         >
           <div className="global-header__navigation-item">
-            <a
+            {routes.map((route, i) => (
+              <Link
+                className="global-header__navigation-item-button"
+                key={i}
+                to={route.path}
+              >
+                {route.shortTitle}
+              </Link>
+            ))}
+            {/* <a
               className="global-header__navigation-item-button"
               href="#responsive-header1"
             >
@@ -75,7 +93,7 @@ export const AuthGlobalHeader: React.VFC = () => {
               href="#responsive-header3"
             >
               test link3
-            </a>
+            </a> */}
             <div
               className="global-header__navigation-item-button"
               onClick={signOutHandler}

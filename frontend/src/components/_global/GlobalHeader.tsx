@@ -37,7 +37,7 @@ export const GlobalHeader: React.VFC = () => {
           }
         >
           <div className="global-header__navigation-item">
-            <a
+            {/* <a
               className="global-header__navigation-item-button"
               href="#responsive-header1"
             >
@@ -54,7 +54,7 @@ export const GlobalHeader: React.VFC = () => {
               href="#responsive-header3"
             >
               test link3
-            </a>
+            </a> */}
           </div>
         </div>
       </nav>
