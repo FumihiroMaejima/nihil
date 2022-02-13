@@ -1,17 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 // import { Link } from 'react-router-dom'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
 
 import { useMembers } from '@/hooks/modules/members/useMembers'
+import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
+import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 
 export const Members: React.VFC = () => {
-  // const { membersState, getMembersRequest } = useMembers()
+  const { membersState, getMembersRequest } = useMembers()
+  const { updateGlobalLoading } = useContext(GlobalLoadingContext)
+  const { getHeaderOptions } = useContext(AuthAppContext)
 
   // mount後に実行する処理
   const onDidMount = (): void => {
     console.log('test: ')
+
+    updateGlobalLoading(true)
+    getMembersRequest(getHeaderOptions()).then((res) => {
+      console.log('response: ' + JSON.stringify(res, null, 2))
+      updateGlobalLoading(false)
+    })
   }
   useEffect(onDidMount, [])
 
