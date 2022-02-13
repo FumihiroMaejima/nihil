@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 // pages
 import { Home } from '@/pages/Home'
+import { Members } from '@/pages/Members'
+
 // sample pages
 // import { Graph } from '@/pages/sample/Graph'
 import { Login } from '@/pages/Login'
@@ -30,6 +32,14 @@ const routes: AppRouteType[] = [
     element: <Home />,
     requiredAuth: true,
     permissions: ['master'],
+  },
+  {
+    title: 'メンバー | 管理システム',
+    shortTitle: 'メンバー',
+    path: '/members',
+    element: <Members />,
+    requiredAuth: true,
+    permissions: ['master', 'administrator'],
   },
   {
     title: 'サンプル | 管理システム',
