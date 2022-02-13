@@ -73,8 +73,7 @@ export const Login: React.VFC = () => {
                   updateGlobalLoading(false)
 
                   if (result) {
-                    // TODO homeに変更する
-                    navigate('/404')
+                    navigate('/')
                   }
                 }}
               />
