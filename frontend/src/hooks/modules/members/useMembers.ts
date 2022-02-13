@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { useState, useReducer, useCallback } from 'react'
+import { useState, useReducer, useCallback } from 'react'
 import { useRequest } from '@/hooks/useRequest'
 import { appConfig } from '@/config/data'
 /* import {
@@ -74,7 +74,7 @@ const reducer = (currentValue: StateType, action: ReducerActionType) => {
 
 //export function useMembers(): UseToastType {
 export function useMembers() {
-  const [membersState, dispatch] = React.useReducer(reducer, {
+  const [membersState, dispatch] = useReducer(reducer, {
     ...initialData,
   })
 
@@ -85,7 +85,7 @@ export function useMembers() {
    * @param {string} value
    * @return {void}
    */
-  const updateMemberTextData = React.useCallback(
+  const updateMemberTextData = useCallback(
     (index: number, key: MemberTextKeys, value: string) => {
       dispatch({ type: key, index, value })
     },
@@ -99,7 +99,7 @@ export function useMembers() {
    * @param {number} value
    * @return {void}
    */
-  const updateMemberNumberData = React.useCallback(
+  const updateMemberNumberData = useCallback(
     (index: number, key: MemberSelectKeys, value: number) => {
       dispatch({ type: key, index, value })
     },
