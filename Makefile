@@ -1,3 +1,5 @@
+.PHONY: help
+.DEFAULT_GOAL := help
 ##############################
 # make docker environmental
 ##############################
@@ -164,3 +166,7 @@ codegen-prestart:
 
 codegen-start:
 	cd api/node-mock && npm run start
+
+
+help:
+	@cat Makefile
