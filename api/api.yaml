@@ -5,7 +5,7 @@ info:
     #swagger](http://swagger.io/irc/).      For this sample, you can use the api
     key `special-key` to test the authorization     filters."
   version: 1.0.0
-  title: RPG-Admin Service
+  title: Test My Service
   termsOfService: https://github.com/user-name/repository-name
   contact:
     email: test@example.com

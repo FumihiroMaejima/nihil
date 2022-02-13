@@ -1,5 +1,10 @@
 # AuthRequestResponse:
   type: object
+  required:
+    - access_token
+    - token_type
+    - expires_in
+    - user
   properties:
     access_token:
       type: string
@@ -12,5 +17,14 @@
       description: AuthenticatedUser shcema.
       # $ref: "#/components/schemas/AuthenticatedUser.yaml"
       $ref: "./AuthenticatedUser.yaml"
+  example:
+    access_token: 'testTokenxxxxxxxxxxx'
+    token_type: 'Bear'
+    expires_in: 3600
+    user:
+      # $ref: "./AuthenticatedUser.yaml" 参照不可
+      id: 1
+      name: 'test username'
+      authority: ['master']
   xml:
     name: AuthRequestResponse
