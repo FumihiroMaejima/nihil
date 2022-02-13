@@ -1,4 +1,4 @@
-// import React from 'react'
+import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 // pages
@@ -11,6 +11,9 @@ import { Sample } from '@/pages/sample/Sample'
 import { Picsum } from '@/pages/sample/Picsum'
 import { Test1 } from '@/pages/sample/Test1'
 
+import { AuthGlobalHeader } from '@/components/_global/AuthGlobalHeader'
+import { GlobalHeader } from '@/components/_global/GlobalHeader'
+
 import {
   GlobalRouterContextWrapper,
   AppRouteType,
@@ -18,10 +21,6 @@ import {
 // import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 // import { ToastContext } from '@/components/container/ToastProviderContainer'
 // import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
-
-type Props = {
-  updateIsAuthentecatedEventHandler?: (value: boolean) => void
-}
 
 const routes: AppRouteType[] = [
   {
@@ -62,20 +61,21 @@ const devlopOnlyRoutes: AppRouteType[] = [
   },
 ]
 
-export const AppRouter: React.VFC<Props> = ({
-  updateIsAuthentecatedEventHandler = undefined,
-}) => {
+export const AppRouter: React.VFC = () => {
   // process.envがdevelopかの判定
   // 開発時用専用のページを用意したい時に設定する
   const isDevelop = import.meta.env.DEV || false
 
   const servicePathName = 'admin' || undefined
 
+  const [isAuthenticated, updateIsAuth] = useState(false)
+
   return (
     <BrowserRouter basename={servicePathName}>
+      {isAuthenticated ? <AuthGlobalHeader /> : <GlobalHeader />}
       <GlobalRouterContextWrapper
         routes={isDevelop ? routes.concat(devlopOnlyRoutes) : routes}
-        updateIsAuthentecatedEventHandler={updateIsAuthentecatedEventHandler}
+        updateIsAuthentecatedEventHandler={updateIsAuth}
       />
       <Routes>
         {!isDevelop &&
