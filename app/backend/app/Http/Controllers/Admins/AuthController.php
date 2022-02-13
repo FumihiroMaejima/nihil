@@ -41,6 +41,7 @@ class AuthController extends Controller
             ];
         }
 
+        // auth()がreturnするguard: /tymon/jwt-auth/src/JWTGuard
         if (!$token = auth('api-admins')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
