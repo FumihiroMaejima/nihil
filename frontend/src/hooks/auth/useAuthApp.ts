@@ -70,7 +70,7 @@ export type UseAuthAppType = {
 
 export function useAuthApp(): UseAuthAppType {
   const [state, dispatch] = React.useState<AuthState>({ ...initialAuthState })
-  const router = undefined
+  // const router = undefined
   const authentication = new Authentication(endpoint)
 
   /**

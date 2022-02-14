@@ -24,14 +24,14 @@ import {
 // import { ToastContext } from '@/components/container/ToastProviderContainer'
 // import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
-const routes: AppRouteType[] = [
+const adminRoutes: AppRouteType[] = [
   {
     title: 'ホーム | 管理システム',
     shortTitle: 'ホーム',
     path: '/',
     element: <Home />,
     requiredAuth: true,
-    permissions: ['master'],
+    permissions: ['master', 'administrator'],
   },
   {
     title: 'メンバー | 管理システム',
@@ -47,8 +47,11 @@ const routes: AppRouteType[] = [
     path: '/sample',
     element: <Sample />,
     requiredAuth: true,
-    permissions: ['master'],
+    permissions: ['master', 'administrator'],
   },
+]
+
+const normalRoutes: AppRouteType[] = [
   {
     title: 'ログイン | 管理システム',
     shortTitle: 'ログイン',
@@ -82,6 +85,8 @@ const devlopOnlyRoutes: AppRouteType[] = [
     requiredAuth: false,
   },
 ]
+
+const routes = adminRoutes.concat(normalRoutes)
 
 export const AppRouter: React.VFC = () => {
   // process.envがdevelopかの判定
