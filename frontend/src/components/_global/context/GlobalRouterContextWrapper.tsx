@@ -1,9 +1,12 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useLayoutEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 // global context
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { GlobalLinerLoadingContext } from '@/components/container/GlobalLinerLoadingProviderContainer'
+
+// import { useLocationChange } from '@/hooks/auth/useLocationChange'
 
 export type AppRouteType = {
   title: string
@@ -23,11 +26,12 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
   routes = [],
   updateIsAuthentecatedEventHandler = undefined,
 }) => {
+  const [isShowPage, updateShowPageFlag] = useState<boolean>(false)
   const { updateGlobalLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
 
   const locationState = useLocation()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   /**
    * redirect login page.
@@ -37,23 +41,29 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
     if (updateIsAuthentecatedEventHandler) {
       updateIsAuthentecatedEventHandler(false)
     }
-    navigate('/login', { replace: true })
+    // navigate('/login', { replace: true })
+    // データの初期化も兼ねてグローバルなLocationクラスを利用する
+    location.assign('/admin/login')
   }
 
   /**
    * change locatiom path name handler.
    * @return {void}
    */
-  const changeLocationPathNameHandler = (): void => {
-    const currentRoute = routes.find(
-      (route) => route.path === locationState.pathname
-    )
+  const changeLocationHandler = (): void => {
+    console.log('locationState: ' + JSON.stringify(locationState, null, 2))
+    updateShowPageFlag(false)
 
-    // 認証が必要なページ
-    if (currentRoute && currentRoute.requiredAuth) {
-      updateGlobalLinerLoading(true)
-      // 認証情報のチェック処理
-      checkAuthenticated().then((result) => {
+    const handlerExecution = async () => {
+      const currentRoute = routes.find(
+        (route) => route.path === locationState.pathname
+      )
+
+      // 認証が必要なページ
+      if (currentRoute && currentRoute.requiredAuth) {
+        updateGlobalLinerLoading(true)
+        // 認証情報のチェック処理
+        const result = await checkAuthenticated()
         updateGlobalLinerLoading(false)
         if (!result) {
           redirectLoginPage()
@@ -79,16 +89,44 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
             redirectLoginPage()
           }
         }
-      })
+      }
+
+      updateShowPageFlag(true)
     }
+    handlerExecution()
   }
 
-  useEffect(changeLocationPathNameHandler, [locationState.pathname])
+  // useEffect(changeLocationHandler, [locationState])
+  useLayoutEffect(changeLocationHandler, [locationState])
+
+  /* useLocationChange(async (locationState) => {
+    console.log('custom hook: ' + locationState.pathname)
+    await changeLocationHandler()
+  }) */
 
   return (
-    <div className="global-router-context-wrapper" style={{ display: 'none' }}>
+    /* <div className="global-router-context-wrapper" style={{ display: 'none' }}>
       global-router-context-wrapper
-    </div>
+    </div> */
+    <>
+      {isShowPage && (
+        <Routes>
+          {routes.map(
+            (route, i) => (
+              <Route key={i} path={route.path} element={route.element} />
+            )
+            /* routeSettingHandler(route, i) */
+          )}
+        </Routes>
+      )}
+      {/* <Routes>
+        {routes.map(
+          (route, i) => (
+            <Route key={i} path={route.path} element={route.element} />
+          )
+        )}
+      </Routes> */}
+    </>
   )
 }
 

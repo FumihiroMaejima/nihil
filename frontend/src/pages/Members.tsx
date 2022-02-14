@@ -11,17 +11,19 @@ import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 export const Members: React.VFC = () => {
   const { membersState, getMembersRequest } = useMembers()
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
-  const { getHeaderOptions } = useContext(AuthAppContext)
+  const { getAuthId, getHeaderOptions } = useContext(AuthAppContext)
 
   // mount後に実行する処理
   const onDidMount = (): void => {
-    console.log('test: ')
+    console.log('member test: ')
 
-    updateGlobalLoading(true)
-    getMembersRequest(getHeaderOptions()).then((res) => {
-      console.log('response: ' + JSON.stringify(res, null, 2))
-      updateGlobalLoading(false)
-    })
+    if (getAuthId() !== null) {
+      updateGlobalLoading(true)
+      getMembersRequest(getHeaderOptions()).then((res) => {
+        console.log('response: ' + JSON.stringify(res, null, 2))
+        updateGlobalLoading(false)
+      })
+    }
   }
   useEffect(onDidMount, [])
 

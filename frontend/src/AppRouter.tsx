@@ -113,7 +113,7 @@ export const AppRouter: React.VFC = () => {
         routes={isDevelop ? routes.concat(devlopOnlyRoutes) : routes}
         updateIsAuthentecatedEventHandler={updateIsAuth}
       />
-      <Routes>
+      {/* <Routes>
         {!isDevelop &&
           routes.map((route, i) => (
             <Route key={i} path={route.path} element={route.element} />
@@ -124,7 +124,7 @@ export const AppRouter: React.VFC = () => {
             .map((route, i) => (
               <Route key={i} path={route.path} element={route.element} />
             ))}
-      </Routes>
+      </Routes> */}
     </BrowserRouter>
   )
 }
