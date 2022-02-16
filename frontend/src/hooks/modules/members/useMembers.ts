@@ -3,7 +3,7 @@ import { useState, useReducer, useCallback } from 'react'
 import { useRequest } from '@/hooks/useRequest'
 import { appConfig } from '@/config/data'
 import {
-  IAppConfig,
+  // IAppConfig,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   BaseAddHeaderResponse,
   ServerRequestType,
@@ -44,11 +44,11 @@ export const initialData: StateType = {
   members: [...[]],
 }
 
-type ReducerActionType = {
+/* type ReducerActionType = {
   index: number
   type: MemberTypeKeys
   value: number | string
-}
+} */
 
 /**
  * reducer function.
