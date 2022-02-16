@@ -4,7 +4,7 @@ import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
-import { GlobalNavigationGuardHandlerType } from '@/pages/layout/Layout'
+import { GlobalNavigationGuardHandlerType } from '@/pages/layout/NavigationGuardLayout'
 
 export const Home: React.VFC = () => {
   const { navigationGuardHandler } =

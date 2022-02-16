@@ -16,7 +16,7 @@ export type GlobalNavigationGuardHandlerType = {
   navigationGuardHandler: () => Promise<void>
 }
 
-export const Layout: React.VFC<Props> = ({
+export const NavigationGuardLayout: React.VFC<Props> = ({
   routes = [],
   updateIsAuthentecatedEventHandler = undefined,
 }) => {
@@ -84,4 +84,4 @@ export const Layout: React.VFC<Props> = ({
   return <>{<Outlet context={{ navigationGuardHandler }} />}</>
 }
 
-export default Layout
+export default NavigationGuardLayout

@@ -3,7 +3,7 @@ import { useOutletContext } from 'react-router-dom'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
-import { GlobalNavigationGuardHandlerType } from '@/pages/layout/Layout'
+import { GlobalNavigationGuardHandlerType } from '@/pages/layout/NavigationGuardLayout'
 
 import { useMembers } from '@/hooks/modules/members/useMembers'
 import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'

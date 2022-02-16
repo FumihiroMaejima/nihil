@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 // page layout component
-import { Layout } from '@/pages/layout/Layout'
+import { NavigationGuardLayout } from '@/pages/layout/NavigationGuardLayout'
 
 export type AppRouteType = {
   title: string
@@ -28,7 +28,7 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
         <Routes>
           <Route
             element={
-              <Layout
+              <NavigationGuardLayout
                 routes={routes}
                 updateIsAuthentecatedEventHandler={
                   updateIsAuthentecatedEventHandler

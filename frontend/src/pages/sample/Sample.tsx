@@ -22,7 +22,7 @@ import {
   TableHeaderType,
   SimpleTableDataType,
 } from '@/components/parts/table/PartsSimpleTable'
-import { GlobalNavigationGuardHandlerType } from '@/pages/layout/Layout'
+import { GlobalNavigationGuardHandlerType } from '@/pages/layout/NavigationGuardLayout'
 import { TableContentsType } from '@/types'
 
 const tableData: TableContentsType[] = [
