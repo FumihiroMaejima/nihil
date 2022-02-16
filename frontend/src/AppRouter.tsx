@@ -20,7 +20,6 @@ import {
   GlobalRouterContextWrapper,
   AppRouteType,
 } from '@/components/_global/context/GlobalRouterContextWrapper'
-import { GlobalNavigationGuardProviderContainer } from '@/components/container/GlobalNavigationGuardProviderContainer'
 
 const adminRoutes: AppRouteType[] = [
   {
@@ -106,12 +105,10 @@ export const AppRouter: React.VFC = () => {
       ) : (
         <GlobalHeader />
       )}
-      <GlobalNavigationGuardProviderContainer>
-        <GlobalRouterContextWrapper
-          routes={isDevelop ? routes.concat(devlopOnlyRoutes) : routes}
-          updateIsAuthentecatedEventHandler={updateIsAuth}
-        />
-      </GlobalNavigationGuardProviderContainer>
+      <GlobalRouterContextWrapper
+        routes={isDevelop ? routes.concat(devlopOnlyRoutes) : routes}
+        updateIsAuthentecatedEventHandler={updateIsAuth}
+      />
     </BrowserRouter>
   )
 }

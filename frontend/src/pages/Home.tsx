@@ -14,6 +14,7 @@ export const Home: React.VFC = () => {
   // mount後に実行する処理
   const onDidMount = (): void => {
     const asyncInitPageHandler = async () => {
+      // 認証情報のチェック
       await navigationGuardHandler()
 
       if (getAuthId() !== null) {
