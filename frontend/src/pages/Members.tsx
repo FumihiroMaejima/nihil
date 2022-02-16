@@ -10,7 +10,7 @@ import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProvid
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 
 export const Members: React.VFC = () => {
-  const { changeLocationHandler } =
+  const { navigationGuardHandler } =
     useOutletContext<GlobalNavigationGuardHandlerType>()
   const { membersState, getMembersRequest } = useMembers()
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
@@ -18,8 +18,8 @@ export const Members: React.VFC = () => {
 
   // mount後に実行する処理
   const onDidMount = (): void => {
-    const afterGlobalNavigationHandler = async () => {
-      await changeLocationHandler()
+    const asyncInitPageHandler = async () => {
+      await navigationGuardHandler()
 
       if (getAuthId() !== null) {
         updateGlobalLoading(true)
@@ -29,7 +29,7 @@ export const Members: React.VFC = () => {
         })
       }
     }
-    afterGlobalNavigationHandler()
+    asyncInitPageHandler()
   }
   useEffect(onDidMount, [])
 

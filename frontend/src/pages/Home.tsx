@@ -7,21 +7,23 @@ import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { GlobalNavigationGuardHandlerType } from '@/pages/layout/Layout'
 
 export const Home: React.VFC = () => {
-  const { changeLocationHandler } =
+  const { navigationGuardHandler } =
     useOutletContext<GlobalNavigationGuardHandlerType>()
   const { getAuthId } = useContext(AuthAppContext)
 
-  const globalNavigationHandler = (): void => {
-    const afterGlobalNavigationHandler = async () => {
-      await changeLocationHandler()
+  // mount後に実行する処理
+  const onDidMount = (): void => {
+    const asyncInitPageHandler = async () => {
+      await navigationGuardHandler()
+
       if (getAuthId() !== null) {
         // TODO 認証情報取得後の処理
         // xxxxx
       }
     }
-    afterGlobalNavigationHandler()
+    asyncInitPageHandler()
   }
-  useEffect(globalNavigationHandler, [])
+  useEffect(onDidMount, [])
 
   return (
     <div className="home page-container page-container__mx-auto">

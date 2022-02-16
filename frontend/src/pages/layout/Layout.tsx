@@ -13,7 +13,7 @@ type Props = {
 }
 
 export type GlobalNavigationGuardHandlerType = {
-  changeLocationHandler: () => Promise<void>
+  navigationGuardHandler: () => Promise<void>
 }
 
 export const Layout: React.VFC<Props> = ({
@@ -22,7 +22,6 @@ export const Layout: React.VFC<Props> = ({
 }) => {
   const { updateGlobalLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
-
   const locationState = useLocation()
 
   /**
@@ -39,10 +38,10 @@ export const Layout: React.VFC<Props> = ({
   }
 
   /**
-   * change locatiom path name handler.
+   * global navigation guard handler.
    * @return {Promise<void>}
    */
-  const changeLocationHandler: GlobalNavigationGuardHandlerType['changeLocationHandler'] =
+  const navigationGuardHandler: GlobalNavigationGuardHandlerType['navigationGuardHandler'] =
     async (): Promise<void> => {
       const currentRoute = routes.find(
         (route) => route.path === locationState.pathname
@@ -82,7 +81,7 @@ export const Layout: React.VFC<Props> = ({
       }
     }
 
-  return <>{<Outlet context={{ changeLocationHandler }} />}</>
+  return <>{<Outlet context={{ navigationGuardHandler }} />}</>
 }
 
 export default Layout

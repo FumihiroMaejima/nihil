@@ -1,12 +1,8 @@
-import React, { useLayoutEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-// global context
-
+// page layout component
 import { Layout } from '@/pages/layout/Layout'
-
-// import { useLocationChange } from '@/hooks/auth/useLocationChange'
 
 export type AppRouteType = {
   title: string
@@ -26,21 +22,6 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
   routes = [],
   updateIsAuthentecatedEventHandler = undefined,
 }) => {
-  const locationState = useLocation()
-
-  /**
-   * change locatiom path name handler.
-   * @return {void}
-   */
-  const changeLocationHandler = (): void => {
-    const handlerExecution = async () => {
-      // console.log('router warapper first?: ')
-    }
-    handlerExecution()
-  }
-
-  useLayoutEffect(changeLocationHandler, [locationState])
-
   return (
     <>
       {
