@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 // pages
 import { Home } from '@/pages/Home'
@@ -21,9 +21,6 @@ import {
   AppRouteType,
 } from '@/components/_global/context/GlobalRouterContextWrapper'
 import { GlobalNavigationGuardProviderContainer } from '@/components/container/GlobalNavigationGuardProviderContainer'
-// import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
-// import { ToastContext } from '@/components/container/ToastProviderContainer'
-// import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
 const adminRoutes: AppRouteType[] = [
   {
@@ -101,7 +98,6 @@ export const AppRouter: React.VFC = () => {
   return (
     <BrowserRouter basename={servicePathName}>
       {isAuthenticated ? (
-        /* <AuthGlobalHeader routes={routes} /> */
         <AuthGlobalHeader
           routes={routes.filter(
             (route) => !(route.path === '/login' || route.path === '*')
@@ -116,18 +112,6 @@ export const AppRouter: React.VFC = () => {
           updateIsAuthentecatedEventHandler={updateIsAuth}
         />
       </GlobalNavigationGuardProviderContainer>
-      {/* <Routes>
-        {!isDevelop &&
-          routes.map((route, i) => (
-            <Route key={i} path={route.path} element={route.element} />
-          ))}
-        {isDevelop &&
-          routes
-            .concat(devlopOnlyRoutes)
-            .map((route, i) => (
-              <Route key={i} path={route.path} element={route.element} />
-            ))}
-      </Routes> */}
     </BrowserRouter>
   )
 }
