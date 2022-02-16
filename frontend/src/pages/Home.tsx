@@ -1,30 +1,27 @@
 import React, { useContext, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
+import { useOutletContext } from 'react-router-dom'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
-import { GlobalNavigationContext } from '@/components/container/GlobalNavigationGuardProviderContainer'
-// import '@/assets/scss/index.scss'
+import { GlobalNavigationGuardHandlerType } from '@/pages/layout/Layout'
 
 export const Home: React.VFC = () => {
+  const { changeLocationHandler } =
+    useOutletContext<GlobalNavigationGuardHandlerType>()
   const { getAuthId } = useContext(AuthAppContext)
-  const { isGlobalNavigating, updateGlobalNavigating } = useContext(
-    GlobalNavigationContext
-  )
 
   const globalNavigationHandler = (): void => {
     const afterGlobalNavigationHandler = async () => {
-      if (isGlobalNavigating && getAuthId() !== null) {
-        // TODO グローバルナビゲーション実行後の処理が終了後にフラグをfalseにする
-        updateGlobalNavigating(false)
+      await changeLocationHandler()
+      if (getAuthId() !== null) {
+        // TODO 認証情報取得後の処理
+        // xxxxx
       }
     }
-    if (isGlobalNavigating) {
-      afterGlobalNavigationHandler()
-    }
+    afterGlobalNavigationHandler()
   }
-  useEffect(globalNavigationHandler, [isGlobalNavigating])
+  useEffect(globalNavigationHandler, [])
 
   return (
     <div className="home page-container page-container__mx-auto">

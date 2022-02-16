@@ -1,10 +1,9 @@
-import React, { useContext, useLayoutEffect } from 'react'
+import React, { useContext } from 'react'
 import { useLocation, Outlet } from 'react-router-dom'
 
 // global context
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { GlobalLinerLoadingContext } from '@/components/container/GlobalLinerLoadingProviderContainer'
-import { GlobalNavigationContext } from '@/components/container/GlobalNavigationGuardProviderContainer'
 
 import { AppRouteType } from '@/components/_global/context/GlobalRouterContextWrapper'
 
@@ -13,13 +12,16 @@ type Props = {
   updateIsAuthentecatedEventHandler?: (value: boolean) => void
 }
 
+export type GlobalNavigationGuardHandlerType = {
+  changeLocationHandler: () => Promise<void>
+}
+
 export const Layout: React.VFC<Props> = ({
   routes = [],
   updateIsAuthentecatedEventHandler = undefined,
 }) => {
   const { updateGlobalLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
-  const { updateGlobalNavigating } = useContext(GlobalNavigationContext)
 
   const locationState = useLocation()
 
@@ -38,10 +40,10 @@ export const Layout: React.VFC<Props> = ({
 
   /**
    * change locatiom path name handler.
-   * @return {void}
+   * @return {Promise<void>}
    */
-  const changeLocationHandler = (): void => {
-    const handlerExecution = async () => {
+  const changeLocationHandler: GlobalNavigationGuardHandlerType['changeLocationHandler'] =
+    async (): Promise<void> => {
       const currentRoute = routes.find(
         (route) => route.path === locationState.pathname
       )
@@ -70,7 +72,6 @@ export const Layout: React.VFC<Props> = ({
               if (updateIsAuthentecatedEventHandler) {
                 updateIsAuthentecatedEventHandler(true)
                 updateGlobalLinerLoading(false)
-                updateGlobalNavigating(true)
               }
             }
           } else {
@@ -80,12 +81,8 @@ export const Layout: React.VFC<Props> = ({
         }
       }
     }
-    handlerExecution()
-  }
 
-  useLayoutEffect(changeLocationHandler, [locationState])
-
-  return <>{<Outlet />}</>
+  return <>{<Outlet context={{ changeLocationHandler }} />}</>
 }
 
 export default Layout

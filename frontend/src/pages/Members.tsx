@@ -1,53 +1,37 @@
 import React, { useEffect, useContext } from 'react'
-// import { Link } from 'react-router-dom'
+import { useOutletContext } from 'react-router-dom'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
+import { GlobalNavigationGuardHandlerType } from '@/pages/layout/Layout'
 
 import { useMembers } from '@/hooks/modules/members/useMembers'
 import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
-import { GlobalNavigationContext } from '@/components/container/GlobalNavigationGuardProviderContainer'
 
 export const Members: React.VFC = () => {
+  const { changeLocationHandler } =
+    useOutletContext<GlobalNavigationGuardHandlerType>()
   const { membersState, getMembersRequest } = useMembers()
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
   const { getAuthId, getHeaderOptions } = useContext(AuthAppContext)
-  const { isGlobalNavigating, updateGlobalNavigating } = useContext(
-    GlobalNavigationContext
-  )
 
   // mount後に実行する処理
-  /* const onDidMount = (): void => {
-    // console.log('member test: ')
-    if (getAuthId() !== null) {
-    // if (getAuthId() !== null && !isOpenLinerLoading) {
-      updateGlobalLoading(true)
-      getMembersRequest(getHeaderOptions()).then((res) => {
-        console.log('response: ' + JSON.stringify(res, null, 2))
-        updateGlobalLoading(false)
-      })
-    }
-  }
-  useEffect(onDidMount, []) */
-
-  const globalNavigationHandler = (): void => {
+  const onDidMount = (): void => {
     const afterGlobalNavigationHandler = async () => {
-      if (isGlobalNavigating && getAuthId() !== null) {
+      await changeLocationHandler()
+
+      if (getAuthId() !== null) {
         updateGlobalLoading(true)
         await getMembersRequest(getHeaderOptions()).then((res) => {
           // console.log('response: ' + JSON.stringify(res, null, 2))
           updateGlobalLoading(false)
         })
-        // TODO 各ページでこの実行を行う必要がある。
-        updateGlobalNavigating(false)
       }
     }
-    if (isGlobalNavigating) {
-      afterGlobalNavigationHandler()
-    }
+    afterGlobalNavigationHandler()
   }
-  useEffect(globalNavigationHandler, [isGlobalNavigating])
+  useEffect(onDidMount, [])
 
   return (
     <div className="members page-container page-container__mx-auto">
