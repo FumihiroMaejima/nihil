@@ -6,18 +6,18 @@ import {
 } from '@/hooks/global/useNavigationGuard'
 
 const defaultContextValue: UseNavigationGuardType = {
-  isNavigating: false,
+  isGlobalNavigating: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  updateNavigating: (value: boolean) => {},
+  updateGlobalNavigating: (value: boolean) => {},
 }
 
 export const GlobalNavigationContext = createContext(defaultContextValue)
 
 export const GlobalNavigationGuardProviderContainer: React.FC = (props) => {
-  const { isNavigating, updateNavigating } = useNavigationGuard()
+  const { isGlobalNavigating, updateGlobalNavigating } = useNavigationGuard()
   return (
     <GlobalNavigationContext.Provider
-      value={{ isNavigating, updateNavigating }}
+      value={{ isGlobalNavigating, updateGlobalNavigating }}
     >
       {props.children}
     </GlobalNavigationContext.Provider>

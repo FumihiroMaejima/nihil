@@ -32,7 +32,7 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
   // const [isShowPage, updateShowPageFlag] = useState<boolean>(false)
   // const { updateGlobalLinerLoading } = useContext(GlobalLinerLoadingContext)
   // const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
-  // const { updateNavigating } = useContext(GlobalNavigationContext)
+  // const { updateGlobalNavigating } = useContext(GlobalNavigationContext)
 
   const locationState = useLocation()
   // const navigate = useNavigate()

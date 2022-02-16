@@ -2,8 +2,8 @@
 import React, { useState, useReducer, useCallback } from 'react'
 
 export type UseNavigationGuardType = {
-  isNavigating: boolean
-  updateNavigating: (value: boolean) => void
+  isGlobalNavigating: boolean
+  updateGlobalNavigating: (value: boolean) => void
 }
 
 /**
@@ -26,9 +26,9 @@ const reducer = (
 const initialData = false
 
 export function useNavigationGuard(): UseNavigationGuardType {
-  const [isNavigating, dispatch] = React.useReducer(reducer, initialData)
+  const [isGlobalNavigating, dispatch] = React.useReducer(reducer, initialData)
 
-  const updateNavigating = React.useCallback(
+  const updateGlobalNavigating = React.useCallback(
     (nextValue: boolean) => {
       dispatch({ type: 'update', value: nextValue })
     },
@@ -36,7 +36,7 @@ export function useNavigationGuard(): UseNavigationGuardType {
   )
 
   return {
-    isNavigating,
-    updateNavigating,
+    isGlobalNavigating,
+    updateGlobalNavigating,
   } as const
 }

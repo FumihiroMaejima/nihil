@@ -9,20 +9,22 @@ import { GlobalNavigationContext } from '@/components/container/GlobalNavigation
 
 export const Home: React.VFC = () => {
   const { getAuthId } = useContext(AuthAppContext)
-  const { isNavigating, updateNavigating } = useContext(GlobalNavigationContext)
+  const { isGlobalNavigating, updateGlobalNavigating } = useContext(
+    GlobalNavigationContext
+  )
 
   const globalNavigationHandler = (): void => {
     const afterGlobalNavigationHandler = async () => {
-      if (isNavigating && getAuthId() !== null) {
+      if (isGlobalNavigating && getAuthId() !== null) {
         // TODO グローバルナビゲーション実行後の処理が終了後にフラグをfalseにする
-        updateNavigating(false)
+        updateGlobalNavigating(false)
       }
     }
-    if (isNavigating) {
+    if (isGlobalNavigating) {
       afterGlobalNavigationHandler()
     }
   }
-  useEffect(globalNavigationHandler, [isNavigating])
+  useEffect(globalNavigationHandler, [isGlobalNavigating])
 
   return (
     <div className="home page-container page-container__mx-auto">

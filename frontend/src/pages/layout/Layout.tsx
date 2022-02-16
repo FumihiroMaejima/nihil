@@ -19,7 +19,7 @@ export const Layout: React.VFC<Props> = ({
 }) => {
   const { updateGlobalLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
-  const { updateNavigating } = useContext(GlobalNavigationContext)
+  const { updateGlobalNavigating } = useContext(GlobalNavigationContext)
 
   const locationState = useLocation()
 
@@ -70,7 +70,7 @@ export const Layout: React.VFC<Props> = ({
               if (updateIsAuthentecatedEventHandler) {
                 updateIsAuthentecatedEventHandler(true)
                 updateGlobalLinerLoading(false)
-                updateNavigating(true)
+                updateGlobalNavigating(true)
               }
             }
           } else {

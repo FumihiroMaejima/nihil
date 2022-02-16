@@ -13,7 +13,9 @@ export const Members: React.VFC = () => {
   const { membersState, getMembersRequest } = useMembers()
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
   const { getAuthId, getHeaderOptions } = useContext(AuthAppContext)
-  const { isNavigating, updateNavigating } = useContext(GlobalNavigationContext)
+  const { isGlobalNavigating, updateGlobalNavigating } = useContext(
+    GlobalNavigationContext
+  )
 
   // mount後に実行する処理
   /* const onDidMount = (): void => {
@@ -31,21 +33,21 @@ export const Members: React.VFC = () => {
 
   const globalNavigationHandler = (): void => {
     const afterGlobalNavigationHandler = async () => {
-      if (isNavigating && getAuthId() !== null) {
+      if (isGlobalNavigating && getAuthId() !== null) {
         updateGlobalLoading(true)
         await getMembersRequest(getHeaderOptions()).then((res) => {
           // console.log('response: ' + JSON.stringify(res, null, 2))
           updateGlobalLoading(false)
         })
         // TODO 各ページでこの実行を行う必要がある。
-        updateNavigating(false)
+        updateGlobalNavigating(false)
       }
     }
-    if (isNavigating) {
+    if (isGlobalNavigating) {
       afterGlobalNavigationHandler()
     }
   }
-  useEffect(globalNavigationHandler, [isNavigating])
+  useEffect(globalNavigationHandler, [isGlobalNavigating])
 
   return (
     <div className="members page-container page-container__mx-auto">
