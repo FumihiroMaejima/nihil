@@ -20,6 +20,7 @@ import {
   GlobalRouterContextWrapper,
   AppRouteType,
 } from '@/components/_global/context/GlobalRouterContextWrapper'
+import { GlobalNavigationGuardProviderContainer } from '@/components/container/GlobalNavigationGuardProviderContainer'
 // import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 // import { ToastContext } from '@/components/container/ToastProviderContainer'
 // import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
@@ -86,7 +87,7 @@ const devlopOnlyRoutes: AppRouteType[] = [
   },
 ]
 
-const routes = adminRoutes.concat(normalRoutes)
+export const routes = adminRoutes.concat(normalRoutes)
 
 export const AppRouter: React.VFC = () => {
   // process.envがdevelopかの判定
@@ -109,10 +110,12 @@ export const AppRouter: React.VFC = () => {
       ) : (
         <GlobalHeader />
       )}
-      <GlobalRouterContextWrapper
-        routes={isDevelop ? routes.concat(devlopOnlyRoutes) : routes}
-        updateIsAuthentecatedEventHandler={updateIsAuth}
-      />
+      <GlobalNavigationGuardProviderContainer>
+        <GlobalRouterContextWrapper
+          routes={isDevelop ? routes.concat(devlopOnlyRoutes) : routes}
+          updateIsAuthentecatedEventHandler={updateIsAuth}
+        />
+      </GlobalNavigationGuardProviderContainer>
       {/* <Routes>
         {!isDevelop &&
           routes.map((route, i) => (

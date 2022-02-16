@@ -22,7 +22,7 @@ export const GlobalContextWrapper: React.VFC = () => {
     <div className="global-context-wrapper">
       {/* {isOpenLinerLoading && <PartsLinerLoading />} */}
       {isOpenLinerLoading && <PartsLinerLoadingWrapper />}
-      {isOpenLoading && <PartsCircleLoading />}
+      {!isOpenLinerLoading && isOpenLoading && <PartsCircleLoading />}
       <PartsSimpleToast
         value={toastState.isDisplay}
         data={{ message: toastState.message, status: toastState.status }}

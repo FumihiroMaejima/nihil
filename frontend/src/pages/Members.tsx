@@ -7,17 +7,19 @@ import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeadin
 import { useMembers } from '@/hooks/modules/members/useMembers'
 import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
+import { GlobalNavigationContext } from '@/components/container/GlobalNavigationGuardProviderContainer'
 
 export const Members: React.VFC = () => {
   const { membersState, getMembersRequest } = useMembers()
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
   const { getAuthId, getHeaderOptions } = useContext(AuthAppContext)
+  const { isNavigating, updateNavigating } = useContext(GlobalNavigationContext)
 
   // mount後に実行する処理
-  const onDidMount = (): void => {
-    console.log('member test: ')
-
+  /* const onDidMount = (): void => {
+    // console.log('member test: ')
     if (getAuthId() !== null) {
+    // if (getAuthId() !== null && !isOpenLinerLoading) {
       updateGlobalLoading(true)
       getMembersRequest(getHeaderOptions()).then((res) => {
         console.log('response: ' + JSON.stringify(res, null, 2))
@@ -25,7 +27,25 @@ export const Members: React.VFC = () => {
       })
     }
   }
-  useEffect(onDidMount, [])
+  useEffect(onDidMount, []) */
+
+  const globalNavigationHandler = (): void => {
+    const afterGlobalNavigationHandler = async () => {
+      if (isNavigating && getAuthId() !== null) {
+        updateGlobalLoading(true)
+        await getMembersRequest(getHeaderOptions()).then((res) => {
+          // console.log('response: ' + JSON.stringify(res, null, 2))
+          updateGlobalLoading(false)
+        })
+        // TODO 各ページでこの実行を行う必要がある。
+        updateNavigating(false)
+      }
+    }
+    if (isNavigating) {
+      afterGlobalNavigationHandler()
+    }
+  }
+  useEffect(globalNavigationHandler, [isNavigating])
 
   return (
     <div className="members page-container page-container__mx-auto">
@@ -61,13 +81,6 @@ export const Members: React.VFC = () => {
           </div>
         </div>
       </div>
-
-      {/* <div className="">
-        <Link to={`/about`}>Go To About</Link>
-      </div>
-      <div className="">
-        <Link to={`/sample`}>Go To Sample</Link>
-      </div> */}
     </div>
   )
 }

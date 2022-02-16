@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 // import { Link } from 'react-router-dom'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
+import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
+import { GlobalNavigationContext } from '@/components/container/GlobalNavigationGuardProviderContainer'
 // import '@/assets/scss/index.scss'
 
 export const Home: React.VFC = () => {
+  const { getAuthId } = useContext(AuthAppContext)
+  const { isNavigating, updateNavigating } = useContext(GlobalNavigationContext)
+
+  const globalNavigationHandler = (): void => {
+    const afterGlobalNavigationHandler = async () => {
+      if (isNavigating && getAuthId() !== null) {
+        // TODO グローバルナビゲーション実行後の処理が終了後にフラグをfalseにする
+        updateNavigating(false)
+      }
+    }
+    if (isNavigating) {
+      afterGlobalNavigationHandler()
+    }
+  }
+  useEffect(globalNavigationHandler, [isNavigating])
+
   return (
     <div className="home page-container page-container__mx-auto">
       <PartsSimpleHeading text="サンプル ページ" color="dark-grey" />
