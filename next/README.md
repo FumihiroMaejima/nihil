@@ -164,9 +164,27 @@ $ yarn add --dev @typescript-eslint/parser
 $ yarn add --dev @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
+next用のパッケージのインストール
+
+```Shell-session
+$ yarn add --dev @next/eslint-plugin-next
+```
+`.eslintrc.js`の`extends`に下記を追記する。
+
+
+```javascript
+  extends: [
+    ...
+    'plugin:@next/next/recommended',
+  ],
+
+```
+
 ---
 
 # prettierのインストール
+
+// TODO next用のパッケージの追加
 
 ```Shell-session
 $ yarn add --dev prettier
@@ -285,5 +303,25 @@ $ yarn add --dev @types/node
 ```
 
 ---
+
+# sass
+
+
+下記のcssファイルの拡張子を`scss`に変更する
+
+```Shell-session
+- /src/App.css
+- /src/index.css
+```
+
+元々のcssファイルをインポートしていた箇所も修正する
+
+```Shell-session
+- /src/App.tsx
+- /src/main.tsx
+```
+
+---
+
 
 
