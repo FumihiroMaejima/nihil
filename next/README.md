@@ -129,6 +129,77 @@ We suggest that you begin by typing:
 $ yarn dev
 ```
 
+`http://localhost:3000`でトップページにアクセス出来る。
+
+`http://localhost:3000/api/hello`でサンプルにAPIにアクセス出来る。
+
+
 ---
+
+# srcディレクトリの作成
+
+```Shell-session
+$ mkdir
+$ mv pages src/
+$ mv styles src/
+```
+
+---
+
+# eslintの設定の修正
+
+既存の.eslintrc.jsonを削除し、react側で使用している.eslintrcを利用する。
+
+```Shell-session
+$ mv .eslintrc.json .eslintrc.json.old
+$ touch .eslintrc.js
+```
+
+eslint関係のパッケージの追加
+
+```Shell-session
+$ yarn add --dev @typescript-eslint/eslint-plugin
+$ yarn add --dev @typescript-eslint/parser
+// 一括
+$ yarn add --dev @typescript-eslint/eslint-plugin @typescript-eslint/parser
+```
+
+---
+
+
+## tsconfig.jsonの設定(エイリアス等)
+
+デフォルトのtsconfig.jsonの設定は下記
+
+```Json
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "include": ["./src"],
+  "exclude": [
+    "node_modules"
+  ]
+}
+```
 
 
