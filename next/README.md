@@ -166,6 +166,61 @@ $ yarn add --dev @typescript-eslint/eslint-plugin @typescript-eslint/parser
 
 ---
 
+# prettierのインストール
+
+```Shell-session
+$ yarn add --dev prettier
+// eslint連携用のパッケージ
+$ yarn add --dev eslint-config-prettier eslint-plugin-prettier
+```
+
+### .prettierrcの作成と編集
+
+```Json
+{
+  "semi": false,
+  "arrowParens": "always",
+  "singleQuote": true
+}
+```
+
+---
+
+# stylelint
+
+```Shell-session
+$ yarn add --dev stylelint
+```
+
+`package.json`の`scripts`に設定を追記
+
+```json
+  "scripts": {
+    ...
+    "lint:css": "stylelint src/**/*.scss"
+  },
+```
+
+### .stylelintrcの作成と編集
+
+```Json
+{
+  "rules": {
+    "color-hex-length": "short",
+    "color-no-invalid-hex": true,
+    "custom-property-no-outside-root": true,
+    "indentation": 2,
+    "length-zero-no-unit": true,
+    "media-feature-name-no-vendor-prefix": true,
+    "number-leading-zero": "never",
+    "selector-root-no-composition": true,
+    "string-quotes": "single"
+  }
+}
+```
+
+---
+
 
 ## tsconfig.jsonの設定(エイリアス等)
 
@@ -174,20 +229,25 @@ $ yarn add --dev @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```Json
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
-    "skipLibCheck": false,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react",
+    "jsx": "preserve",
+    "incremental": true,
+    "types": [
+      // "@types/jest",
+      // "jest",
+      "node"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -195,11 +255,35 @@ $ yarn add --dev @typescript-eslint/eslint-plugin @typescript-eslint/parser
       ]
     }
   },
-  "include": ["./src"],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "tests/unit/**/*.ts",
+    "tests/unit/**/*.tsx"
+  ],
+  "exclude": ["node_modules"]
 }
 ```
+
+---
+
+### axios
+
+```Shell-session
+$ yarn add axios
+```
+
+---
+
+# @types/nodeのインストール
+
+Next.jsの場合はプロジェクト作成時にデフォルトでインストールされる。
+
+```Shell-session
+$ yarn add --dev @types/node
+```
+
+---
 
 
