@@ -70,12 +70,12 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
     updateGlobalLoading(false)
 
     if (result) {
-      updateToastState('Logout Success.', 'success', true)
-      navigate('/login')
+      // updateToastState('Logout Success.', 'success', true)
+      // navigate('/login')
 
       // リダイレクトするとトーストは出せない。
       // Router外の為baseNameも指定
-      // location.assign('/admin/login')
+      location.assign('/admin/login')
     } else {
       updateToastState('Logout Filed', 'error', true)
     }

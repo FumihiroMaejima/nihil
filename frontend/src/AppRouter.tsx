@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 // pages
 import { Home } from '@/pages/Home'
+import { Members } from '@/pages/Members'
+
 // sample pages
 // import { Graph } from '@/pages/sample/Graph'
 import { Login } from '@/pages/Login'
@@ -18,18 +20,23 @@ import {
   GlobalRouterContextWrapper,
   AppRouteType,
 } from '@/components/_global/context/GlobalRouterContextWrapper'
-// import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
-// import { ToastContext } from '@/components/container/ToastProviderContainer'
-// import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
-const routes: AppRouteType[] = [
+const adminRoutes: AppRouteType[] = [
   {
     title: 'ホーム | 管理システム',
     shortTitle: 'ホーム',
     path: '/',
     element: <Home />,
     requiredAuth: true,
-    permissions: ['master'],
+    permissions: ['master', 'administrator'],
+  },
+  {
+    title: 'メンバー | 管理システム',
+    shortTitle: 'メンバー',
+    path: '/members',
+    element: <Members />,
+    requiredAuth: true,
+    permissions: ['master', 'administrator'],
   },
   {
     title: 'サンプル | 管理システム',
@@ -37,8 +44,11 @@ const routes: AppRouteType[] = [
     path: '/sample',
     element: <Sample />,
     requiredAuth: true,
-    permissions: ['master'],
+    permissions: ['master', 'administrator'],
   },
+]
+
+const normalRoutes: AppRouteType[] = [
   {
     title: 'ログイン | 管理システム',
     shortTitle: 'ログイン',
@@ -73,6 +83,8 @@ const devlopOnlyRoutes: AppRouteType[] = [
   },
 ]
 
+export const routes = adminRoutes.concat(normalRoutes)
+
 export const AppRouter: React.VFC = () => {
   // process.envがdevelopかの判定
   // 開発時用専用のページを用意したい時に設定する
@@ -85,7 +97,6 @@ export const AppRouter: React.VFC = () => {
   return (
     <BrowserRouter basename={servicePathName}>
       {isAuthenticated ? (
-        /* <AuthGlobalHeader routes={routes} /> */
         <AuthGlobalHeader
           routes={routes.filter(
             (route) => !(route.path === '/login' || route.path === '*')
@@ -98,18 +109,6 @@ export const AppRouter: React.VFC = () => {
         routes={isDevelop ? routes.concat(devlopOnlyRoutes) : routes}
         updateIsAuthentecatedEventHandler={updateIsAuth}
       />
-      <Routes>
-        {!isDevelop &&
-          routes.map((route, i) => (
-            <Route key={i} path={route.path} element={route.element} />
-          ))}
-        {isDevelop &&
-          routes
-            .concat(devlopOnlyRoutes)
-            .map((route, i) => (
-              <Route key={i} path={route.path} element={route.element} />
-            ))}
-      </Routes>
     </BrowserRouter>
   )
 }

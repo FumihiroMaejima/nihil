@@ -4,6 +4,7 @@ export type IAppConfig = {
   noticeData: NoticeData[]
   // aboutMessage: AboutMessageType
   authEndpoint: AuthEndpoint
+  endpoint: EndpointType
 }
 
 export type NoticeData = {
@@ -23,4 +24,28 @@ export type AuthEndpoint = {
   authLogin: string
   authLogout: string
   authSelf: string
+}
+
+export type EndpointType = {
+  // authinfo: AuthInfoServiceEndipont
+  members: MembersServiceEndipont
+  roles: RolesServiceEndipont
+  // game: GameTotalEndipont
+}
+
+export type MembersServiceEndipont = {
+  members: string
+  csv: string
+  member: string
+  create: string
+  roles: string
+}
+
+export type RolesServiceEndipont = {
+  roles: string
+  csv: string
+  role: string
+  create: string
+  delete: string
+  permissions: string
 }

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useOutletContext } from 'react-router-dom'
 // import { PartsLabelHeader } from '@/components/parts/PartsLabelHeader'
 // import { PartsMessageBoard } from '@/components/parts/PartsMessageBoard'
 import { PartsLabelTable } from '@/components/parts/table/PartsLabelTable'
@@ -22,6 +22,7 @@ import {
   TableHeaderType,
   SimpleTableDataType,
 } from '@/components/parts/table/PartsSimpleTable'
+import { GlobalNavigationGuardHandlerType } from '@/pages/layout/NavigationGuardLayout'
 import { TableContentsType } from '@/types'
 
 const tableData: TableContentsType[] = [
@@ -61,11 +62,28 @@ const selectBoxItems = [
 ]
 
 export const Sample: React.VFC = () => {
+  const { navigationGuardHandler } =
+    useOutletContext<GlobalNavigationGuardHandlerType>()
   const [toastValue, setToastValue] = useState<boolean>(false)
   const [textValue, setTextValue] = useState('')
   const [selectValue, setSelectValue] = useState<undefined | number>(undefined)
   const [selectMultiValue, setSelectMultiValue] = useState<number[]>([])
   // const [multiSelectValue, setMultiSelectValue] = useState<number[]>([])
+
+  // mount後に実行する処理
+  const onDidMount = (): void => {
+    const asyncInitPageHandler = async () => {
+      // 認証情報のチェック
+      await navigationGuardHandler()
+
+      /* if (getAuthId() !== null) {
+        // TODO 認証情報取得後の処理
+        // xxxxx
+      } */
+    }
+    asyncInitPageHandler()
+  }
+  useEffect(onDidMount, [])
 
   // TSX内でジェネリクスを使う場合の書き方。
   // アロー関数は1つしか付けられない。

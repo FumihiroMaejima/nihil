@@ -1,15 +1,20 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
-import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { GlobalNavigationGuardHandlerType } from '@/pages/layout/NavigationGuardLayout'
 
-export const Home: React.VFC = () => {
+import { useMembers } from '@/hooks/modules/members/useMembers'
+import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
+import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
+
+export const Members: React.VFC = () => {
   const { navigationGuardHandler } =
     useOutletContext<GlobalNavigationGuardHandlerType>()
-  const { getAuthId } = useContext(AuthAppContext)
+  const { membersState, getMembersRequest } = useMembers()
+  const { updateGlobalLoading } = useContext(GlobalLoadingContext)
+  const { getAuthId, getHeaderOptions } = useContext(AuthAppContext)
 
   // mount後に実行する処理
   const onDidMount = (): void => {
@@ -18,8 +23,11 @@ export const Home: React.VFC = () => {
       await navigationGuardHandler()
 
       if (getAuthId() !== null) {
-        // TODO 認証情報取得後の処理
-        // xxxxx
+        updateGlobalLoading(true)
+        await getMembersRequest(getHeaderOptions()).then((res) => {
+          // console.log('response: ' + JSON.stringify(res, null, 2))
+          updateGlobalLoading(false)
+        })
       }
     }
     asyncInitPageHandler()
@@ -27,8 +35,8 @@ export const Home: React.VFC = () => {
   useEffect(onDidMount, [])
 
   return (
-    <div className="home page-container page-container__mx-auto">
-      <PartsSimpleHeading text="サンプル ページ" color="dark-grey" />
+    <div className="members page-container page-container__mx-auto">
+      <PartsSimpleHeading text="メンバー ページ" color="dark-grey" />
       <div className="mx-2">
         <PartsLabelHeading text="サブヘッダー1" color="blue" />
         <div className="util-text__contents-area util-border-full-solid-2p__color--dark-grey util-border-radius__round--5p util-color__text--dark-grey">
@@ -60,15 +68,8 @@ export const Home: React.VFC = () => {
           </div>
         </div>
       </div>
-
-      {/* <div className="">
-        <Link to={`/about`}>Go To About</Link>
-      </div>
-      <div className="">
-        <Link to={`/sample`}>Go To Sample</Link>
-      </div> */}
     </div>
   )
 }
 
-export default Home
+export default Members
