@@ -10,8 +10,8 @@
     "lint:css": "stylelint src/**/*.scss",
     "test:unit": "jest --config jest.config.js",
     "test:e2e": "cypress open --browser chrome",
-    "prepare": "cd .. && husky install next/.husky",
-    "create-precommit": "cd .. && husky add next/.husky/pre-commit \"cd next && yarn lint-staged\"",
+    "prepare": "cd ../.. && husky install next/.husky",
+    "create-precommit": "cd ../.. && husky add node/next/.husky/pre-commit \"cd next && yarn lint-staged\"",
     "lint-staged": "lint-staged"
   },
   "dependencies": {
