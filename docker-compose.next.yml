@@ -57,12 +57,14 @@ services:
       default:
 
   node-next:
-    build: ./node
+    build:
+      context: .
+      dockerfile: ./node/Dockerfile
     container_name: ${PROJECT_NAME}_node-next
     volumes:
       # - ./node/next:/frontend
       # - ./next:/usr/src/app
-       - ./node/next:/usr/src/app/
+       - ./next:/usr/src/app/
     depends_on:
       - app-next
     ports:

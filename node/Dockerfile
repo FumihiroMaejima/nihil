@@ -7,13 +7,19 @@ EXPOSE 3000
 
 WORKDIR /usr/src/app
 
-# yarn install
-COPY ./next/package.json ./
+ADD ../next/package.json ./
 RUN yarn install
 
-# build
-COPY ./next/ ./
+COPY ../next .
 RUN yarn build
+
+# # yarn install
+# COPY ./next/package.json ./
+# RUN yarn install
+#
+# # build
+# COPY ./next/ ./
+# RUN yarn build
 
 
 CMD ["yarn", "start"]
