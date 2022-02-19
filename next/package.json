@@ -8,7 +8,8 @@
     "lint:next": "next lint",
     "lint": "eslint --ext .ts,.js,.tsx,.jsx --ignore-path .gitignore . --fix",
     "lint:css": "stylelint src/**/*.scss",
-    "test:unit": "jest --config jest.config.js"
+    "test:unit": "jest --config jest.config.js",
+    "test:e2e": "cypress open --browser chrome"
   },
   "dependencies": {
     "axios": "^0.26.0",
@@ -24,6 +25,7 @@
     "@types/react": "17.0.39",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
+    "cypress": "^9.5.0",
     "eslint": "8.9.0",
     "eslint-config-next": "12.0.10",
     "eslint-config-prettier": "^8.3.0",

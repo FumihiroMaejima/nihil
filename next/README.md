@@ -365,5 +365,57 @@ module.exports = {
 
 ---
 
+# Cypress
+
+
+```Shell-session
+$ yarn add --dev cypress @types/jest
+```
+
+### package.jsonの設定
+
+`package.json`の`scripts`の設定を追加
+
+```Json
+  "scripts": {
+    ...
+    "test:e2e": "cypress open --browser chrome"
+  },
+```
+
+
+### cypress.jsonの設定
+
+```Json
+{
+  "baseUrl": "http://localhost:3000",
+  "pluginsFile": "tests/e2e/plugins/index.js"
+}
+```
+
+### e2eディレクトリの設定
+
+vue-cliの設定を踏襲して、`tests/e2e`ディレクトリで実行させる。
+
+`cypress`ディレクトリ = `e2e`ディレクトリ
+
+`tests/e2e/plugins/index.js`の設定を修正(ファイルの出力先の設定)
+
+```JavaScript
+module.exports = (on, config) => {
+  // `on` is used to hook into various events Cypress emits
+  // `config` is the resolved Cypress config
+
+  return Object.assign({}, config, {
+    fixturesFolder: 'tests/e2e/fixtures',
+    integrationFolder: 'tests/e2e/integrations',
+    screenshotsFolder: 'tests/e2e/screenshots',
+    videosFolder: 'tests/e2e/videos',
+    supportFile: 'tests/e2e/support/index.js'
+  })
+}
+```
+
+---
 
 
