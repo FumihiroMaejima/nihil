@@ -60,7 +60,9 @@ services:
     build: ./node
     container_name: ${PROJECT_NAME}_node-next
     volumes:
-      - ./next:/frontend
+      # - ./node/next:/frontend
+      # - ./next:/usr/src/app
+       - ./node/next:/usr/src/app/
     depends_on:
       - app-next
     ports:

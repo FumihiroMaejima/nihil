@@ -3,13 +3,17 @@ FROM node:16.14-alpine
 ENV NODE_ENV=production
 ENV HOST 0.0.0.0
 
-WORKDIR /frontend
-
-# COPY ./package.json ./
-
 EXPOSE 3000
 
+WORKDIR /usr/src/app
+
+# yarn install
+COPY ./next/package.json ./
 RUN yarn install
+
+# build
+COPY ./next/ ./
 RUN yarn build
+
 
 CMD ["yarn", "start"]
