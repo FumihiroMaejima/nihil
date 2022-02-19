@@ -47,3 +47,6 @@ yarn-error.log*
 
 # cypress directory
 /cypress
+
+# build output directory
+/dist
