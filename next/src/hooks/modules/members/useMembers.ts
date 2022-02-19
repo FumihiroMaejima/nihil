@@ -148,7 +148,10 @@ export function useMembers() {
         headers: options.headers,
       })
       .then((response) => {
-        setMembers(response.data.data)
+        // TODO remove comment out
+        // setMembers(response.data.data)
+        // TODO fix to above
+        setMembers(response.data as unknown as MemberType[])
         return { data: response.data, status: 200 }
         // setMembers(response.data.data)
         // return { data: response.data.data, status: response.status }

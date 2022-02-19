@@ -4,7 +4,7 @@ import React from 'react'
 export const GlobalFooter: React.VFC = () => {
   // const currentYear = process.env.REACT_APP_CURRENT_YEAR || 2022
   // for vite
-  const currentYear = import.meta.env.VITE_APP_CURRENT_YEAR || ''
+  const currentYear = process.env.NEXT_PUBLIC_CURRENT_YEAR || ''
 
   return (
     <footer className="global-footer">

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+// import { Route, Routes } from 'react-router-dom'
 
 // page layout component
-import { NavigationGuardLayout } from '@/pages/layout/NavigationGuardLayout'
+import { NavigationGuardLayout } from '@/components/layout/NavigationGuardLayout'
 
 export type AppRouteType = {
   title: string
@@ -25,7 +25,8 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
   return (
     <>
       {
-        <Routes>
+        {
+          /* <Routes>
           <Route
             element={
               <NavigationGuardLayout
@@ -40,7 +41,8 @@ export const GlobalRouterContextWrapper: React.VFC<Props> = ({
               <Route key={i} path={route.path} element={route.element} />
             ))}
           </Route>
-        </Routes>
+        </Routes> */
+        }
       }
     </>
   )

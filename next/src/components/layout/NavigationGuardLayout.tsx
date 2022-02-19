@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useLocation, Outlet } from 'react-router-dom'
+// import { useLocation, Outlet } from 'react-router-dom'
 
 // global context
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
@@ -22,7 +22,7 @@ export const NavigationGuardLayout: React.VFC<Props> = ({
 }) => {
   const { updateGlobalLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
-  const locationState = useLocation()
+  // const locationState = useLocation()
 
   /**
    * redirect login page.
@@ -41,7 +41,7 @@ export const NavigationGuardLayout: React.VFC<Props> = ({
    * global navigation guard handler.
    * @return {Promise<void>}
    */
-  const navigationGuardHandler: GlobalNavigationGuardHandlerType['navigationGuardHandler'] =
+  /* const navigationGuardHandler: GlobalNavigationGuardHandlerType['navigationGuardHandler'] =
     async (): Promise<void> => {
       const currentRoute = routes.find(
         (route) => route.path === locationState.pathname
@@ -79,9 +79,10 @@ export const NavigationGuardLayout: React.VFC<Props> = ({
           }
         }
       }
-    }
+    } */
 
-  return <>{<Outlet context={{ navigationGuardHandler }} />}</>
+  // return <>{<Outlet context={{ navigationGuardHandler }} />}</>
+  return <>{}</>
 }
 
 export default NavigationGuardLayout
