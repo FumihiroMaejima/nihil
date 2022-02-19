@@ -2,6 +2,8 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 // const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
+const developServerPort = process.env.NEXT_PUBLIC_BACKEND_PORT || '50100'
+
 /** @type {import('next').NextConfig} */
 // default setting
 /* const nextConfig = {
@@ -22,6 +24,15 @@ module.exports = (phase, { defaultConfig }) => {
     poweredByHeader: false,
     basePath: '/admin',
     distDir: 'dist',
+    // TODO Now global, cange only develop setting
+    rewrites: () => {
+      return [
+        {
+          source: '/api',
+          destination: `http://localhost:${developServerPort}/api`,
+        },
+      ]
+    },
   }
   return nextConfig
 
