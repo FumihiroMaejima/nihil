@@ -20,6 +20,9 @@ ps:
 dev:
 	sh ./scripts/container.sh
 
+ssr:
+	sh ./scripts/container-nextjs.sh
+
 ##############################
 # make frontend production in nginx container
 ##############################
