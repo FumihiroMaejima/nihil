@@ -418,4 +418,33 @@ module.exports = (on, config) => {
 
 ---
 
+# husky,lint-staged
+
+huskyが設定されていなければ追加する
+
+```Shell-session
+$ yarn add --dev husky lint-staged
+```
+
+package.jsonの`srcripts`に下記のエイリアスを追記する。(モノレポ用の設定)
+
+Nextのプロジェクト名は`next`とする。
+
+`frontend/.huskyディレクトリ`を作成する為に`yarn prepare`と`yarn create-precommit`をそれぞれ実行する。
+
+```Shell-session
+$ yarn prepare
+$ yarn create-precommit
+```
+
+```json
+  "scripts": {
+    ...
+    "prepare": "cd .. && husky install next/.husky",
+    "create-precommit": "cd .. && husky add next/.husky/pre-commit \"cd next && yarn lint-staged\"",
+    "lint-staged": "lint-staged"
+  },
+```
+
+---
 
