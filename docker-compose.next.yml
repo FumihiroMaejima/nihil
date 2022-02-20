@@ -64,7 +64,7 @@ services:
     volumes:
       # - ./node/next:/frontend
       # - ./next:/usr/src/app
-       - ./next:/usr/src/app/
+       - ./next:/frontend
     depends_on:
       - app-next
     ports:

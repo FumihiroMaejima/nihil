@@ -5,7 +5,7 @@ ENV HOST 0.0.0.0
 
 EXPOSE 3000
 
-WORKDIR /usr/src/app
+WORKDIR /frontend
 
 ADD ../next/package.json ./
 RUN yarn install
