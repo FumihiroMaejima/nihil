@@ -1,5 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from 'react'
 // import { useNavigate, Link } from 'react-router-dom'
+// import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { AppRouteType } from '@/components/_global/context/GlobalRouterContextWrapper'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { ToastContext } from '@/components/container/ToastProviderContainer'
@@ -115,15 +117,21 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
           ref={refNavigationElement}
         >
           <div className="global-header__navigation-item">
-            {/* {routes.map((route, i) => (
+            {routes.map((route, i) => (
               <Link
-                className="global-header__navigation-item-button"
+                // className="global-header__navigation-item-button"
                 key={i}
-                to={route.path}
+                href={route.path}
               >
-                {route.shortTitle}
+                {/* {route.shortTitle} */}
+                <a
+                  className="global-header__navigation-item-button"
+                  href={route.path}
+                >
+                  {route.shortTitle}
+                </a>
               </Link>
-            ))} */}
+            ))}
             {/* <a
               className="global-header__navigation-item-button"
               href="#responsive-header1"

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 // import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/router'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsSimpleTextField } from '@/components/parts/form/PartsSimpleTextField'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
@@ -12,6 +13,7 @@ import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProvid
 
 export const Login: React.VFC = () => {
   // const navigate = useNavigate()
+  const router = useRouter()
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
 
@@ -73,8 +75,8 @@ export const Login: React.VFC = () => {
                   updateGlobalLoading(false)
 
                   if (result) {
-                    // navigate('/')
-                    location.assign('/admin')
+                    router.push('/')
+                    // location.assign('/admin')
                   }
                 }}
               />

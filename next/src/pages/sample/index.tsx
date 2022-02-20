@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 // import { Link, useOutletContext } from 'react-router-dom'
+import Link from 'next/link'
 import { PartsLabelTable } from '@/components/parts/table/PartsLabelTable'
 import { PartsSimpleBox } from '@/components/parts/box/PartsSimpleBox'
 import { PartsTitleBox } from '@/components/parts/box/PartsTitleBox'
@@ -338,20 +339,20 @@ export const Sample: React.VFC = () => {
         />
       </div>
 
-      {/* <div className="my-4">
+      <div className="my-4">
         <div className="">
-          <Link to={`/about`}>Go To About</Link>
+          <Link href={`/about`}>Go To About</Link>
         </div>
         <div className="">
-          <Link to={`/sample`}>Go To Sample</Link>
+          <Link href={`/sample`}>Go To Sample</Link>
         </div>
         <div className="">
-          <Link to={`/test1`}>Go To Test1</Link>
+          <Link href={`/test1`}>Go To Test1</Link>
         </div>
         <div className="">
-          <Link to={`/404`}>Go To 404</Link>
+          <Link href={`/404`}>Go To 404</Link>
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }
