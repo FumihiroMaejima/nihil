@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 // import { Link, useOutletContext } from 'react-router-dom'
 import Link from 'next/link'
 import { PartsLabelTable } from '@/components/parts/table/PartsLabelTable'
@@ -22,6 +22,10 @@ import {
   SimpleTableDataType,
 } from '@/components/parts/table/PartsSimpleTable'
 // import { GlobalNavigationGuardHandlerType } from '@/components/layout/NavigationGuardLayout'
+
+import { useNavigationGuard } from '@/components/layout/useNavigationGuard'
+import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
+
 import { TableContentsType } from '@/types'
 
 const tableData: TableContentsType[] = [
@@ -68,16 +72,18 @@ export const Sample: React.VFC = () => {
   const [selectValue, setSelectValue] = useState<undefined | number>(undefined)
   const [selectMultiValue, setSelectMultiValue] = useState<number[]>([])
   // const [multiSelectValue, setMultiSelectValue] = useState<number[]>([])
+  const { navigationGuardHandler } = useNavigationGuard()
+  const { getAuthId } = useContext(AuthAppContext)
 
   // mount後に実行する処理
   const onDidMount = (): void => {
     const asyncInitPageHandler = async () => {
       // 認証情報のチェック
-      // await navigationGuardHandler()
-      /* if (getAuthId() !== null) {
+      await navigationGuardHandler()
+      if (getAuthId() !== null) {
         // TODO 認証情報取得後の処理
         // xxxxx
-      } */
+      }
     }
     asyncInitPageHandler()
   }
