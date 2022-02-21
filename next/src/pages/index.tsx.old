@@ -1,39 +1,9 @@
-import type {
-  NextPage,
-  // GetServerSideProps,
-  // GetServerSidePropsContext,
-} from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.scss'
-import { useEffect, useContext } from 'react'
-
-import { useNavigationGuard } from '@/components/layout/useNavigationGuard'
-import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
-// import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
-  // 流石にNextPageコンポーネント内でhooksを利用する事は出来る。
-  // const [data, setData] = useState<boolean>(false)
-
-  const { navigationGuardHandler } = useNavigationGuard()
-  const { getAuthId } = useContext(AuthAppContext)
-
-  const onDidMount = (): void => {
-    const asyncInitPageHandler = async () => {
-      // 認証情報のチェック
-      await navigationGuardHandler()
-      console.log('use effect: ' + JSON.stringify(''))
-
-      if (getAuthId() !== null) {
-        // TODO 認証情報取得後の処理
-        // xxxxx
-      }
-    }
-    asyncInitPageHandler()
-  }
-  useEffect(onDidMount, [])
-
   return (
     <div className={styles.container}>
       <Head>

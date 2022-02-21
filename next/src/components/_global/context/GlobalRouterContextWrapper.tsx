@@ -1,20 +1,7 @@
 import React from 'react'
-// import { Route, Routes } from 'react-router-dom'
-
-// page layout component
-import { NavigationGuardLayout } from '@/components/layout/NavigationGuardLayout'
-
-export type AppRouteType = {
-  title: string
-  shortTitle: string
-  path: string
-  element: JSX.Element
-  requiredAuth?: boolean
-  permissions?: string[]
-}
 
 type Props = {
-  routes?: AppRouteType[]
+  routes?: []
   updateIsAuthentecatedEventHandler?: (value: boolean) => void
 }
 

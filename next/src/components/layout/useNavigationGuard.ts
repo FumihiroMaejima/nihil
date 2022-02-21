@@ -1,21 +1,21 @@
-import React, { useContext } from 'react'
-import type {
+import { useContext } from 'react'
+/* import type {
   NextPage,
   GetServerSideProps,
   GetServerSidePropsContext,
   NextComponentType,
   NextPageContext,
-} from 'next'
+} from 'next' */
 // import { useLocation, Outlet } from 'react-router-dom'
 import { useRouter } from 'next/router'
 // import Link from 'next/link'
-import type { AppProps, AppContext } from 'next/app'
+// import type { AppProps, AppContext } from 'next/app'
 
 // global context
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { GlobalLinerLoadingContext } from '@/components/container/GlobalLinerLoadingProviderContainer'
 
-import { AppRouteType } from '@/components/_global/context/GlobalRouterContextWrapper'
+import { AppRouteType, routes } from '@/AppRouter'
 
 type Props = {
   routes?: AppRouteType[]
@@ -28,12 +28,16 @@ export type GlobalNavigationGuardHandlerType = {
   navigationGuardHandler: () => Promise<void>
 }
 
-export function useLayout({
-  routes = [],
-  updateIsAuthentecatedEventHandler = undefined,
-}: // children = undefined,
-// propsTestKey = 'defalut',
-Props): GlobalNavigationGuardHandlerType {
+/* const defaultProps: Props = {
+  routes: routesParam,
+  updateIsAuthentecatedEventHandler: undefined,
+} */
+
+export function useNavigationGuard(): GlobalNavigationGuardHandlerType {
+  // const routes = routesParam
+  const updateIsAuthentecatedEventHandler:
+    | undefined
+    | ((value: boolean) => void) = undefined
   const { updateGlobalLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
   // const locationState = useLocation()
