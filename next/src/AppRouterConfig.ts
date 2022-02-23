@@ -16,14 +16,14 @@ const adminRoutes: AppRouteType[] = [
     requiredAuth: true,
     permissions: ['master', 'administrator'],
   },
-  /* {
+  {
     title: 'メンバー | 管理システム',
     shortTitle: 'メンバー',
     path: '/members',
-    element: <Members />,
+    // element: <Members />,
     requiredAuth: true,
     permissions: ['master', 'administrator'],
-  }, */
+  },
   {
     title: 'サンプル | 管理システム',
     shortTitle: 'サンプル',
