@@ -2,9 +2,7 @@ import '@/styles/globals.scss'
 import '@/styles/scss/index.scss'
 import type { AppProps } from 'next/app'
 
-// import { AuthGlobalHeader } from '@/components/_global/AuthGlobalHeader'
 import { GlobalFooter } from '@/components/_global/GlobalFooter'
-// import { GlobalHeader } from '@/components/_global/GlobalHeader'
 import { GlobalBackToPageTopButton } from '@/components/_global/GlobalBackToPageTopButton'
 import { GlobalContextWrapper } from '@/components/_global/context/GlobalContextWrapper'
 import { AuthAppProviderContainer } from '@/components/container/AuthAppProviderContainer'
@@ -24,9 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <ToastProviderContainer>
               <GlobalContextWrapper />
               <GlobalBackToPageTopButton />
-              {/* {isAuthenticated ? <AuthGlobalHeader /> : <GlobalHeader />} */}
               <div className="app-content">
-                {/*  <AppRouter /> */}
                 <Layout {...pageProps}>
                   <Component {...pageProps} />
                 </Layout>
