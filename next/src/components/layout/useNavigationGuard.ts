@@ -1,43 +1,17 @@
 import { useContext } from 'react'
-/* import type {
-  NextPage,
-  GetServerSideProps,
-  GetServerSidePropsContext,
-  NextComponentType,
-  NextPageContext,
-} from 'next' */
-// import { useLocation, Outlet } from 'react-router-dom'
 import { useRouter } from 'next/router'
-// import Link from 'next/link'
-// import type { AppProps, AppContext } from 'next/app'
 
 // global context
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { GlobalLinerLoadingContext } from '@/components/container/GlobalLinerLoadingProviderContainer'
 
-import { AppRouteType, routes } from '@/AppRouter'
-
-type Props = {
-  routes?: AppRouteType[]
-  updateIsAuthentecatedEventHandler?: (value: boolean) => void
-  // children?: JSX.Element
-  // propsTestKey?: any
-}
+import { routes } from '@/AppRouter'
 
 export type GlobalNavigationGuardHandlerType = {
   navigationGuardHandler: () => Promise<void>
 }
 
-/* const defaultProps: Props = {
-  routes: routesParam,
-  updateIsAuthentecatedEventHandler: undefined,
-} */
-
 export function useNavigationGuard(): GlobalNavigationGuardHandlerType {
-  // const routes = routesParam
-  const updateIsAuthentecatedEventHandler:
-    | undefined
-    | ((value: boolean) => void) = undefined
   const { updateGlobalLinerLoading } = useContext(GlobalLinerLoadingContext)
   const { checkAuthenticated, getAuthAuthority } = useContext(AuthAppContext)
   // const locationState = useLocation()
@@ -48,9 +22,6 @@ export function useNavigationGuard(): GlobalNavigationGuardHandlerType {
    * @return {void}
    */
   const redirectLoginPage = () => {
-    if (updateIsAuthentecatedEventHandler) {
-      updateIsAuthentecatedEventHandler(false)
-    }
     // navigate('/login', { replace: true })
     // データの初期化も兼ねてグローバルなLocationクラスを利用する
     location.assign(
@@ -68,8 +39,6 @@ export function useNavigationGuard(): GlobalNavigationGuardHandlerType {
         // (route) => route.path === locationState.pathname
         (route) => route.path === routerState.pathname
       )
-
-      console.log('navigationGuardHandler: ' + JSON.stringify(''))
 
       // 認証が必要なページ
       if (currentRoute && currentRoute.requiredAuth) {
@@ -92,10 +61,7 @@ export function useNavigationGuard(): GlobalNavigationGuardHandlerType {
               redirectLoginPage()
             } else {
               // 認証・認可を満たすユーザー
-              if (updateIsAuthentecatedEventHandler) {
-                // updateIsAuthentecatedEventHandler(true)
-                updateGlobalLinerLoading(false)
-              }
+              updateGlobalLinerLoading(false)
             }
           } else {
             // 認証付きページかつ認可情報が設定されていない場合
