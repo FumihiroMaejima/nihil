@@ -6,7 +6,7 @@ import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeadin
 import { useMembers } from '@/hooks/modules/members/useMembers'
 import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
-import { useNavigationGuard } from '@/components/layout/useNavigationGuard'
+import { useNavigationGuard } from '@/hooks/auth/useNavigationGuard'
 
 export const Members: React.VFC = () => {
   const { navigationGuardHandler } = useNavigationGuard()

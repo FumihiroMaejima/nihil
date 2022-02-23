@@ -22,7 +22,7 @@ import {
   SimpleTableDataType,
 } from '@/components/parts/table/PartsSimpleTable'
 
-import { useNavigationGuard } from '@/components/layout/useNavigationGuard'
+import { useNavigationGuard } from '@/hooks/auth/useNavigationGuard'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 
 import { TableContentsType } from '@/types'

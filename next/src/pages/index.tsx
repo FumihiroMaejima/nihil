@@ -5,7 +5,7 @@ import type {
   // GetServerSidePropsContext,
 } from 'next'
 
-import { useNavigationGuard } from '@/components/layout/useNavigationGuard'
+import { useNavigationGuard } from '@/hooks/auth/useNavigationGuard'
 import { PartsSimpleButton } from '@/components/parts/button/PartsSimpleButton'
 import { PartsLabelHeading } from '@/components/parts/heading/PartsLabelHeading'
 import { PartsSimpleHeading } from '@/components/parts/heading/PartsSimpleHeading'
