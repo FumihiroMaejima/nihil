@@ -25,7 +25,7 @@ module.exports = (phase, { defaultConfig }) => {
     basePath: '/admin',
     distDir: 'dist',
     // TODO Now global, cange only develop setting
-    rewrites: () => {
+    /* rewrites: () => {
       return [
         {
           source: '/api',
@@ -37,7 +37,7 @@ module.exports = (phase, { defaultConfig }) => {
           // basePath: undefined,
         },
       ]
-    },
+    }, */
   }
   // return nextConfig
 

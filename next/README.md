@@ -458,6 +458,81 @@ $ yarn create-precommit
 $ yarn add --dev next-http-proxy-middleware
 ```
 
+`@/pages/api/`ディレクトリに`[...all].ts`を追加
+
+
+```TypeScript
+import { NextApiRequest, NextApiResponse } from 'next'
+import httpProxyMiddleware from 'next-http-proxy-middleware'
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default (
+  req: NextApiRequest,
+  res: NextApiResponse
+): ReturnType<typeof httpProxyMiddleware> => {
+  const proxy = httpProxyMiddleware(req, res, {
+    // target: process.env.API_HOST,
+    target: `http://localhost/api`,
+    changeOrigin: true,
+    headers: {
+      'x-test-key': 'test header data',
+    },
+    pathRewrite: {
+      '^/api': '',
+    },
+  })
+
+  return proxy
+}
+```
+
+
+`next.config.js`にて`basePath`が設定されていると、basepathを含めてリクエストを送らないとプロキシ設定が有効化出来ない。
+
+公式ドキュメントには`rewrites`などの設定で特定のパスの時にbasePathを無効化する設定があるが、2022年2月現在は有効化されない。
+
+[参考](https://nextjs.org/docs/api-reference/next.config.js/rewrites)
+
+
+対応策として`prosess.env.NODE_ENV`が`development`の時は別途basePathを設定してreturnする必要がある。
+
+公式ドキュメントによると`PHASE_DEVELOPMENT_SERVER`で判定して早期returnさせている。
+
+
+```TypeScript
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
+
+// custom setting
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+module.exports = (phase, { defaultConfig }) => {
+  /**
+   * @type {import('next').NextConfig}
+   */
+  const nextConfig = {
+    /* config options here */
+    reactStrictMode: true,
+    poweredByHeader: false,
+    basePath: '/admin',
+    distDir: 'build',
+  }
+  // return nextConfig
+
+  // if Divide config in environmental.
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
+    return {
+      // TODO development only config options here
+      ...nextConfig,
+      basePath: '',
+    }
+  }
+
+  return {
+    // TODO config options for all phases except development here
+    ...nextConfig,
+  }
+}
+```
+
 
 
 ---
