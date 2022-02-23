@@ -23,6 +23,8 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
 
   // mount後に実行する処理
   const onDidMount = (): void => {
+    let timer = 0
+
     const closeMenuByFocusEventHandler = (e: MouseEvent | FocusEvent) => {
       if (refElement?.current?.contains(e.target as Node)) {
         // click inside thie component
@@ -56,8 +58,16 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
     })
 
     window.addEventListener('resize', (e: UIEvent) => {
-      resizeEventHandler(e)
-      window.removeEventListener('resize', resizeEventHandler)
+      // resizeイベントが複数回キャッチされるケースを考慮
+      // 最後resizeイベント時のみsetTimeoutが成功してコールバックを実行する
+      if (timer > 0) window.clearTimeout(timer)
+      timer = window.setTimeout(() => {
+        resizeEventHandler(e)
+        window.removeEventListener('resize', resizeEventHandler)
+      }, 200)
+
+      // resizeEventHandler(e)
+      // window.removeEventListener('resize', resizeEventHandler)
     })
   }
   useEffect(onDidMount, [])
