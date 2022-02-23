@@ -23,11 +23,19 @@ export default (
     headers: {
       'x-test-key': process.env.API_KEY || '',
     },
-    pathRewrite: {
+    pathRewrite: [
+      // '^/api/proxy': '',
+      // '^/api': '', // true
+      {
+        patternStr: '/api',
+        replaceStr: '',
+      },
+    ],
+    /* pathRewrite: {
       // '^/api/proxy': '',
       // '^/api': '', // true
       '^/api': '',
-    },
+    }, */
     /* pathRewrite: [
       {patternStr: '/api'}
     ] */
