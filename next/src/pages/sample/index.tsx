@@ -21,7 +21,6 @@ import {
   TableHeaderType,
   SimpleTableDataType,
 } from '@/components/parts/table/PartsSimpleTable'
-// import { GlobalNavigationGuardHandlerType } from '@/components/layout/NavigationGuardLayout'
 
 import { useNavigationGuard } from '@/components/layout/useNavigationGuard'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
@@ -122,7 +121,6 @@ export const Sample: React.VFC = () => {
   }
 
   const removeMultiAuctoCompleteSelect = function <T = string>(x: T): void {
-    console.log('remove: ' + JSON.stringify(x, null, 2))
     if (typeof x === 'string') {
       setSelectMultiValue([
         ...selectMultiValue.filter((v) => v !== parseInt(x)),

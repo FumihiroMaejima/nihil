@@ -15,6 +15,7 @@ export const PartsSimpleButton: React.VFC<Props> = ({
   textColor = 'white',
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // eslint-disable-next-line no-console
     console.log('default click')
   },
   disabled = false,

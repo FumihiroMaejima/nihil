@@ -10,6 +10,7 @@ export const PartsSimpleModal: React.VFC<Props> = ({
   isOpen = false,
   hideOnClickOutSide = false,
   closeModalHandler = () => {
+    // eslint-disable-next-line no-console
     console.log('default click')
   },
 }) => {
