@@ -11,11 +11,21 @@ import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { ToastContext } from '@/components/container/ToastProviderContainer'
 import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
 
+const defaulName =
+  process.env.NODE_ENV === 'production'
+    ? ''
+    : process.env.NEXT_PUBLIC_ADMIN_EMAIL || ''
+
+const defaulPassword =
+  process.env.NODE_ENV === 'production'
+    ? ''
+    : process.env.NEXT_PUBLIC_ADMIN_PASSWORD || ''
+
 export const Login: React.VFC = () => {
   // const navigate = useNavigate()
   const router = useRouter()
-  const [emailValue, setEmailValue] = useState('')
-  const [passwordValue, setPasswordValue] = useState('')
+  const [emailValue, setEmailValue] = useState(defaulName)
+  const [passwordValue, setPasswordValue] = useState(defaulPassword)
 
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
   const { updateToastState } = useContext(ToastContext)
