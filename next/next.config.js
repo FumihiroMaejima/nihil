@@ -1,6 +1,6 @@
 // next.js/packages/next/shared/lib/constants.ts
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-// const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
 const developServerPort = process.env.NEXT_PUBLIC_BACKEND_PORT || '50100'
 
@@ -30,21 +30,28 @@ module.exports = (phase, { defaultConfig }) => {
         {
           source: '/api',
           destination: `http://localhost:${developServerPort}/api`,
+          // destination: `http://localhost:${developServerPort}`,
+          // destination: `http://localhost:50100/api`,
+          // destination: 'http://localhost:50100',
+          basePath: false,
+          // basePath: undefined,
         },
       ]
     },
   }
-  return nextConfig
+  // return nextConfig
 
   // if Divide config in environmental.
-  /* if (phase === PHASE_DEVELOPMENT_SERVER) {
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       // TODO development only config options here
+      ...nextConfig,
+      basePath: '',
     }
   }
 
   return {
     // TODO config options for all phases except development here
-    // nextConfig,
-  } */
+    ...nextConfig,
+  }
 }

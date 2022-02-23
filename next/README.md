@@ -448,3 +448,17 @@ $ yarn create-precommit
 
 ---
 
+---
+
+# proxy設定
+
+`next-http-proxy-middleware`のインストール
+
+```Shell-session
+$ yarn add --dev next-http-proxy-middleware
+```
+
+
+
+---
+

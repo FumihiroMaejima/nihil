@@ -53,7 +53,9 @@ export function useNavigationGuard(): GlobalNavigationGuardHandlerType {
     }
     // navigate('/login', { replace: true })
     // データの初期化も兼ねてグローバルなLocationクラスを利用する
-    location.assign('/admin/login')
+    location.assign(
+      process.env.NODE_ENV === 'production' ? '/admin/login' : '/login'
+    )
   }
 
   /**
@@ -91,7 +93,7 @@ export function useNavigationGuard(): GlobalNavigationGuardHandlerType {
             } else {
               // 認証・認可を満たすユーザー
               if (updateIsAuthentecatedEventHandler) {
-                updateIsAuthentecatedEventHandler(true)
+                // updateIsAuthentecatedEventHandler(true)
                 updateGlobalLinerLoading(false)
               }
             }

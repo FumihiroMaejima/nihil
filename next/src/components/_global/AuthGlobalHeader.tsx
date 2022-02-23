@@ -77,7 +77,10 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
 
       // リダイレクトするとトーストは出せない。
       // Router外の為baseNameも指定
-      location.assign('/admin/login')
+      // location.assign('/admin/login')
+      location.assign(
+        process.env.NODE_ENV === 'production' ? '/admin/login' : '/login'
+      )
     } else {
       updateToastState('Logout Filed', 'error', true)
     }

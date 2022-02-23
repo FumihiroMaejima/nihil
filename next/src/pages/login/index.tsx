@@ -14,8 +14,8 @@ import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProvid
 export const Login: React.VFC = () => {
   // const navigate = useNavigate()
   const router = useRouter()
-  const [emailValue, setEmailValue] = useState('')
-  const [passwordValue, setPasswordValue] = useState('')
+  const [emailValue, setEmailValue] = useState('admin1')
+  const [passwordValue, setPasswordValue] = useState('test123')
 
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
   const { updateToastState } = useContext(ToastContext)
