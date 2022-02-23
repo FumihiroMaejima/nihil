@@ -19,7 +19,7 @@ import { GlobalHeader } from '@/components/_global/GlobalHeader'
 // global context
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 
-import { routes } from '@/AppRouter'
+import { routes } from '@/AppRouterConfig'
 
 type Props = {
   children?: JSX.Element

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { GlobalLinerLoadingContext } from '@/components/container/GlobalLinerLoadingProviderContainer'
 
-import { routes } from '@/AppRouter'
+import { routes } from '@/AppRouterConfig'
 
 export type GlobalNavigationGuardHandlerType = {
   navigationGuardHandler: () => Promise<void>

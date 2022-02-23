@@ -1,8 +1,3 @@
-import { useState } from 'react'
-
-import { AuthGlobalHeader } from '@/components/_global/AuthGlobalHeader'
-import { GlobalHeader } from '@/components/_global/GlobalHeader'
-
 export type AppRouteType = {
   title: string
   shortTitle: string
@@ -53,25 +48,3 @@ const normalRoutes: AppRouteType[] = [
 // const devlopOnlyRoutes: AppRouteType[] = []
 
 export const routes: AppRouteType[] = adminRoutes.concat(normalRoutes)
-
-export const AppRouter: React.VFC = () => {
-  // const servicePathName = 'admin' || undefined
-
-  const [isAuthenticated, updateIsAuth] = useState(false)
-
-  return (
-    <>
-      {isAuthenticated ? (
-        <AuthGlobalHeader
-          routes={routes.filter(
-            (route) => !(route.path === '/login' || route.path === '*')
-          )}
-        />
-      ) : (
-        <GlobalHeader />
-      )}
-    </>
-  )
-}
-
-export default AppRouter
