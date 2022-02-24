@@ -2,9 +2,9 @@ import React from 'react'
 // import '@/assets/scss/index.scss'
 
 export const GlobalFooter: React.VFC = () => {
-  // const currentYear = process.env.REACT_APP_CURRENT_YEAR || 2021
+  // const currentYear = process.env.REACT_APP_CURRENT_YEAR || 2022
   // for vite
-  const currentYear = import.meta.env.VITE_APP_CURRENT_YEAR || 2021
+  const currentYear = import.meta.env.VITE_APP_CURRENT_YEAR || ''
 
   return (
     <footer className="global-footer">

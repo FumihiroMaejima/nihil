@@ -26,6 +26,7 @@
     security:
       - authenticaion_key: []
       - authority_key: []
+      - auth_id: []
   post:
     tags:
       - gameEnemies
@@ -33,20 +34,18 @@
     description: ""
     operationId: importEnemiesWithFile
     parameters:
-      - name: authenticaion_key
+      - name: Authorization
         in: header
         description: api key
         required: true
         schema:
           type: string
-      - name: authority_key
+      - name: X-Auth-Authority
         in: header
         description: api key
         required: true
         schema:
-          type: array
-          items:
-            type: string
+          type: string
     requestBody:
       content:
         multipart/form-data:
@@ -81,3 +80,4 @@
     security:
       - authenticaion_key: []
       - authority_key: []
+      - auth_id: []

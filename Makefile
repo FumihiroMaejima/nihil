@@ -1,3 +1,5 @@
+.PHONY: help
+.DEFAULT_GOAL := help
 ##############################
 # make docker environmental
 ##############################
@@ -16,7 +18,12 @@ ps:
 	docker-compose ps
 
 dev:
-	sh ./scripts/container.sh
+	sh ./scripts/container.sh  && \
+	${SHELL} ./scripts/change-db-host.sh db-next db
+
+ssr:
+	sh ./scripts/container-nextjs.sh && \
+	${SHELL} ./scripts/change-db-host.sh db db-next
 
 ##############################
 # make frontend production in nginx container
@@ -144,6 +151,9 @@ swagger-down:
 swagger-ps:
 	docker-compose -f ./docker-compose.swagger.yml ps
 
+swagger-dev:
+	sh ./scripts/swagger-container.sh
+
 ##############################
 # swagger codegen mock-server
 ##############################
@@ -161,3 +171,9 @@ codegen-prestart:
 
 codegen-start:
 	cd api/node-mock && npm run start
+
+##############################
+# etc
+##############################
+help:
+	@cat Makefile

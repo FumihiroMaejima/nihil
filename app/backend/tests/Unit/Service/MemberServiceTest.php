@@ -27,7 +27,8 @@ class MemberServiceTest extends TestCase
         Artisan::call('db:seed');
 
         // $response = $this->json('POST', "http://".Config::get('app.url').route('auth.admin', [], false), [
-        $response = $this->json('POST', $this->getRouteUrl('auth.admin'), [
+        // $response = $this->json('POST', $this->getRouteUrl('auth.admin'), [
+        $response = $this->json('POST', route('auth.admin'), [
             'email'    => Config::get('myapp.test.admin.login.email'),
             'password' => Config::get('myapp.test.admin.login.password')
         ])->json();
