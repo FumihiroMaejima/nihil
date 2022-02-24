@@ -1,6 +1,8 @@
 import React, { useState, useContext, useRef, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { AppRouteType } from '@/components/_global/context/GlobalRouterContextWrapper'
+// import { useNavigate, Link } from 'react-router-dom'
+// import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { AppRouteType } from '@/AppRouterConfig'
 import { AuthAppContext } from '@/components/container/AuthAppProviderContainer'
 import { ToastContext } from '@/components/container/ToastProviderContainer'
 import { GlobalLoadingContext } from '@/components/container/GlobalLoadingProviderContainer'
@@ -15,7 +17,7 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
   const { logout } = useContext(AuthAppContext)
   const { updateToastState } = useContext(ToastContext)
   const { updateGlobalLoading } = useContext(GlobalLoadingContext)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const refElement = useRef<HTMLHeadElement>(null)
   const refNavigationElement = useRef<HTMLDivElement>(null)
 
@@ -85,7 +87,10 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
 
       // リダイレクトするとトーストは出せない。
       // Router外の為baseNameも指定
-      location.assign('/admin/login')
+      // location.assign('/admin/login')
+      location.assign(
+        process.env.NODE_ENV === 'production' ? '/admin/login' : '/login'
+      )
     } else {
       updateToastState('Logout Filed', 'error', true)
     }
@@ -127,11 +132,17 @@ export const AuthGlobalHeader: React.VFC<Props> = ({ routes = [] }) => {
           <div className="global-header__navigation-item">
             {routes.map((route, i) => (
               <Link
-                className="global-header__navigation-item-button"
+                // className="global-header__navigation-item-button"
                 key={i}
-                to={route.path}
+                href={route.path}
               >
-                {route.shortTitle}
+                {/* {route.shortTitle} */}
+                <a
+                  className="global-header__navigation-item-button"
+                  href={route.path}
+                >
+                  {route.shortTitle}
+                </a>
               </Link>
             ))}
             {/* <a

@@ -18,7 +18,12 @@ ps:
 	docker-compose ps
 
 dev:
-	sh ./scripts/container.sh
+	sh ./scripts/container.sh  && \
+	${SHELL} ./scripts/change-db-host.sh db-next db
+
+ssr:
+	sh ./scripts/container-nextjs.sh && \
+	${SHELL} ./scripts/change-db-host.sh db db-next
 
 ##############################
 # make frontend production in nginx container
