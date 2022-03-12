@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Config;
 class RolesTableSeeder extends Seeder
 {
     private $table = 'roles';
-    private $count = 5;
+    private int $count = 5;
 
     /**
      * Run the database seeds.
@@ -20,6 +20,8 @@ class RolesTableSeeder extends Seeder
     {
         $template = [
             'name'       => '',
+            'code'       => '',
+            'detail'     => '',
             'created_at' => '2021-01-14 00:00:00',
             'updated_at' => '2021-01-14 00:00:00'
         ];
@@ -33,9 +35,9 @@ class RolesTableSeeder extends Seeder
 
         // 0~12の数字の配列でforを回す
         foreach (range(1, $this->count) as $i) {
-            $row = $template;
-            $row['name'] = $nameList[$i - 1];
-            $row['code'] = $codeList[$i - 1];
+            $row           = $template;
+            $row['name']   = $nameList[$i - 1];
+            $row['code']   = $codeList[$i - 1];
             $row['detail'] = $detailList[$i - 1];
 
             $data[] = $row;
