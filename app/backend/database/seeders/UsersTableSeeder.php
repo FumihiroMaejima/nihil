@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Config;
 class UsersTableSeeder extends Seeder
 {
     private const TABLE_NAME = 'users';
+    private const SEEDER_DATA_LENGTH = 5;
     private int $count = 5;
 
     /**
@@ -30,9 +31,10 @@ class UsersTableSeeder extends Seeder
         // insert用データ
         $data = [];
 
-        // 0~12の数字の配列でforを回す
+        // 1~$this->countの数字の配列でforを回す
         foreach (range(1, $this->count) as $i) {
-            $row          = $template;
+            $row = $template;
+
             $row['name']  = 'user' . (string)($i);
             $row['email'] = 'testuser' . (string)($i) . '@example.com';
 

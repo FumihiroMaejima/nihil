@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Config;
 class AdminsLogTableSeeder extends Seeder
 {
     private const TABLE_NAME = 'admins_log';
+    private const SEEDER_DATA_LENGTH = 5;
     private int $count = 5;
 
     /**
@@ -30,9 +31,10 @@ class AdminsLogTableSeeder extends Seeder
         // insert用データ
         $data = [];
 
-        // 0~12の数字の配列でforを回す
+        // 1~$this->countの数字の配列でforを回す
         foreach (range(1, $this->count) as $i) {
             $row = $template;
+
             $row['function']    = ($i % 2 === 0) ? 'GET' : 'POST';
             $row['status']      = 'admins log' . ($i % 2 === 0) ? '200' : '404';
             $row['action_time'] = '2021-01-15 00:00:00';

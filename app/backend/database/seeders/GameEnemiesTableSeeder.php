@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 class GameEnemiesTableSeeder extends Seeder
 {
     private const TABLE_NAME = 'game_enemies';
+    private const SEEDER_DATA_LENGTH = 12;
     private int $count = 12;
 
     /**
@@ -45,9 +46,10 @@ class GameEnemiesTableSeeder extends Seeder
         // insert用データ
         $data = [];
 
-        // 0~12の数字の配列でforを回す
+        // 1~$this->countの数字の配列でforを回す
         foreach (range(1, $this->count) as $i) {
             $row = $template;
+
             $row['name']       = 'enemy' . (string)($i);
             $row['hp']         = $row['hp'] + (10 * $i);
             $row['mp']         = $row['mp'] + (10 * $i);

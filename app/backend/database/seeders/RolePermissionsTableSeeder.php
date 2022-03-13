@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Config;
 class RolePermissionsTableSeeder extends Seeder
 {
     private const TABLE_NAME = 'role_permissions';
+    private const SEEDER_DATA_LENGTH = 12;
     private int $count = 12;
     private int $masterCount = 4;
     private int $adminCount = 8;
@@ -37,7 +38,7 @@ class RolePermissionsTableSeeder extends Seeder
         // insert用データ
         $data = [];
 
-        // 0~12の数字の配列でforを回す
+        // 1~$this->countの数字の配列でforを回す
         foreach (range(1, $this->count) as $i) {
             // $row = $template;
             $row = [];
