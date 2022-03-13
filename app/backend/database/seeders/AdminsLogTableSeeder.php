@@ -60,7 +60,7 @@ class AdminsLogTableSeeder extends Seeder
     {
         if ($envName === 'production') {
             return self::SEEDER_DATA_LENGTH;
-        } else if ($envName === 'testing') {
+        } elseif ($envName === 'testing') {
             // testの時
             return self::SEEDER_DATA_LENGTH;
         } else {
