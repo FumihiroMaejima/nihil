@@ -9,8 +9,8 @@ use Illuminate\Support\Str;
 
 class GameTitleTableSeeder extends Seeder
 {
-    private $table = 'game_title';
-    private $count = 12;
+    private const TABLE_NAME = 'game_title';
+    private int $count = 12;
 
     /**
      * Run the database seeds.
@@ -39,6 +39,6 @@ class GameTitleTableSeeder extends Seeder
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
     }
 }

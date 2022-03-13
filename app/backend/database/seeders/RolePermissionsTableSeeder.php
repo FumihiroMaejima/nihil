@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Config;
 
 class RolePermissionsTableSeeder extends Seeder
 {
-    private $table = 'role_permissions';
+    private const TABLE_NAME = 'role_permissions';
     private int $count = 12;
     private int $masterCount = 4;
     private int $adminCount = 8;
@@ -61,7 +61,7 @@ class RolePermissionsTableSeeder extends Seeder
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
     }
 
     /**

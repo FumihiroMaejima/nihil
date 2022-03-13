@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Config;
 
 class RolesTableSeeder extends Seeder
 {
-    private $table = 'roles';
+    private const TABLE_NAME = 'roles';
     private int $count = 5;
 
     /**
@@ -44,6 +44,6 @@ class RolesTableSeeder extends Seeder
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
     }
 }

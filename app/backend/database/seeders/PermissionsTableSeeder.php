@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Config;
 
 class PermissionsTableSeeder extends Seeder
 {
-    private $table = 'permissions';
-    private $count = 4;
+    private const TABLE_NAME = 'permissions';
+    private int $count = 4;
 
     /**
      * Run the database seeds.
@@ -38,6 +38,6 @@ class PermissionsTableSeeder extends Seeder
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
     }
 }

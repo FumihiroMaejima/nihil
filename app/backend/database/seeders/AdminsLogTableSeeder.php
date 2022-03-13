@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Config;
 
 class AdminsLogTableSeeder extends Seeder
 {
-    private $table = 'admins_log';
-    private $count = 5;
+    private const TABLE_NAME = 'admins_log';
+    private int $count = 5;
 
     /**
      * Run the database seeds.
@@ -41,6 +41,6 @@ class AdminsLogTableSeeder extends Seeder
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
     }
 }

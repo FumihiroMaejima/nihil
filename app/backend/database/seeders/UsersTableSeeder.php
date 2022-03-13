@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Config;
 
 class UsersTableSeeder extends Seeder
 {
-    private $table = 'users';
-    private $count = 5;
+    private const TABLE_NAME = 'users';
+    private int $count = 5;
 
     /**
      * Run the database seeds.
@@ -40,6 +40,6 @@ class UsersTableSeeder extends Seeder
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
     }
 }

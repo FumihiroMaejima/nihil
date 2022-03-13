@@ -9,8 +9,8 @@ use Illuminate\Support\Str;
 
 class GameAreaTableSeeder extends Seeder
 {
-    private $table = 'game_area';
-    private $count = 12;
+    private const TABLE_NAME = 'game_area';
+    private int $count = 12;
 
     /**
      * Run the database seeds.
@@ -43,6 +43,6 @@ class GameAreaTableSeeder extends Seeder
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
     }
 }

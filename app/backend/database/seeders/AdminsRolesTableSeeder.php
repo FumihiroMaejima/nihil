@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Config;
 
 class AdminsRolesTableSeeder extends Seeder
 {
-    private $table = 'admins_roles';
-    private $count = 5;
+    private const TABLE_NAME = 'admins_roles';
+    private int $count = 5;
 
     /**
      * Run the database seeds.
@@ -38,6 +38,6 @@ class AdminsRolesTableSeeder extends Seeder
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
     }
 }

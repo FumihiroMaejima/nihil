@@ -9,8 +9,8 @@ use Illuminate\Support\Str;
 
 class GamePlayerTableSeeder extends Seeder
 {
-    private $table = 'game_player';
-    private $count = 6;
+    private const TABLE_NAME = 'game_player';
+    private int $count = 6;
 
     /**
      * Run the database seeds.
@@ -65,6 +65,6 @@ class GamePlayerTableSeeder extends Seeder
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
     }
 }
