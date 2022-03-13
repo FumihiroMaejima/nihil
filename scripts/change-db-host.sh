@@ -23,7 +23,7 @@ changeDBHost() {
   # ^: 行頭
   # $: 行末
   cd ${CURRENT_DIR}/../app/${PROJECT_NAME} && \
-  sed -i -e "s/^DB_HOST=$1$/DB_HOST=$2/g" ${FILE_NAME} && \
+  sed -i -e "s/^DB_MASTER_HOST=$1$/DB_MASTER_HOST=$2/g" ${FILE_NAME} && \
   rm -rf ${FILE_NAME}-e
 }
 

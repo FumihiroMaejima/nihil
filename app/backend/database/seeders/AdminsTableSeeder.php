@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Config;
 
 class AdminsTableSeeder extends Seeder
 {
-    private $table = 'admins';
-    private $count = 5;
+    private const TABLE_NAME = 'admins';
+    private const SEEDER_DATA_LENGTH = 5;
+    private int $count = 5;
 
     /**
      * Run the database seeds.
@@ -29,9 +30,10 @@ class AdminsTableSeeder extends Seeder
         // insert用データ
         $data = [];
 
-        // 0~12の数字の配列でforを回す
+        // 1~$this->countの数字の配列でforを回す
         foreach (range(1, $this->count) as $i) {
             $row = $template;
+
             $row['name']  = 'admin' . (string)($i);
             $row['email'] = 'testadmin' . (string)($i) . '@example.com';
 
@@ -39,6 +41,6 @@ class AdminsTableSeeder extends Seeder
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
     }
 }

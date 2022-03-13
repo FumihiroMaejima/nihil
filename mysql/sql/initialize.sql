@@ -3,3 +3,9 @@ CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON nihil.* TO 'root'@'%';
 
 FLUSH PRIVILEGES;
+
+-- slaveアカウント
+CREATE USER IF NOT EXISTS 'repl'@'%' IDENTIFIED BY 'password';
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';
+
+FLUSH PRIVILEGES;

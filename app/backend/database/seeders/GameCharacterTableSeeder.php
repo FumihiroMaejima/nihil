@@ -9,8 +9,9 @@ use Illuminate\Support\Str;
 
 class GameCharacterTableSeeder extends Seeder
 {
-    private $table = 'game_character';
-    private $count = 12;
+    private const TABLE_NAME = 'game_character';
+    private const SEEDER_DATA_LENGTH = 12;
+    private int $count = 12;
 
     /**
      * Run the database seeds.
@@ -20,11 +21,11 @@ class GameCharacterTableSeeder extends Seeder
     public function run()
     {
         $template = [
-            'name' => '',
-            'enemy_id' => 1,
+            'name'       => '',
+            'enemy_id'   => 1,
             'image_name' => Str::random(20),
-            'image_url' => 'https://' . Str::random(20),
-            'dead_flg' => 0,
+            'image_url'  => 'https://' . Str::random(20),
+            'dead_flg'   => 0,
             'created_at' => '2021-01-14 00:00:00',
             'updated_at' => '2021-01-14 00:00:00'
         ];
@@ -32,17 +33,18 @@ class GameCharacterTableSeeder extends Seeder
         // insert用データ
         $data = [];
 
-        // 0~12の数字の配列でforを回す
+        // 1~$this->countの数字の配列でforを回す
         foreach (range(1, $this->count) as $i) {
             $row = $template;
-            $row['name'] = 'character' . (string)($i);
-            $row['image_name'] = $row['image_name']  . '_' . (string)($i);
-            $row['image_url'] = $row['image_url']  . '_' . (string)($i);
+
+            $row['name']       = 'character' . (string)($i);
+            $row['image_name'] = $row['image_name'] . '_' . (string)($i);
+            $row['image_url']  = $row['image_url'] . '_' . (string)($i);
 
             $data[] = $row;
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
     }
 }
