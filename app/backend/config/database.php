@@ -49,7 +49,7 @@ return [
             'url' => env('DATABASE_URL'),
             'read' => [
                 'host' => [
-                env('DB_SLAVE_HOST', '127.0.0.1'),
+                    env('DB_SLAVE_HOST', '127.0.0.1'),
                 ],
                 'database' => env('DB_SLAVE_DATABASE', 'forge'),
                 'username' => env('DB_SLAVE_USERNAME'),
@@ -58,7 +58,7 @@ return [
             ],
             'write' => [
                 'host' => [
-                env('DB_MASTER_HOST', '127.0.0.1'),
+                    env('DB_MASTER_HOST', '127.0.0.1'),
                 ],
                 'database' => env('DB_MASTER_DATABASE', 'forge'),
                 'username' => env('DB_MASTER_USERNAME'),
