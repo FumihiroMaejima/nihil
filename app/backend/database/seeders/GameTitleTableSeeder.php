@@ -11,6 +11,7 @@ class GameTitleTableSeeder extends Seeder
 {
     private const TABLE_NAME = 'game_title';
     private const SEEDER_DATA_LENGTH = 5;
+    private const SEEDER_DEVELOP_DATA_LENGTH = 50;
     private int $count = 12;
 
     /**

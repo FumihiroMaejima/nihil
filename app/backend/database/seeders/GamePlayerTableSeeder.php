@@ -11,6 +11,7 @@ class GamePlayerTableSeeder extends Seeder
 {
     private const TABLE_NAME = 'game_player';
     private const SEEDER_DATA_LENGTH = 6;
+    private const SEEDER_DEVELOP_DATA_LENGTH = 100;
     private int $count = 6;
 
     /**
