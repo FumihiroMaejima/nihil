@@ -71,8 +71,8 @@ class GameAbilityTableSeeder extends Seeder
             return self::SEEDER_DATA_LENGTH;
         } else {
             // localやstaging
-            // return self::SEEDER_DEVELOP_DATA_LENGTH;
-            return self::SEEDER_DATA_LENGTH;
+            return self::SEEDER_DEVELOP_DATA_LENGTH;
+            // return self::SEEDER_DATA_LENGTH;
         }
     }
 }
