@@ -164,7 +164,7 @@ class MembersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Http\Requests\MemberUpdateRequest  $request
+     * @param  \App\Http\Requests\MemberDeleteRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function destroy(MemberDeleteRequest $request)
