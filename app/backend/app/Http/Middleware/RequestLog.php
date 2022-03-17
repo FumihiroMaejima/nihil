@@ -4,11 +4,25 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
 class RequestLog
 {
+    private const LOG_CAHNNEL_NAME = 'accesslog';
+
+    // log出力項目
+    private int|false $pid;
+    private string $requestDateTime;
+    private string $method;
+    private string $host;
+    private string $ip;
+    private string $uri;
+    private string|null $contentType;
+    private string $responseTime;
+    private string $plathome;
+    private mixed $requestContent;
+
     private array $excludes = [
         '_debugbar',
     ];
@@ -22,28 +36,84 @@ class RequestLog
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Config::get('app.env') !== 'production') {
-            if ($this->isWrite($request)) {
-                $this->write($request);
-            }
+        if ($this->isExcludePath($request)) {
+            return $next($request);
         }
-        return $next($request);
+
+        // $this->host = getmypid();
+        $this->requestDateTime = now()->format('Y-m-d H:i:s');
+        $this->pid             = getmypid();
+
+        $this->getLogParameterByRequest($request);
+
+
+        // 処理速度の計測
+        $startTime = microtime(true);
+
+        $response = $next($request);
+
+        $this->responseTime = microtime(true) - $startTime;
+
+
+        // log出力
+        $this->outputLog();
+
+        return $response;
     }
 
     /**
+     * check current path is log exclude path.
      * @param Request $request
      * @return bool
      */
-    private function isWrite(Request $request): bool
+    private function isExcludePath(Request $request): bool
     {
-        return !in_array($request->path(), $this->excludes, true);
+        return in_array($request->path(), $this->excludes, true);
     }
 
     /**
+     * get log parameter from request.
      * @param Request $request
      */
-    private function write(Request $request): void
+    private function getLogParameterByRequest(Request $request): void
     {
-        Log::debug($request->method(), ['url' => $request->fullUrl(), 'request' => $request->all()]);
+        $this->host            = $request->getHost();
+        $this->ip              = $request->getClientIp();
+        $this->method          = $request->getMethod();
+        $this->uri             = $request->getRequestUri();
+        $this->contentType     = $request->getContentType();
+        $this->plathome        = $request->userAgent() ?? '';
+        $this->requestContent  = $request->getContent();
+    }
+
+    /**
+     * get log parameter from response.
+     * @param Request $response
+     */
+    // private function getLogParameterByResponse(Response $response): void {}
+
+
+
+    /**
+     * output access log in log file.
+     * @param Request $request
+     */
+    private function outputLog(): void
+    {
+        $context = [
+            'method'           => $this->method,
+            'request_datetime' => $this->requestDateTime,
+            'host'             => $this->host,
+            'uri'              => $this->uri,
+            'ip'               => $this->ip,
+            'content_type'     => $this->contentType,
+            'response_time'    => $this->responseTime,
+            'request_content'  => $this->requestContent,
+            'plathome'         => $this->plathome,
+            'process_id'       => $this->pid,
+        ];
+
+        // Log::debug($request->method(), ['url' => $request->fullUrl(), 'request' => $request->all()]);
+        Log::channel(self::LOG_CAHNNEL_NAME)->info('Access:', $context);
     }
 }
