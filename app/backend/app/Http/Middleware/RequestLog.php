@@ -12,7 +12,6 @@ class RequestLog
     private const LOG_CAHNNEL_NAME = 'accesslog';
 
     // log出力項目
-    private int|false $pid;
     private string $requestDateTime;
     private string $method;
     private string $host;
@@ -20,8 +19,10 @@ class RequestLog
     private string $uri;
     private string|null $contentType;
     private string $responseTime;
-    private string $plathome;
     private mixed $requestContent;
+    private string $plathome;
+    private int|false $pid;
+    private string $memory;
 
     private array $excludes = [
         '_debugbar',
@@ -53,6 +54,7 @@ class RequestLog
         $response = $next($request);
 
         $this->responseTime = microtime(true) - $startTime;
+        $this->memory = (string)memory_get_peak_usage();
 
 
         // log出力
@@ -111,6 +113,7 @@ class RequestLog
             'request_content'  => $this->requestContent,
             'plathome'         => $this->plathome,
             'process_id'       => $this->pid,
+            'peak_memory'      => $this->memory,
         ];
 
         // Log::debug($request->method(), ['url' => $request->fullUrl(), 'request' => $request->all()]);
