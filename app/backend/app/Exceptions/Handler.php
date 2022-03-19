@@ -71,6 +71,23 @@ class Handler extends ExceptionHandler
         });
     }
 
+
+    // TODO ログ出力先などを変更する時は下記のメソッドをオーバーライドする。
+    /**
+     * Report or log an exception.
+     *
+     * @param  \Throwable  $e
+     * @return void
+     *
+     * @throws \Throwable
+     */
+    /* public function report(Throwable $e)
+    {
+        if (config('app.env') === 'productinon') {
+            parent::report($e);
+        }
+    } */
+
     /**
      * Render an exception into an HTTP response.
      *
