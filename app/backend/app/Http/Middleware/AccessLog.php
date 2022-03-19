@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
-class RequestLog
+class AccessLog
 {
     private const LOG_CAHNNEL_NAME = 'accesslog';
 
