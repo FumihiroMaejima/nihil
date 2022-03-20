@@ -875,6 +875,52 @@ $user->notify(new TestNotification($data));
 
 ---
 
+# tinkerの実行
+
+DB接続の都合上、Dockerコンテナ上で実行する必要がある。
+
+```shell-session
+$ docker exec -it app-container-name ash
+$ php artisan tinker
+Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
+>>>
+```
+
+```php
+$ php artisan tinker
+Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
+>>> $adminsModel = new Admins();
+[!] Aliasing 'Admins' to 'App\Models\Admins' for this Tinker session.
+=> App\Models\Admins {#3961}
+>>> $admin = $adminsModel->find(1);
+=> App\Models\Admins {#3980
+     id: 1,
+     name: "admin_name",
+     email: "admin.name@example.com",
+     email_verified_at: null,
+     #password: "xxxxxxxxxxxxxxxx",
+     #remember_token: null,
+     created_at: "2022-02-04 00:00:00",
+     updated_at: "2022-02-04 00:00:00",
+     deleted_at: null,
+   }
+>>>
+>>> $admin->roles()->getResults()->toArray();
+=> [
+     [
+       "id" => 1,
+       "admin_id" => 1,
+       "role_id" => 1,
+       "created_at" => "2021-02-04T15:00:00.000000Z",
+       "updated_at" => "2021-02-04T15:00:00.000000Z",
+       "deleted_at" => null,
+     ],
+   ]
+>>>
+```
+
+---
+
 # 補足
 
 ### Composer パッケージのアップデート
