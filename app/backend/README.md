@@ -877,6 +877,8 @@ $user->notify(new TestNotification($data));
 
 # tinkerの実行
 
+Eloquentモデルの利用方法も記載する。
+
 DB接続の都合上、Dockerコンテナ上で実行する必要がある。
 
 CollectionをToArray()すると、時間のフォーマットが変わる。
@@ -1000,6 +1002,23 @@ Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
          short_name: "delete",
          role_id: 1,
          permission_id: 4,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+     ],
+   }
+
+>>> // リレーションから直接where条件を指定出来る。
+>>> $role->permissions()->where('id', 2)->get();
+=> Illuminate\Database\Eloquent\Collection {#4394
+     all: [
+       App\Models\RolePermissions {#4393
+         id: 2,
+         name: "master_read",
+         short_name: "read",
+         role_id: 1,
+         permission_id: 2,
          created_at: "2021-02-04 00:00:00",
          updated_at: "2021-02-04 00:00:00",
          deleted_at: null,

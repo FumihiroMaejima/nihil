@@ -10,11 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 use App\Models\AdminsRoles;
-use App\Models\Permissions;
-use App\Models\RolePermissions;
-use App\Models\Roles;
 
 class Admins extends Authenticatable implements JWTSubject
 {
@@ -120,6 +116,16 @@ class Admins extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /**
+     * Define a one-to-one relationship.
+     *
+     * @return array
+     */
+    public function role()
+    {
+        return $this->hasOne(AdminsRoles::class, 'admin_id');
     }
 
     /**
