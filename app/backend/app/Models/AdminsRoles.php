@@ -36,4 +36,15 @@ class AdminsRoles extends Model
      * @var array
      */
     protected $hidden = [];
+
+    /**
+     * Define an inverse one-to-one or many relationship.
+     * 各ロールが設定されている管理者の取得
+     *
+     * @return Admins|null
+     */
+    public function admin()
+    {
+        return $this->belongsTo(Admins::class, 'admin_id');
+    }
 }

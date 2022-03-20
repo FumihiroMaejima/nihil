@@ -120,6 +120,7 @@ class Admins extends Authenticatable implements JWTSubject
 
     /**
      * Define a one-to-one relationship.
+     * 各管理者に関連しているロールの取得
      *
      * @return array
      */
@@ -130,6 +131,7 @@ class Admins extends Authenticatable implements JWTSubject
 
     /**
      * Define a one-to-many relationship.
+     * 各管理者に関連しているロールの取得
      *
      * @return array
      */

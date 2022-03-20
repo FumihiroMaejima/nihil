@@ -951,9 +951,49 @@ Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
 >>> $admin->adminRoles;
 => null
 
+>>> // hasOneをしたケース
+>>> $admin->role
+=> App\Models\AdminsRoles {#4006
+     id: 1,
+     admin_id: 1,
+     role_id: 1,
+     created_at: "2021-02-04 00:00:00",
+     updated_at: "2021-02-04 00:00:00",
+     deleted_at: null,
+   }
+
+>>> // 関連づけらている側からの確認
+>>> $adminsRoleModel = new AdminsRoles();
+[!] Aliasing 'AdminsRoles' to 'App\Models\AdminsRoles' for this Tinker session.
+=> App\Models\AdminsRoles {#3961}
+>>> $adminsRole = $adminsRoleModel->find(1);
+=> App\Models\AdminsRoles {#3991
+     id: 1,
+     admin_id: 1,
+     role_id: 1,
+     created_at: "2021-02-04 00:00:00",
+     updated_at: "2021-02-04 00:00:00",
+     deleted_at: null,
+   }
+>>> $adminsRole->admin
+=> App\Models\Admins {#3992
+     id: 1,
+     name: "admin-name",
+     email: "test@example.com",
+     email_verified_at: null,
+     #password: "xxxxxxxxx",
+     #remember_token: null,
+     created_at: "2022-02-04 00:00:00",
+     updated_at: "2022-02-04 00:00:00",
+     deleted_at: null,
+   }
+>>> $adminsRole->admin->name
+=> "admin-name"
+
+
 >>> // role model
->>> $r = new Roles();
->>> $r1 = $r->find(1);
+>>> $roleModel = new Roles();
+>>> $role = $roleModel->find(1);
 => App\Models\Roles {#4317
      id: 1,
      name: "master",
@@ -963,7 +1003,7 @@ Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
      updated_at: "2021-02-04 00:00:00",
      deleted_at: null,
    }
->>> $r1->permissions
+>>> $role->permissions
 => Illuminate\Database\Eloquent\Collection {#4303
      all: [
        App\Models\RolePermissions {#4302

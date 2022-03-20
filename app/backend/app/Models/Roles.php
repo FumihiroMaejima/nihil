@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Admins;
+use App\Models\AdminsRoles;
 use App\Models\RolePermissions;
 
 class Roles extends Model
@@ -45,16 +46,6 @@ class Roles extends Model
     public function permissions()
     {
         return $this->hasMany(RolePermissions::class, 'role_id');
-    }
-
-    /**
-     * Define an inverse one-to-one or many relationship.
-     *
-     * @return array
-     */
-    public function belongs()
-    {
-        return $this->belongsTo(RolePermissions::class, 'role_id');
     }
 
 }
