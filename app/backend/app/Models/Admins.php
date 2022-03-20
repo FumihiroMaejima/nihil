@@ -11,6 +11,11 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\AdminsRoles;
+use App\Models\Permissions;
+use App\Models\RolePermissions;
+use App\Models\Roles;
+
 class Admins extends Authenticatable implements JWTSubject
 {
     use HasFactory;
@@ -115,5 +120,25 @@ class Admins extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /**
+     * Define a one-to-many relationship.
+     *
+     * @return array
+     */
+    public function roles()
+    {
+        return $this->hasMany(AdminsRoles::class, 'admin_id');
+    }
+
+    /**
+     * Define an inverse one-to-one or many relationship.
+     *
+     * @return array
+     */
+    public function belongs()
+    {
+        return $this->belongsTo(AdminsRoles::class, 'admin_id');
     }
 }

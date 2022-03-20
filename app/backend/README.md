@@ -879,6 +879,8 @@ $user->notify(new TestNotification($data));
 
 DB接続の都合上、Dockerコンテナ上で実行する必要がある。
 
+CollectionをToArray()すると、時間のフォーマットが変わる。
+
 ```shell-session
 $ docker exec -it app-container-name ash
 $ php artisan tinker
@@ -911,12 +913,101 @@ Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
        "id" => 1,
        "admin_id" => 1,
        "role_id" => 1,
-       "created_at" => "2021-02-04T15:00:00.000000Z",
-       "updated_at" => "2021-02-04T15:00:00.000000Z",
+       "created_at" => "2021-02-04 00:00:00",
+       "updated_at" => "2021-02-04 00:00:00",
        "deleted_at" => null,
      ],
    ]
 >>>
+>>> // test comment
+>>> // メソッドの様に`()`をつける必要は無い。
+>>> $admin->roles;
+=> Illuminate\Database\Eloquent\Collection {#4293
+     all: [
+       App\Models\AdminsRoles {#4292
+         id: 1,
+         admin_id: 1,
+         role_id: 1,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+     ],
+   }
+>>>
+>>> $v->roles->toArray();
+=> [
+     [
+       "id" => 1,
+       "admin_id" => 1,
+       "role_id" => 1,
+       "created_at" => "2021-02-04 00:00:00",
+       "updated_at" => "2021-02-04 00:00:00",
+       "deleted_at" => null,
+     ],
+   ]
+>>> $admin->adminRoles;
+=> null
+
+>>> // role model
+>>> $r = new Roles();
+>>> $r1 = $r->find(1);
+=> App\Models\Roles {#4317
+     id: 1,
+     name: "master",
+     code: "master",
+     detail: "masterロール",
+     created_at: "2021-02-04 00:00:00",
+     updated_at: "2021-02-04 00:00:00",
+     deleted_at: null,
+   }
+>>> $r1->permissions
+=> Illuminate\Database\Eloquent\Collection {#4303
+     all: [
+       App\Models\RolePermissions {#4302
+         id: 1,
+         name: "master_create",
+         short_name: "create",
+         role_id: 1,
+         permission_id: 1,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+       App\Models\RolePermissions {#4301
+         id: 2,
+         name: "master_read",
+         short_name: "read",
+         role_id: 1,
+         permission_id: 2,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+       App\Models\RolePermissions {#4300
+         id: 3,
+         name: "master_update",
+         short_name: "update",
+         role_id: 1,
+         permission_id: 3,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+       App\Models\RolePermissions {#4299
+         id: 4,
+         name: "master_delete",
+         short_name: "delete",
+         role_id: 1,
+         permission_id: 4,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+     ],
+   }
+
+
 ```
 
 ---
