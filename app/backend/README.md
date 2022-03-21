@@ -1128,6 +1128,28 @@ Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
 
 ---
 
+# ページネーション
+
+query builderやEloquentモデルから`paginate`メソッドを利用する。
+
+Modelでの利用例
+
+```php
+>>> $admins = new Admins();
+>>> $admins::paginate(10)->toArray();
+>>> $admins::paginate(10)->toJson();
+
+// その他オプション
+>>> $admins::paginate(10)->hasPages();
+>>> $admins::paginate(10)->items();
+>>> $admins::paginate(10)->perPage();
+>>> $admins::paginate(10)->count();
+>>> $admins::paginate(10)->onFirstPage();
+>>> $admins::paginate(10)->getOptions();
+```
+
+---
+
 # 補足
 
 ### Composer パッケージのアップデート
