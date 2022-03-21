@@ -50,6 +50,17 @@ class Roles extends Model
     }
 
     /**
+     * Define a one-to-many relationship.
+     * ロールにて設定されている権限の取得
+     *
+     * @return array
+     */
+    public function hasPermissions()
+    {
+        return $this->hasMany(RolePermissions::class, 'role_id');
+    }
+
+    /**
      * Define a many-to-many relationship.
      * 管理者に設定されているロールの取得
      * 中間テーブル向けの設定
@@ -62,14 +73,15 @@ class Roles extends Model
     }
 
     /**
-     * Define a one-to-many relationship.
-     * ロールにて設定されている権限の取得
+     * Define a many-to-many relationship.
+     * 設定されている権限の取得
+     * 中間テーブル向けの設定
      *
-     * @return array
+     * @return Roles|null
      */
     public function permissions()
     {
-        return $this->hasMany(RolePermissions::class, 'role_id');
+        return $this->belongsToMany(Permissions::class, (new RolePermissions())->getTable(), 'role_id', 'permission_id');
     }
 
 }
