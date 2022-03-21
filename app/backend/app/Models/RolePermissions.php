@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Permissions;
+use App\Models\Roles;
 
 class RolePermissions extends Model
 {
@@ -31,4 +33,27 @@ class RolePermissions extends Model
      * @var array
      */
     protected $hidden = [];
+
+     /**
+     * Define a many-to-many relationship.
+     * 設定されているロールの取得
+     *
+     * @return Roles|null
+     */
+    public function roles()
+    {
+        return $this->belongsTo(Roles::class, 'role_id');
+        // return $this->belongsToMany(Roles::class, 'role_id');
+    }
+
+     /**
+     * Define a many-to-many relationship.
+     * 設定されている権限の取得
+     *
+     * @return Permissions|null
+     */
+    public function permissions()
+    {
+        return $this->belongsTo(Permissions::class, 'permission_id');
+    }
 }

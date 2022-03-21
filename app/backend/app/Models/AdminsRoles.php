@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\Admins;
+use App\Models\Permissions;
+use App\Models\RolePermissions;
+use App\Models\Roles;
+
 class AdminsRoles extends Model
 {
     use HasFactory;
@@ -31,4 +36,15 @@ class AdminsRoles extends Model
      * @var array
      */
     protected $hidden = [];
+
+    /**
+     * Define an inverse one-to-one or many relationship.
+     * 各ロールが設定されている管理者の取得
+     *
+     * @return Admins|null
+     */
+    public function admin()
+    {
+        return $this->belongsTo(Admins::class, 'admin_id');
+    }
 }

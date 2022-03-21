@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\AdminsRoles;
 
 class Admins extends Authenticatable implements JWTSubject
 {
@@ -115,5 +116,49 @@ class Admins extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /**
+     * Define a one-to-one relationship.
+     * 各管理者に関連しているロールの取得
+     *
+     * @return array
+     */
+    public function role()
+    {
+        return $this->hasOne(AdminsRoles::class, 'admin_id');
+    }
+
+    /**
+     * Define a one-to-many relationship.
+     * 各管理者に関連しているロールの取得
+     *
+     * @return array
+     */
+    public function hadRoles()
+    {
+        return $this->hasMany(AdminsRoles::class, 'admin_id');
+    }
+
+    /**
+     * Define a many-to-many relationship.
+     * 管理者に設定されているロールの取得
+     * 中間テーブル向けの設定
+     *
+     * @return Roles|null
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Roles::class, (new AdminsRoles())->getTable(), 'admin_id', 'role_id');
+    }
+
+    /**
+     * Define an inverse one-to-one or many relationship.
+     *
+     * @return array
+     */
+    public function belongs()
+    {
+        return $this->belongsTo(AdminsRoles::class, 'admin_id');
     }
 }

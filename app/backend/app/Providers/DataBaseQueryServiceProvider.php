@@ -15,6 +15,11 @@ use DateTime;
 
 class DataBaseQueryServiceProvider extends ServiceProvider
 {
+    private const LOG_CAHNNEL_NAME = 'sqllog';
+    private const LOG_TRANSACTION_START_MESSAGE = 'START TRANSACTION';
+    private const LOG_TRANSACTION_COMMIT_MESSAGE = 'TRANSACTION COMMIT';
+    private const LOG_TRANSACTION_ROLLBACK_MESSAGE = 'TRANSACTION ROLLBACK';
+
     /**
      * Register services.
      *
@@ -48,18 +53,22 @@ class DataBaseQueryServiceProvider extends ServiceProvider
                 $sql = preg_replace('/\\?/', $binding, $sql, 1);
             }
 
-            Log::debug('SQL', ['sql' => $sql, 'time' => "{$query->time} ms"]);
+           //  Log::debug('SQL', ['sql' => $sql, 'time' => "{$query->time} ms"]);
+            Log::channel(self::LOG_CAHNNEL_NAME)->info('SQL', ['sql' => $sql, 'time' => "{$query->time} ms"]);
 
             Event::listen(TransactionBeginning::class, function (TransactionBeginning $event): void {
-                Log::debug('START TRANSACTION');
+                Log::debug(self::LOG_TRANSACTION_START_MESSAGE);
+                Log::channel(self::LOG_CAHNNEL_NAME)->info('SQL: ' . self::LOG_TRANSACTION_START_MESSAGE);
             });
 
             Event::listen(TransactionCommitted::class, function (TransactionCommitted $event): void {
-                Log::debug('TRANSACTION COMMIT');
+                Log::debug(self::LOG_TRANSACTION_COMMIT_MESSAGE);
+                Log::channel(self::LOG_CAHNNEL_NAME)->info('SQL: ' . self::LOG_TRANSACTION_COMMIT_MESSAGE);
             });
 
             Event::listen(TransactionRolledBack::class, function (TransactionRolledBack $event): void {
-                Log::debug('TRANSACTION ROLLBACK');
+                Log::debug(self::LOG_TRANSACTION_ROLLBACK_MESSAGE);
+                Log::channel(self::LOG_CAHNNEL_NAME)->info('SQL: ' . self::LOG_TRANSACTION_ROLLBACK_MESSAGE);
             });
         });
     }
