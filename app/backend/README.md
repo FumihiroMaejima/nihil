@@ -1066,6 +1066,63 @@ Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
      ],
    }
 
+// 下記の様な形でリレーションからデータを取得出来る。
+>> $role->permissions
+>>> $role->permissions()->where('permission_id', 2)->get();
+>>> $role->permissions()->where('permission_id', 2)->get()->toArray();
+>>> $role->permissions()->whereIn('permission_id', [2,4])->get()->toArray();
+
+
+
+```
+
+### many to many(多対多)
+
+```php
+$ php artisan tinker
+Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
+>>> $a = new Admins();
+>>> $admin = $a->find(1);
+>>> $admin->roles
+=> Illuminate\Database\Eloquent\Collection {#3993
+     all: [
+       App\Models\Roles {#4006
+         id: 1,
+         name: "master",
+         code: "master",
+         detail: "masterロール",
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+         pivot: Illuminate\Database\Eloquent\Relations\Pivot {#4005
+           admin_id: 1,
+           role_id: 1,
+         },
+       },
+     ],
+   }
+>>> $r = new Roles();
+>>> $role = $r->find(2);
+>>> $role->admins
+=> Illuminate\Database\Eloquent\Collection {#4003
+     all: [
+       App\Models\Admins {#4017
+         id: 2,
+         name: "test2",
+         email: "test2@example.com",
+         email_verified_at: null,
+         #password: "xxxxxxxx",
+         #remember_token: null,
+         created_at: "2022-02-04 00:00:00",
+         updated_at: "2022-02-04 00:00:00",
+         deleted_at: null,
+         pivot: Illuminate\Database\Eloquent\Relations\Pivot {#4016
+           role_id: 2,
+           admin_id: 2,
+         },
+       },
+     ],
+   }
 
 ```
 

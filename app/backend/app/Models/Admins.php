@@ -135,9 +135,21 @@ class Admins extends Authenticatable implements JWTSubject
      *
      * @return array
      */
-    public function roles()
+    public function hadRoles()
     {
         return $this->hasMany(AdminsRoles::class, 'admin_id');
+    }
+
+    /**
+     * Define a many-to-many relationship.
+     * 管理者に設定されているロールの取得
+     * 中間テーブル向けの設定
+     *
+     * @return Roles|null
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Roles::class, (new AdminsRoles())->getTable(), 'admin_id', 'role_id');
     }
 
     /**

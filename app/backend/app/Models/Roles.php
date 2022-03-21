@@ -40,6 +40,30 @@ class Roles extends Model
 
     /**
      * Define a one-to-many relationship.
+     * ロールが設定されている管理者の取得
+     *
+     * @return array
+     */
+    public function hasAdmins()
+    {
+        return $this->hasMany(AdminsRoles::class, 'role_id');
+    }
+
+    /**
+     * Define a many-to-many relationship.
+     * 管理者に設定されているロールの取得
+     * 中間テーブル向けの設定
+     *
+     * @return Roles|null
+     */
+    public function admins()
+    {
+        return $this->belongsToMany(Admins::class, (new AdminsRoles())->getTable(), 'role_id', 'admin_id');
+    }
+
+    /**
+     * Define a one-to-many relationship.
+     * ロールにて設定されている権限の取得
      *
      * @return array
      */
