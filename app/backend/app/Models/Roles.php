@@ -83,5 +83,4 @@ class Roles extends Model
     {
         return $this->belongsToMany(Permissions::class, (new RolePermissions())->getTable(), 'role_id', 'permission_id');
     }
-
 }
