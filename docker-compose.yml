@@ -71,13 +71,16 @@ services:
     container_name: ${PROJECT_NAME}_redis
     volumes:
       - redis-volume:/data
+    ports:
+      - "${REDIS_PORT}:6379"
+    environment:
+      TZ: "Asia/Tokyo"
     networks:
       default:
 
 volumes:
   redis-volume:
     name: ${REDIS_VOLUME_NAME}
-    # driver: local
     external: true
   app-volume-store:
     name: ${VOLUME_NAME}
