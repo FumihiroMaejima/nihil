@@ -2,7 +2,7 @@
 
 CURRENT_DIR=$(cd $(dirname $0); pwd)
 SEPARATOPION='---------------------------'
-START_MESSAGE='check container status.'
+START_MESSAGE='check database host.'
 FILE_NAME='.env'
 
 # $1 : current database name
@@ -16,9 +16,6 @@ showMessage() {
 
 changeDBHost() {
   PROJECT_NAME='backend'
-
-  echo ${SEPARATOPION}
-
 
   # ^: 行頭
   # $: 行末
@@ -34,7 +31,7 @@ if [ -z $1 ]; then
 elif [ -z $2 ]; then
   showMessage 'secand parameter is empty, exit script.'
 else
-  showMessage ${START_MESSAGE}
+  showMessage "${START_MESSAGE}"
 
   changeDBHost $1 $2
 
