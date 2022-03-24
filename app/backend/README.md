@@ -1150,6 +1150,91 @@ Modelでの利用例
 
 ---
 
+# Redis
+
+.envの`host`には`host.docker.internal`を指定すれば同じくネットワーク内のredisコンテナにアクセス出来る。
+
+## redisコンテナへのアクセス
+
+初期状態ではkeyは何も入っていない。
+
+
+```shell
+$ docker exec -it project_redis_container ash
+/data # redis-cli
+127.0.0.1:6379> keys *
+(empty list or set)
+
+# keys 格納されているkeyの一覧を表示する
+# type [key] valueのtypeを返す
+# get [key] typeがstringの値を取得する
+# del [key] 該当のkeyのデータを削除する
+# flushdb 全てのデータを削除する
+```
+
+### PHP側でredisにデータを格納する
+
+tinkerなどで下記の通り実行する
+
+```php
+# php artisan tinker
+Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
+>>> use Illuminate\Support\Facades\Redis;
+>>> Redis::set('name', 'Test123');
+=> true
+```
+
+`redis-cli`側のデータ
+
+```shell
+/data # redis-cli
+127.0.0.1:6379> keys *
+1) "project_name_database_name"
+127.0.0.1:6379> type project_name_database_name
+string
+127.0.0.1:6379> get project_name_database_name
+"Test123"
+
+
+# 削除
+127.0.0.1:6379> del project_name_database_name
+(integer) 1
+127.0.0.1:6379> keys *
+(empty list or set)
+```
+
+### 複数のkeyを格納するパターン
+
+```php
+# php artisan tinker
+Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
+>>> use Illuminate\Support\Facades\Redis;
+>>> Redis::set('name', 'Test123');
+=> true
+>>> Redis::set('test', 'xxxxx');
+=> true
+```
+
+`redis-cli`側のデータ
+
+```shell
+/data # redis-cli
+127.0.0.1:6379> keys *
+1) "project_name_database_test"
+2) "project_name_database_name"
+127.0.0.1:6379> get project_name_database_test
+"xxxxx"
+
+# データの初期化
+127.0.0.1:6379> flushdb
+OK
+127.0.0.1:6379> keys *
+(empty list or set)
+
+```
+
+---
+
 # 補足
 
 ### Composer パッケージのアップデート
