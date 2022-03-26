@@ -1254,6 +1254,14 @@ OK
 
 ```
 
+## セッション管理などでredisを利用する場合
+
+`phpredis`をインストール
+
+```shell
+$ composer require predis/predis
+```
+
 ---
 
 # 補足
