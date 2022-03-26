@@ -1225,8 +1225,29 @@ Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
 127.0.0.1:6379> get project_name_database_test
 "xxxxx"
 
-# データの初期化
+# 選択しているデータベース内の全てのキー
 127.0.0.1:6379> flushdb
+OK
+127.0.0.1:6379> keys *
+(empty list or set)
+
+# 全てのデータベース内のキーの削除
+127.0.0.1:6379> select 1
+OK
+127.0.0.1:6379[1]> keys *
+(empty list or set)
+127.0.0.1:6379[1]> select 0
+OK
+127.0.0.1:6379> keys *
+1) "project_name_database_test"
+2) "project_name_database_name"
+127.0.0.1:6379> select 2
+OK
+127.0.0.1:6379[2]> keys *
+(empty list or set)
+127.0.0.1:6379[2]> flushall
+OK
+127.0.0.1:6379[2]> select 0
 OK
 127.0.0.1:6379> keys *
 (empty list or set)
