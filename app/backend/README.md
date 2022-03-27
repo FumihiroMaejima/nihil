@@ -1262,6 +1262,18 @@ OK
 $ composer require predis/predis
 ```
 
+## Sessionファサードの利用
+
+`phpredis`をインストール
+
+```php
+    $test1 = Session::all(); // []
+    $test2 = Session::get('testKey'); // null
+    $test3 = Session::getId(); // session_id
+    $test4 = Session::getName(); // project_name_session
+    $test6 = Session::has('testKey'); // false
+```
+
 ---
 
 # 補足
