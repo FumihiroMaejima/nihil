@@ -4,6 +4,7 @@ namespace App\Library;
 
 use Illuminate\Http\Request;
 use App\Trait\CheckHeaderTrait;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redis;
 
@@ -22,15 +23,13 @@ class SessionLibrary
     /**
      * check session has session key.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param string $key
+     * @param string $value
      * @return bool
      */
-    public static function checkSession(Request $request): bool
+    public static function checkSession(string $key, string $value): bool
     {
-        $isSame = Hash::check('test session value', Redis::get('test_sesion'));
-        $session = Redis::get('test_sesion');
-
-        return true;
+        return Hash::check($value, Redis::get($key));
     }
 
     /**
@@ -60,18 +59,48 @@ class SessionLibrary
     }
 
     /**
-     * set session to redis.
+     * start session.
      *
      * @param \Illuminate\Http\Request $request
      * @return bool
      */
-    public static function setSession($key, $value): void
+    public function startSession(Request $request): void
     {
-        // hash化
-        $hasedValue = Hash::make($value, [
-            'rounds' => 12,
-        ]);
+        $value = $request->header('Authorization');
+
+        $this->setSession('test-key', $request);
+    }
+
+    /**
+     * set session to redis.
+     *
+     * @param string $key
+     * @param \Illuminate\Http\Request $request
+     * @return bool
+     */
+    public function setSession(string $key, Request $request): void
+    {
+        // $value = $request->header('Authorization');
+
+        $hasedValue = $this->hashSession($request->header('Authorization'));
         // Redis::set($key, 'test session value');
         Redis::set($key, $hasedValue);
+    }
+
+    /**
+     * hash session data.
+     *
+     * @param string $value
+     * @return string
+     */
+    private function hashSession(string $value): string
+    {
+        // hash化
+        return Hash::make(
+            '1:' . $value,
+            [
+                'rounds' => 12,
+            ]
+        );
     }
 }
