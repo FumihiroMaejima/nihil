@@ -4,6 +4,7 @@ namespace App\Library;
 
 use Illuminate\Http\Request;
 use App\Trait\CheckHeaderTrait;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redis;
 
 class SessionLibrary
@@ -26,6 +27,7 @@ class SessionLibrary
      */
     public static function checkSession(Request $request): bool
     {
+        $isSame = Hash::check('test session value', Redis::get('test_sesion'));
         $session = Redis::get('test_sesion');
 
         return true;
@@ -65,6 +67,11 @@ class SessionLibrary
      */
     public static function setSession($key, $value): void
     {
-        Redis::set($key, 'test session value');
+        // hash化
+        $hasedValue = Hash::make($value, [
+            'rounds' => 12,
+        ]);
+        // Redis::set($key, 'test session value');
+        Redis::set($key, $hasedValue);
     }
 }
