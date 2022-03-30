@@ -66,25 +66,27 @@ class SessionLibrary
      */
     public function startSession(Request $request): void
     {
-        $value = $request->header('Authorization');
+        $token = $request->header('Authorization');
 
-        $this->setSession('test-key', $request);
+        $this->setSession('test-key', $token);
     }
 
     /**
      * set session to redis.
      *
      * @param string $key
-     * @param \Illuminate\Http\Request $request
+     * @param string $value
      * @return bool
      */
-    public function setSession(string $key, Request $request): void
+    public function setSession(string $key, string $value): void
     {
-        // $value = $request->header('Authorization');
-
-        $hasedValue = $this->hashSession($request->header('Authorization'));
+        $hashedValue = $this->hashSession($value);
         // Redis::set($key, 'test session value');
-        Redis::set($key, $hasedValue);
+        Redis::set($key, json_encode(
+            [
+                'token' => $hashedValue
+            ]
+        ));
     }
 
     /**
@@ -97,7 +99,7 @@ class SessionLibrary
     {
         // hash化
         return Hash::make(
-            '1:' . $value,
+            $value,
             [
                 'rounds' => 12,
             ]
