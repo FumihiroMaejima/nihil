@@ -31,11 +31,30 @@ class SessionLibrary
     /**
      * check session has session key.
      *
+     * @param \Illuminate\Http\Request $request
+     * @param string $value
+     * @return bool
+     */
+    public static function checkSession(Request $request): bool
+    {
+        $headers = self::getHeaderData($request);
+
+        return Hash::check(
+            $headers[self::HEADER_ARRAY_KEY_NAME_TOKEN],
+            self::getSessionByKey(self::getSessionKey($headers[self::HEADER_ARRAY_KEY_NAME_ID]))
+        );
+
+        // return Hash::check($value, Redis::get($key));
+    }
+
+    /**
+     * check session has session key.
+     *
      * @param string $key
      * @param string $value
      * @return bool
      */
-    public static function checkSession(string $key, string $value): bool
+    public static function checkSessionByKey(string $key, string $value): bool
     {
         return Hash::check($value, Redis::get($key));
     }
