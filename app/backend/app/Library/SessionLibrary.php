@@ -123,11 +123,11 @@ class SessionLibrary
      * @param \Illuminate\Http\Request $request
      * @return bool
      */
-    public function startSession(Request $request): void
+    public static function startSession(Request $request): void
     {
         $headers = self::getHeaderData($request);
 
-        $this->setSession(
+        self::setSession(
             self::getSessionKey($headers[self::HEADER_ARRAY_KEY_NAME_ID]),
             $headers[self::HEADER_ARRAY_KEY_NAME_TOKEN]
         );
@@ -140,9 +140,9 @@ class SessionLibrary
      * @param string $value
      * @return bool
      */
-    public function setSession(string $key, string $value): void
+    public static function setSession(string $key, string $value): void
     {
-        $hashedValue = $this->hashSession($value);
+        $hashedValue = self::hashSession($value);
         Redis::set($key, json_encode(
             [
                 self::HEADER_ARRAY_KEY_NAME_TOKEN => $hashedValue
@@ -156,7 +156,7 @@ class SessionLibrary
      * @param string $value
      * @return string
      */
-    private function hashSession(string $value): string
+    private static function hashSession(string $value): string
     {
         // hash化
         return Hash::make(
