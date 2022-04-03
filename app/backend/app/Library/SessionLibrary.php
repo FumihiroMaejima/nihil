@@ -43,7 +43,7 @@ class SessionLibrary
     /**
      * check session has session key.
      *
-     * @param string $request
+     * @param string $key
      * @return bool
      */
     public static function hasSession(string $key): bool
@@ -56,10 +56,25 @@ class SessionLibrary
     /**
      * get session value.
      *
-     * @param string $request
+     * @param \Illuminate\Http\Request $request
      * @return bool
      */
-    public static function getSession(string $key): string
+    public static function getSession(Request $request): string
+    {
+        return self::getSessionByKey(
+            self::getSessionKey(
+                self::getHeaderData($request)[self::HEADER_ARRAY_KEY_NAME_ID]
+            )
+        );
+    }
+
+    /**
+     * get session value by Key.
+     *
+     * @param string $key
+     * @return string
+     */
+    public static function getSessionByKey(string $key): string
     {
         $session = Redis::get($key);
 
@@ -74,10 +89,10 @@ class SessionLibrary
      */
     public function startSession(Request $request): void
     {
-        $headers = $this->getHeaderData($request);
+        $headers = self::getHeaderData($request);
 
         $this->setSession(
-            self::SESSION_KEY_NAME_USER_PREFIX . $headers[self::HEADER_ARRAY_KEY_NAME_ID],
+            self::getSessionKey($headers[self::HEADER_ARRAY_KEY_NAME_ID]),
             $headers[self::HEADER_ARRAY_KEY_NAME_TOKEN]
         );
     }
@@ -117,12 +132,23 @@ class SessionLibrary
     }
 
     /**
+     * get session key strings.
+     *
+     * @param int $userId
+     * @return string
+     */
+    private static function getSessionKey(int $userId): string
+    {
+        return self::SESSION_KEY_NAME_USER_PREFIX . $userId;
+    }
+
+    /**
      * get header data.
      *
      * @param \Illuminate\Http\Request $request
-     * @return bool
+     * @return array
      */
-    private function getHeaderData(Request $request): array
+    private static function getHeaderData(Request $request): array
     {
         return [
             self::HEADER_ARRAY_KEY_NAME_ID    => $request->header(self::SESSION_HEADER_ID_NAME),
