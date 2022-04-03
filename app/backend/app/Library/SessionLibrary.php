@@ -16,8 +16,9 @@ class SessionLibrary
     private const SESSION_HEADER_TOKEN_NAME = 'Authorization';
     private const SESSION_HEADER_ID_NAME = 'X-Auth-ID';
 
-    // redis上のkey名
-    private const SESSION_REDIS_KEY_NAME = 'token';
+    // ヘッダーデータのkey名
+    private const HEADER_ARRAY_KEY_NAME_ID = 'userId';
+    private const HEADER_ARRAY_KEY_NAME_TOKEN = 'token';
 
     /**
      * Create a new MembersController instance.
@@ -73,10 +74,12 @@ class SessionLibrary
      */
     public function startSession(Request $request): void
     {
-        $token = $request->header(self::SESSION_HEADER_TOKEN_NAME);
-        $userId = $request->header(self::SESSION_HEADER_ID_NAME);
+        $headers = $this->getHeaderData($request);
 
-        $this->setSession(self::SESSION_KEY_NAME_USER_PREFIX . $userId, $token);
+        $this->setSession(
+            self::SESSION_KEY_NAME_USER_PREFIX . $headers[self::HEADER_ARRAY_KEY_NAME_ID],
+            $headers[self::HEADER_ARRAY_KEY_NAME_TOKEN]
+        );
     }
 
     /**
@@ -91,7 +94,7 @@ class SessionLibrary
         $hashedValue = $this->hashSession($value);
         Redis::set($key, json_encode(
             [
-                self::SESSION_REDIS_KEY_NAME => $hashedValue
+                self::HEADER_ARRAY_KEY_NAME_TOKEN => $hashedValue
             ]
         ));
     }
@@ -111,5 +114,19 @@ class SessionLibrary
                 'rounds' => 12,
             ]
         );
+    }
+
+    /**
+     * get header data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return bool
+     */
+    private function getHeaderData(Request $request): array
+    {
+        return [
+            self::HEADER_ARRAY_KEY_NAME_ID    => $request->header(self::SESSION_HEADER_ID_NAME),
+            self::HEADER_ARRAY_KEY_NAME_TOKEN => $request->header(self::SESSION_HEADER_TOKEN_NAME),
+        ];
     }
 }
