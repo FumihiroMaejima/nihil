@@ -29,7 +29,7 @@ class SessionLibrary
     {}
 
     /**
-     * check session has session key.
+     * check session by request and exit session value.
      *
      * @param \Illuminate\Http\Request $request
      * @param string $value
@@ -39,12 +39,14 @@ class SessionLibrary
     {
         $headers = self::getHeaderData($request);
 
+        $sessionValue = json_decode(
+            self::getSessionByKey(self::getSessionKey($headers[self::HEADER_ARRAY_KEY_NAME_ID]))
+        )->{self::HEADER_ARRAY_KEY_NAME_TOKEN};
+
         return Hash::check(
             $headers[self::HEADER_ARRAY_KEY_NAME_TOKEN],
-            self::getSessionByKey(self::getSessionKey($headers[self::HEADER_ARRAY_KEY_NAME_ID]))
+            $sessionValue
         );
-
-        // return Hash::check($value, Redis::get($key));
     }
 
     /**
