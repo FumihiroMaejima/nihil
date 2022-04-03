@@ -66,14 +66,22 @@ services:
   #   ports:
   #     - "${NODE_APPLICATION_PORT}:${NODE_APPLICATION_PORT}"
 
-  # redis:
-  #   image: redis:5.0-alpine
-  #   container_name: ${PROJECT_NAME}_redis
-  #   volumes:
-  #     - redis-store:/data
+  redis:
+    image: redis:5.0-alpine
+    container_name: ${PROJECT_NAME}_redis
+    volumes:
+      - redis-volume:/data
+    ports:
+      - "${REDIS_PORT}:6379"
+    environment:
+      TZ: "Asia/Tokyo"
+    networks:
+      default:
 
 volumes:
-  # redis-store:
+  redis-volume:
+    name: ${REDIS_VOLUME_NAME}
+    external: true
   app-volume-store:
     name: ${VOLUME_NAME}
     # driver: local
