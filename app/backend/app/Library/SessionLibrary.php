@@ -103,6 +103,21 @@ class SessionLibrary
     }
 
     /**
+     * remove session by request header data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return bool
+     */
+    public static function removeSession(Request $request): void
+    {
+        $key = self::getSessionKey(
+            self::getHeaderData($request)[self::HEADER_ARRAY_KEY_NAME_ID]
+        );
+
+        Redis::del($key);
+    }
+
+    /**
      * start session.
      *
      * @param \Illuminate\Http\Request $request
