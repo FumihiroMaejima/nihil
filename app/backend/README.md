@@ -875,6 +875,407 @@ $user->notify(new TestNotification($data));
 
 ---
 
+# tinkerの実行
+
+Eloquentモデルの利用方法も記載する。
+
+DB接続の都合上、Dockerコンテナ上で実行する必要がある。
+
+CollectionをToArray()すると、時間のフォーマットが変わる。
+
+```shell-session
+$ docker exec -it app-container-name ash
+$ php artisan tinker
+Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
+>>>
+```
+
+```php
+$ php artisan tinker
+Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
+>>> $adminsModel = new Admins();
+[!] Aliasing 'Admins' to 'App\Models\Admins' for this Tinker session.
+=> App\Models\Admins {#3961}
+>>> $admin = $adminsModel->find(1);
+=> App\Models\Admins {#3980
+     id: 1,
+     name: "admin_name",
+     email: "admin.name@example.com",
+     email_verified_at: null,
+     #password: "xxxxxxxxxxxxxxxx",
+     #remember_token: null,
+     created_at: "2022-02-04 00:00:00",
+     updated_at: "2022-02-04 00:00:00",
+     deleted_at: null,
+   }
+>>>
+>>> $admin->roles()->getResults()->toArray();
+=> [
+     [
+       "id" => 1,
+       "admin_id" => 1,
+       "role_id" => 1,
+       "created_at" => "2021-02-04 00:00:00",
+       "updated_at" => "2021-02-04 00:00:00",
+       "deleted_at" => null,
+     ],
+   ]
+>>>
+>>> // test comment
+>>> // メソッドの様に`()`をつける必要は無い。
+>>> $admin->roles;
+=> Illuminate\Database\Eloquent\Collection {#4293
+     all: [
+       App\Models\AdminsRoles {#4292
+         id: 1,
+         admin_id: 1,
+         role_id: 1,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+     ],
+   }
+>>>
+>>> $v->roles->toArray();
+=> [
+     [
+       "id" => 1,
+       "admin_id" => 1,
+       "role_id" => 1,
+       "created_at" => "2021-02-04 00:00:00",
+       "updated_at" => "2021-02-04 00:00:00",
+       "deleted_at" => null,
+     ],
+   ]
+>>> $admin->adminRoles;
+=> null
+
+>>> // hasOneをしたケース
+>>> $admin->role
+=> App\Models\AdminsRoles {#4006
+     id: 1,
+     admin_id: 1,
+     role_id: 1,
+     created_at: "2021-02-04 00:00:00",
+     updated_at: "2021-02-04 00:00:00",
+     deleted_at: null,
+   }
+
+>>> // 関連づけらている側からの確認
+>>> $adminsRoleModel = new AdminsRoles();
+[!] Aliasing 'AdminsRoles' to 'App\Models\AdminsRoles' for this Tinker session.
+=> App\Models\AdminsRoles {#3961}
+>>> $adminsRole = $adminsRoleModel->find(1);
+=> App\Models\AdminsRoles {#3991
+     id: 1,
+     admin_id: 1,
+     role_id: 1,
+     created_at: "2021-02-04 00:00:00",
+     updated_at: "2021-02-04 00:00:00",
+     deleted_at: null,
+   }
+>>> $adminsRole->admin
+=> App\Models\Admins {#3992
+     id: 1,
+     name: "admin-name",
+     email: "test@example.com",
+     email_verified_at: null,
+     #password: "xxxxxxxxx",
+     #remember_token: null,
+     created_at: "2022-02-04 00:00:00",
+     updated_at: "2022-02-04 00:00:00",
+     deleted_at: null,
+   }
+>>> $adminsRole->admin->name
+=> "admin-name"
+
+
+>>> // role model
+>>> $roleModel = new Roles();
+>>> $role = $roleModel->find(1);
+=> App\Models\Roles {#4317
+     id: 1,
+     name: "master",
+     code: "master",
+     detail: "masterロール",
+     created_at: "2021-02-04 00:00:00",
+     updated_at: "2021-02-04 00:00:00",
+     deleted_at: null,
+   }
+>>> $role->permissions
+=> Illuminate\Database\Eloquent\Collection {#4303
+     all: [
+       App\Models\RolePermissions {#4302
+         id: 1,
+         name: "master_create",
+         short_name: "create",
+         role_id: 1,
+         permission_id: 1,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+       App\Models\RolePermissions {#4301
+         id: 2,
+         name: "master_read",
+         short_name: "read",
+         role_id: 1,
+         permission_id: 2,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+       App\Models\RolePermissions {#4300
+         id: 3,
+         name: "master_update",
+         short_name: "update",
+         role_id: 1,
+         permission_id: 3,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+       App\Models\RolePermissions {#4299
+         id: 4,
+         name: "master_delete",
+         short_name: "delete",
+         role_id: 1,
+         permission_id: 4,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+     ],
+   }
+
+>>> // リレーションから直接where条件を指定出来る。
+>>> $role->permissions()->where('id', 2)->get();
+=> Illuminate\Database\Eloquent\Collection {#4394
+     all: [
+       App\Models\RolePermissions {#4393
+         id: 2,
+         name: "master_read",
+         short_name: "read",
+         role_id: 1,
+         permission_id: 2,
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+       },
+     ],
+   }
+
+// 下記の様な形でリレーションからデータを取得出来る。
+>> $role->permissions
+>>> $role->permissions()->where('permission_id', 2)->get();
+>>> $role->permissions()->where('permission_id', 2)->get()->toArray();
+>>> $role->permissions()->whereIn('permission_id', [2,4])->get()->toArray();
+
+
+
+```
+
+### many to many(多対多)
+
+```php
+$ php artisan tinker
+Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
+>>> $a = new Admins();
+>>> $admin = $a->find(1);
+>>> $admin->roles
+=> Illuminate\Database\Eloquent\Collection {#3993
+     all: [
+       App\Models\Roles {#4006
+         id: 1,
+         name: "master",
+         code: "master",
+         detail: "masterロール",
+         created_at: "2021-02-04 00:00:00",
+         updated_at: "2021-02-04 00:00:00",
+         deleted_at: null,
+         pivot: Illuminate\Database\Eloquent\Relations\Pivot {#4005
+           admin_id: 1,
+           role_id: 1,
+         },
+       },
+     ],
+   }
+>>> $r = new Roles();
+>>> $role = $r->find(2);
+>>> $role->admins
+=> Illuminate\Database\Eloquent\Collection {#4003
+     all: [
+       App\Models\Admins {#4017
+         id: 2,
+         name: "test2",
+         email: "test2@example.com",
+         email_verified_at: null,
+         #password: "xxxxxxxx",
+         #remember_token: null,
+         created_at: "2022-02-04 00:00:00",
+         updated_at: "2022-02-04 00:00:00",
+         deleted_at: null,
+         pivot: Illuminate\Database\Eloquent\Relations\Pivot {#4016
+           role_id: 2,
+           admin_id: 2,
+         },
+       },
+     ],
+   }
+
+```
+
+---
+
+# ページネーション
+
+query builderやEloquentモデルから`paginate`メソッドを利用する。
+
+Modelでの利用例
+
+```php
+>>> $admins = new Admins();
+>>> $admins::paginate(10)->toArray();
+>>> $admins::paginate(10)->toJson();
+
+// その他オプション
+>>> $admins::paginate(10)->hasPages();
+>>> $admins::paginate(10)->items();
+>>> $admins::paginate(10)->perPage();
+>>> $admins::paginate(10)->count();
+>>> $admins::paginate(10)->onFirstPage();
+>>> $admins::paginate(10)->getOptions();
+```
+
+---
+
+# Redis
+
+.envの`host`には`host.docker.internal`を指定すれば同じくネットワーク内のredisコンテナにアクセス出来る。
+
+## redisコンテナへのアクセス
+
+初期状態ではkeyは何も入っていない。
+
+
+```shell
+$ docker exec -it project_redis_container ash
+/data # redis-cli
+127.0.0.1:6379> keys *
+(empty list or set)
+
+# keys 格納されているkeyの一覧を表示する
+# type [key] valueのtypeを返す
+# get [key] typeがstringの値を取得する
+# del [key] 該当のkeyのデータを削除する
+# flushdb 全てのデータを削除する
+```
+
+### PHP側でredisにデータを格納する
+
+tinkerなどで下記の通り実行する
+
+```php
+# php artisan tinker
+Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
+>>> use Illuminate\Support\Facades\Redis;
+>>> Redis::set('name', 'Test123');
+=> true
+```
+
+`redis-cli`側のデータ
+
+```shell
+/data # redis-cli
+127.0.0.1:6379> keys *
+1) "project_name_database_name"
+127.0.0.1:6379> type project_name_database_name
+string
+127.0.0.1:6379> get project_name_database_name
+"Test123"
+
+
+# 削除
+127.0.0.1:6379> del project_name_database_name
+(integer) 1
+127.0.0.1:6379> keys *
+(empty list or set)
+```
+
+### 複数のkeyを格納するパターン
+
+```php
+# php artisan tinker
+Psy Shell v0.10.12 (PHP 8.0.15 — cli) by Justin Hileman
+>>> use Illuminate\Support\Facades\Redis;
+>>> Redis::set('name', 'Test123');
+=> true
+>>> Redis::set('test', 'xxxxx');
+=> true
+```
+
+`redis-cli`側のデータ
+
+```shell
+/data # redis-cli
+127.0.0.1:6379> keys *
+1) "project_name_database_test"
+2) "project_name_database_name"
+127.0.0.1:6379> get project_name_database_test
+"xxxxx"
+
+# 選択しているデータベース内の全てのキー
+127.0.0.1:6379> flushdb
+OK
+127.0.0.1:6379> keys *
+(empty list or set)
+
+# 全てのデータベース内のキーの削除
+127.0.0.1:6379> select 1
+OK
+127.0.0.1:6379[1]> keys *
+(empty list or set)
+127.0.0.1:6379[1]> select 0
+OK
+127.0.0.1:6379> keys *
+1) "project_name_database_test"
+2) "project_name_database_name"
+127.0.0.1:6379> select 2
+OK
+127.0.0.1:6379[2]> keys *
+(empty list or set)
+127.0.0.1:6379[2]> flushall
+OK
+127.0.0.1:6379[2]> select 0
+OK
+127.0.0.1:6379> keys *
+(empty list or set)
+
+```
+
+## セッション管理などでredisを利用する場合
+
+`phpredis`をインストール
+
+```shell
+$ composer require predis/predis
+```
+
+## Sessionファサードの利用
+
+`phpredis`をインストール
+
+```php
+    $test1 = Session::all(); // []
+    $test2 = Session::get('testKey'); // null
+    $test3 = Session::getId(); // session_id
+    $test4 = Session::getName(); // project_name_session
+    $test6 = Session::has('testKey'); // false
+```
+
+---
+
 # 補足
 
 ### Composer パッケージのアップデート

@@ -7,6 +7,7 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   BaseAddHeaderResponse,
   ServerRequestType,
+  // ServerRequestResponseType,
   AuthAppHeaderOptions,
 } from '@/types'
 // import { TableColumnSetting } from '@/types/config/data'
@@ -144,11 +145,11 @@ export function useMembers() {
   ): Promise<ServerRequestType> => {
     // axios.defaults.withCredentials = true
     return await useRequest()
-      .getRequest<ServerRequestType<any>>(config.endpoint.members.members, {
+      .getRequest<MemberType[]>(config.endpoint.members.members, {
         headers: options.headers,
       })
       .then((response) => {
-        setMembers(response.data.data)
+        setMembers(response.data as MemberType[])
         return { data: response.data, status: 200 }
         // setMembers(response.data.data)
         // return { data: response.data.data, status: response.status }

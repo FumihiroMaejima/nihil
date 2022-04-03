@@ -9,8 +9,10 @@ use Illuminate\Support\Str;
 
 class GamePlayerTableSeeder extends Seeder
 {
-    private $table = 'game_player';
-    private $count = 6;
+    private const TABLE_NAME = 'game_player';
+    private const SEEDER_DATA_LENGTH = 6;
+    private const SEEDER_DEVELOP_DATA_LENGTH = 100;
+    private int $count = 6;
 
     /**
      * Run the database seeds.
@@ -50,9 +52,13 @@ class GamePlayerTableSeeder extends Seeder
         // insert用データ
         $data = [];
 
-        // 0~12の数字の配列でforを回す
+        // データ数
+        $this->count = $this->getSeederDataLengthByEnv(Config::get('app.env'));
+
+        // 1~$this->countの数字の配列でforを回す
         foreach (range(1, $this->count) as $i) {
             $row = $template;
+
             $row['name']     = 'player' . (string)($i);
             $row['hp']       = $row['hp'] + (10 * $i);
             $row['mp']       = $row['mp'] + (10 * $i);
@@ -65,6 +71,26 @@ class GamePlayerTableSeeder extends Seeder
         }
 
         // テーブルへの格納
-        DB::table($this->table)->insert($data);
+        DB::table(self::TABLE_NAME)->insert($data);
+    }
+
+    /**
+     * get data length by env.
+     * @param string $envName
+     *
+     * @return int
+     */
+    private function getSeederDataLengthByEnv(string $envName): int
+    {
+        if ($envName === 'production') {
+            return self::SEEDER_DATA_LENGTH;
+        } elseif ($envName === 'testing') {
+            // testの時
+            return self::SEEDER_DATA_LENGTH;
+        } else {
+            // localやstaging
+            return self::SEEDER_DEVELOP_DATA_LENGTH;
+            // return self::SEEDER_DATA_LENGTH;
+        }
     }
 }
