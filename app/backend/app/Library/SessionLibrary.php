@@ -21,14 +21,6 @@ class SessionLibrary
     private const HEADER_ARRAY_KEY_NAME_TOKEN = 'token';
 
     /**
-     * Create a new MembersController instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {}
-
-    /**
      * check session by request and exit session value.
      *
      * @param \Illuminate\Http\Request $request
