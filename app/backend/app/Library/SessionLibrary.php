@@ -12,6 +12,13 @@ class SessionLibrary
 {
     use CheckHeaderTrait;
 
+    private const SESSION_KEY_NAME_USER_PREFIX = 'user_';
+    private const SESSION_HEADER_TOKEN_NAME = 'Authorization';
+    private const SESSION_HEADER_ID_NAME = 'X-Auth-ID';
+
+    // redis上のkey名
+    private const SESSION_REDIS_KEY_NAME = 'token';
+
     /**
      * Create a new MembersController instance.
      *
@@ -66,9 +73,10 @@ class SessionLibrary
      */
     public function startSession(Request $request): void
     {
-        $token = $request->header('Authorization');
+        $token = $request->header(self::SESSION_HEADER_TOKEN_NAME);
+        $userId = $request->header(self::SESSION_HEADER_ID_NAME);
 
-        $this->setSession('test-key', $token);
+        $this->setSession(self::SESSION_KEY_NAME_USER_PREFIX . $userId, $token);
     }
 
     /**
@@ -81,10 +89,9 @@ class SessionLibrary
     public function setSession(string $key, string $value): void
     {
         $hashedValue = $this->hashSession($value);
-        // Redis::set($key, 'test session value');
         Redis::set($key, json_encode(
             [
-                'token' => $hashedValue
+                self::SESSION_REDIS_KEY_NAME => $hashedValue
             ]
         ));
     }
