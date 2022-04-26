@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class AdminsCollection extends ResourceCollection
 {
+    public const RESOURCE_KEY_DATA = 'data';
+
     /**
      * Transform the resource collection into an array.
      *
@@ -21,7 +23,7 @@ class AdminsCollection extends ResourceCollection
         // 各itemは1レコードずつのデータを持つAdminsResourceクラス
         foreach ($this->resource as $item) {
             // 各itemのresourceはstdClassオブジェクトの１レコード分のデータ
-            $response['data'][] = $item->resource;
+            $response[self::RESOURCE_KEY_DATA][] = $item->resource;
         }
 
         return $response;

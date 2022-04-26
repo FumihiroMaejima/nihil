@@ -6,6 +6,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class AdminsRolesCreateResource extends JsonResource
 {
+    public const RESOURCE_KEY_ROLE_ID = 'role_id';
+    public const RESOURCE_KEY_ADMIN_ID = 'admin_id';
+    public const RESOURCE_KEY_CREATED_AT = 'created_at';
+    public const RESOURCE_KEY_UPDATED_AT = 'updated_at';
+
     /**
      * Transform the resource into an array.
      *
@@ -15,10 +20,10 @@ class AdminsRolesCreateResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'role_id'    => $request->roleId,
-            'admin_id'   => $this->resource->id,
-            'created_at' => $this->resource->created_at,
-            'updated_at' => $this->resource->updated_at
+            self::RESOURCE_KEY_ROLE_ID    => $request->roleId,
+            self::RESOURCE_KEY_ADMIN_ID   => $this->resource->id,
+            self::RESOURCE_KEY_CREATED_AT => $this->resource->created_at,
+            self::RESOURCE_KEY_UPDATED_AT => $this->resource->updated_at
         ];
     }
 }
