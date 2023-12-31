@@ -8,6 +8,12 @@ use Illuminate\Support\Carbon;
 
 class AdminCreateResource extends JsonResource
 {
+    public const RESOURCE_KEY_NAME = 'name';
+    public const RESOURCE_KEY_EMAIL = 'email';
+    public const RESOURCE_KEY_PASSWORD = 'password';
+    public const RESOURCE_KEY_CREATED_AT = 'created_at';
+    public const RESOURCE_KEY_UPDATED_AT = 'updated_at';
+
     /**
      * Transform the resource into an array.
      *
@@ -21,11 +27,11 @@ class AdminCreateResource extends JsonResource
         $dateTime = Carbon::now()->format('Y-m-d H:i:s');
 
         return [
-            'name'       => $request->name,
-            'email'      => $request->email,
-            'password'   => Hash::make($request->password),
-            'created_at' => $dateTime,
-            'updated_at' => $dateTime
+            self::RESOURCE_KEY_NAME       => $request->name,
+            self::RESOURCE_KEY_EMAIL      => $request->email,
+            self::RESOURCE_KEY_PASSWORD   => Hash::make($request->password),
+            self::RESOURCE_KEY_CREATED_AT => $dateTime,
+            self::RESOURCE_KEY_UPDATED_AT => $dateTime
         ];
     }
 }

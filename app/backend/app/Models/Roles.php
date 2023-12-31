@@ -14,6 +14,15 @@ class Roles extends Model
     use HasFactory;
     use SoftDeletes;
 
+    // カラム一覧
+    public const ID = 'id';
+    public const NAME = 'name';
+    public const CODE = 'code';
+    public const DETAIL = 'detail';
+    public const CRREATED_AT = 'created_at';
+    public const UPDATED_AT = 'updated_at';
+    public const DELETED_AT = 'deleted_at';
+
     //テーブル名指定
     protected $table = 'roles';
 

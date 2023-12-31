@@ -13,6 +13,13 @@ class Permissions extends Model
     use HasFactory;
     use SoftDeletes;
 
+    // カラム一覧
+    public const ID = 'id';
+    public const NAME = 'name';
+    public const CRREATED_AT = 'created_at';
+    public const UPDATED_AT = 'updated_at';
+    public const DELETED_AT = 'deleted_at';
+
     //テーブル名指定
     protected $table = 'permissions';
 

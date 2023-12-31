@@ -29,6 +29,20 @@ class User extends Authenticatable implements JWTSubject
     protected $carbon;
     protected $now;
 
+    // カラム一覧
+    public const ID = 'id';
+    public const NAME = 'name';
+    public const MESSAGE = 'email';
+    public const EMAIL_VERIFIED_AT = 'email_verified_at';
+    public const PASSWORD = 'password';
+    public const ROLE = 'role';
+    public const REMEMBER_TOKEN = 'remember_token';
+    public const CURRENT_TEAM_ID = 'current_team_id';
+    public const PROFILE_PHOTO_PATH = 'profile_photo_path';
+    public const CRREATED_AT = 'created_at';
+    public const UPDATED_AT = 'updated_at';
+    // public const DELETED_AT = 'deleted_at';
+
     //テーブル名指定
     protected $table = 'users';
 

@@ -11,6 +11,16 @@ class AdminsLog extends Model
     use HasFactory;
     use SoftDeletes;
 
+    // カラム一覧
+    public const ID = 'id';
+    public const ADMIN_ID = 'admin_id';
+    public const FUNCTION_NAME = 'function';
+    public const STATUS = 'status';
+    public const ACTION_TIME = 'action_time';
+    public const CRREATED_AT = 'created_at';
+    public const UPDATED_AT = 'updated_at';
+    public const DELETED_AT = 'deleted_at';
+
     //テーブル名指定
     protected $table = 'admins_log';
 

@@ -19,6 +19,34 @@ class GamePlayer extends Authenticatable implements JWTSubject
     protected $carbon;
     protected $now;
 
+    // カラム一覧
+    public const ID = 'id';
+    public const NAME = 'name';
+    public const LEVEL = 'level';
+    public const HP = 'hp';
+    public const MP = 'mp';
+    public const OFFENCE = 'offence';
+    public const DEFENSE = 'defense';
+    public const SPEED = 'speed';
+    public const MAGIC = 'magic';
+    public const OFFENCE_EQUIPMENT_ID = 'offence_equipment_id';
+    public const DEFENSE_EQUIPMENT_ID = 'defense_equipment_id';
+    public const ABILITY1_ID = 'ability1_id';
+    public const ABILITY2_ID = 'ability2_id';
+    public const ABILITY3_ID = 'ability3_id';
+    public const TITLE_ID = 'title_id';
+    public const ITEM = 'item';
+    public const SPECIAL_ITEM_FLG1 = 'special_item_flg1';
+    public const SPECIAL_ITEM_FLG2 = 'special_item_flg2';
+    public const SPECIAL_ITEM_FLG3 = 'special_item_flg3';
+    public const REVIVIAL_PASSWORD = 'revival_password';
+    public const SAVE_FLG = 'save_flg';
+    public const UNSAVED_COUNT = 'unsaved_count';
+    public const LOST_FLG = 'lost_flg';
+    public const CRREATED_AT = 'created_at';
+    public const UPDATED_AT = 'updated_at';
+    public const DELETED_AT = 'deleted_at';
+
     //テーブル名指定
     protected $table = 'game_player';
 
